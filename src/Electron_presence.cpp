@@ -1,3 +1,21 @@
+/**
+ * @class Electron_presence
+ *
+ * @author Arthur Vallet
+ *
+ * @version 1.0
+ *
+ * @date $Date: 2018/10/25$
+ *
+ *
+ * @brief The Electron_presence class represent the probability of finding an electron at different level for a @a QW_elementary_laser
+ * for different number of electron in Conduction Band (CB)
+ * this probability is deffined for each lasing mode by  by @a probability[CB_Electron_number][mode]
+ * or for pumping level by @a probability[CB_Electron_number][PUMPING_LEVEL]
+ * the @a mode_number
+ * @a energy_level_number  represent the maximum electron capacity of the CB that correspond to the energy level number
+ */
+
 #include "../inc/Electron_presence.h"
 
 using namespace std;
@@ -15,9 +33,8 @@ unsigned int Electron_presence::PUMPING_LEVEL;
 
 Electron_presence::Electron_presence(unsigned int const *laser_levels, double const q)
 {
-   cout << Electron_presence::energy_level_number << endl;
 
-   this->probability = new double*[Electron_presence::energy_level_number+1];
+   this->probability = new double*[Electron_presence::energy_level_number+1];// size declaration number of mode +pumping level
 
    for(size_t energy_level=0 ; energy_level <= energy_level_number ; energy_level++)//occupancies are deffiened in [0,B]
    {
@@ -76,7 +93,7 @@ void Electron_presence::initialize_size(const unsigned int mode_number, const un
 
 //=====================================================================================================================================
 
-ostream& operator<<(ostream& flux, Electron_presence const& electron_presence)
+ostream& operator<<(ostream& flux, const Electron_presence& electron_presence)
 
 {
 
@@ -161,23 +178,5 @@ void Electron_presence::initialise_occuancies(unsigned int const *laser_levels, 
 } // Electron_presence::initialise::occuancies
 
 //=====================================================================================================================================
-
-/**********/
-/*Testing */
-/**********/
-
-/**
- * @brief main Testing
- * @return
- */
-int main()
-{
-
-    const unsigned int lasing_level[2]={399,401};
-    Electron_presence::initialize_size(2,800);
-    Electron_presence occ (lasing_level,0.962090);
-    cout << occ;
-    double** tab=occ.getProbability();
-    cout << tab[795][2] << endl;
-    return 0;
-}
+//                             E N D   O F   F I L E                                                                                 //
+//=====================================================================================================================================

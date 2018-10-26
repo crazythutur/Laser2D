@@ -25,10 +25,11 @@
 
 class Electron_presence
 {
+ public:
    /************************/
    /*Constructor/Destructor*/
    /************************/
-public:
+
    Electron_presence(unsigned int const *laser_levels, double const q);
 
    ~Electron_presence();
@@ -79,6 +80,7 @@ public:
     * @brief PUMPING_LEVEL permit to obtain the probability of having an electron with @a probability[CB_Electron_number][PUMPING_LEVEL]
     */
    static unsigned int PUMPING_LEVEL;
+
 
 //============================================================================================================================
 
@@ -145,5 +147,13 @@ private:
 
 
 };// end of class Electron_presence
+
+/**
+ * @brief operator << surcharge of the opperator << to be able of read the the @a probability table
+ * @param flux input stram
+ * @param electron_presence the object to read te table
+ * @return
+ */
+std::ostream& operator<<(std::ostream& flux, const Electron_presence& electron_presence);
 
 #endif // ELECTRON_PRESENCE_H
