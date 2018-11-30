@@ -105,6 +105,7 @@ public:
    void setNeighboring_laser(Elementary_laser new_elementary_laser, direction laser_direction)
    {
        neighboring_lasers[laser_direction] = &new_elementary_laser;
+       new_elementary_laser.neighboring_lasers[laser_direction + 2 % DIRECTION_NUMBER] = this;//set the other elementary neigbboring laser in the oposite direction
    }
 
 //============================================================================================================================

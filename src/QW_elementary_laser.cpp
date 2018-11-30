@@ -30,8 +30,7 @@ QW_elementary_laser::QW_elementary_laser(const double pumping_local_rate, const 
    Elementary_laser(pumping_local_rate, temperature,  q)
 {
    if(!electron_presence_map.count(q))
-   {
-      //unsigned int laser_levels[1]={0};
+   {      
       electron_presence_map[q]=new Electron_presence(laser_levels, q);
    }
    this->electron_presence =  electron_presence_map[q];
@@ -39,7 +38,8 @@ QW_elementary_laser::QW_elementary_laser(const double pumping_local_rate, const 
 }//QW_elementary_laser::QW_elementary_laser
 
 
-QW_elementary_laser::~QW_elementary_laser () { }
+QW_elementary_laser::~QW_elementary_laser () {
+}
 
 
 

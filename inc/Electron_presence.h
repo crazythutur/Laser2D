@@ -10,8 +10,8 @@
  *
  * @brief The Electron_presence class represent the probability of finding an electron at different level for a @a QW_elementary_laser
  * for different number of electron in Conduction Band (CB)
- * this probability is deffined for each lasing mode by  by @a probability[CB_Electron_number][mode]
- * or for pumping level by @a probability[CB_Electron_number][PUMPING_LEVEL]
+ * this probability is deffined for each lasing mode by  by @a getLasing_lvl_prob([)CB_Electron_number, mode)
+ * or for pumping level by @a pumping_lvl_prob[CB_Electron_number]
  * the @a mode_number
  * @a energy_level_number  represent the maximum electron capacity of the CB that correspond to the energy level number
  */
@@ -50,37 +50,37 @@ class Electron_presence
    }//unsigned int Electron_presence::getEnergy_level_number
 
 
-   double **getProbability() const
+   double getLasing_lvl_prob( const unsigned int electron_number, const unsigned int mode) const
    {
-      return probability;
-   }//double **Electron_presence::getProbability
+      return lasing_lvl_prob[electron_number + mode * mode_number ];
+   }//double Electron_presence::getLasing_lvl_prob
+
+   double getPumping_lvl_prob( const unsigned int electron_number) const
+   {
+      return pumping_lvl_prob[electron_number];
+   }//double Electron_presence::getLasing_lvl_prob
+
+   void setLasing_lvl_prob(const unsigned int electron_number, const unsigned int mode,const double value)
+   {
+      lasing_lvl_prob[electron_number + mode * mode_number ] = value;
+   }//void Electron_presence::setLasing_lvl_prob
+   void setPumping_lvl_prob(const unsigned int electron_number ,const double value)
+   {
+      pumping_lvl_prob[electron_number] = value;
+   }//void Electron_presence::setLasing_lvl_prob
+
+
 
    /******************/
    /*Public functions*/
-   /******************/
+   /******************/   
 
    /**
-   * @brief affiche print the electron presence tab
-   * @param flux
-   */
-   void affiche(std::ostream &flux) const;
-
-
-   /**
-    * @brief init_size initialise the size of the @a probability tab and so the static parameters if the class
+    * @brief init_size initialise the size of the @a lasing_lvl_prob and pumping_lvl_prob tab and so the static parameters if the class
     * @param mode_number number of lasing modes
     * @param energy_level_number represent the maximum electron capacity of the CB that correspond to the energy level number
     */
    static void initialize_size(unsigned int const mode_number, unsigned int const energy_level_number);
-
-   /*********************/
-   /*Public attributes*/
-   /*********************/
-   /**
-    * @brief PUMPING_LEVEL permit to obtain the probability of having an electron with @a probability[CB_Electron_number][PUMPING_LEVEL]
-    */
-   static unsigned int PUMPING_LEVEL;
-
 
 //============================================================================================================================
 
@@ -89,12 +89,18 @@ private:
    /*Privates attributes*/
    /*********************/
    /**
-   * @brief probability probability of finding an electron at different level for a @a QW_elementary_laser
+   * @brief lasing_level probability of finding an electron at different level for a @a QW_elementary_laser
    * for different number of electron in Conduction Band (CB)
-   * this probability is deffined for each lasing mode by  by @a probability[CB_Electron_number][mode]
-   * or for pumping level by @a probability[CB_Electron_number][PUMPING_LEVEL]
+   * this probability is deffined for each lasing mode by vector defined by lasing_level[electron_number + mode * mode_number]
+   * accesible by @a getLasing_lvl_prob(electron_number, mode). This table is reduce in   dimmention table for optimsation and simplicity
    */
-   double **probability;
+   double *lasing_lvl_prob;
+
+   /**
+    * @brief pumping_level probability of finding an electron at pumping level for differents in CB
+    */
+   double *pumping_lvl_prob;
+
    /**
     * @brief mode_number the number of mode in the laser
     */
@@ -105,18 +111,12 @@ private:
    static unsigned int energy_level_number;
 
 
-   /**
-    * @brief initialise_occuancies inititialise the electron presence probability for each lasing mode and puming level
-    * for modes by by @a probability[][mode]and for the pumping lvl accecible by @a probability[][PUMPING_LEVEL]
-    * @param laser_levels
-    * @param q
-    */
-
    /*******************/
    /*Private functions*/
    /*******************/
    /**
-   * @brief initialise_occuancies permit to obtain the probability to find an electron in @a probability
+   * @brief initialise_occuancies permit to obtain the probability to find an electron
+   * in lasing level @a lasing_lvl_prob and pumping level @a pumping_lvl_prob
    *
    * at laser lvl  with electron in BC done for each mode
    * We use the fabrice formula that is iterative formula we calculate the probability table in two times
@@ -133,11 +133,15 @@ private:
    * to obtain
    * \f$ occ_k(B-N-2) = 1-q^{B-1-k}occ_k(B-N-1)\frac{1-q^{N+1}}{q^N-q^B}\f$
    *
+   * For the pumping level probability it's a sipmpler formula :
+   * \f$ occ_B(N) = \frac{q^{B}}{q^N}\frac{1-q^{N}}{1-q^B}\f$
+   *
+   *
    * B is abreviation for @a energy_level_number
    * k is abreviation for @a laser_levels in CB, NB : their is the same number of laser level in CB than modes numbers
    * N is abreviation for the energy level we use this incrementation variable for loop all the energy level
    *
-   * all result are contain in @a probability
+   * all result are contain in @a lasing_lvl_prob for lasing level and @a pumping_lvl_prob for pumping level
    * first dimention for witch number of electrons in CB, and the second dimention is for each laser mode and the pumping level.
    * @param laser_levels table that contain all laser level for each mode
    * @param q represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
@@ -145,15 +149,16 @@ private:
     */
    void initialise_occuancies(unsigned int const *laser_levels, double const q) ;
 
+   /**
+    * @brief operator << surcharge of the opperator << to be able of read the the @a probability table
+    * @param flux input stram
+    * @param electron_presence the object to read te table
+    * @return
+    */
+   friend std::ostream& operator<<(std::ostream& flux, const Electron_presence& electron_presence);
 
 };// end of class Electron_presence
 
-/**
- * @brief operator << surcharge of the opperator << to be able of read the the @a probability table
- * @param flux input stram
- * @param electron_presence the object to read te table
- * @return
- */
-std::ostream& operator<<(std::ostream& flux, const Electron_presence& electron_presence);
+
 
 #endif // ELECTRON_PRESENCE_H

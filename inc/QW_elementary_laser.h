@@ -59,9 +59,9 @@ public:
    /*Getters/Setters*/
    /*****************/
 
-   Electron_presence getElectron_presence() const
+   Electron_presence *getElectron_presence() const
    {
-      return *electron_presence;
+      return electron_presence;
    }
 
 
