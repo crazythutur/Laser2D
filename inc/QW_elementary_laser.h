@@ -50,7 +50,7 @@ public:
    * this will be associated to the @a electron_presence, if no a new entry will be initialisate by @a Electron_presence constructor
    *
    */
-   QW_elementary_laser (double const pumping_local_rate, const double temperature, double const q,
+   QW_elementary_laser (double const pumping_local_rate, double const q,
                         const unsigned int *laser_levels, std::map<double,Electron_presence*> &electron_presence_map);
 
    virtual ~QW_elementary_laser ();

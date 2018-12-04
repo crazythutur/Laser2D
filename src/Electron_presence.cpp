@@ -30,13 +30,13 @@ unsigned int Electron_presence::mode_number;
 /*Constructor/Destructor*/
 /************************/
 
-Electron_presence::Electron_presence(unsigned int const *laser_levels, double const q)
+Electron_presence::Electron_presence(unsigned int const *laser_levels, double const exponential_temperature)
 {
 
    this->lasing_lvl_prob  = new double[(energy_level_number + 1) * mode_number];// size declaration of lasing level tab, occupancies are deffiened in [0,B]
    this->pumping_lvl_prob = new double[ energy_level_number + 1];// size declaration of pumping level tab
 
-   this->initialise_occuancies(laser_levels, q);
+   this->initialise_occuancies(laser_levels, exponential_temperature);
 }//Electron_presence::Electron_presence
 
 //=====================================================================================================================================

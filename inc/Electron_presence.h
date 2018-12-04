@@ -30,7 +30,7 @@ class Electron_presence
    /*Constructor/Destructor*/
    /************************/
 
-   Electron_presence(unsigned int const *laser_levels, double const q);
+   Electron_presence(unsigned int const *laser_levels, double const exponential_temperature);
 
    ~Electron_presence();
 
@@ -147,7 +147,7 @@ private:
    * @param q represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
                    in our unity E=1meV, Kb is Boltzmann constant 1,38064852.10^-23 and T temperature in °K
     */
-   void initialise_occuancies(unsigned int const *laser_levels, double const q) ;
+   void initialise_occuancies(unsigned int const *laser_levels, double const exponential_temperature) ;
 
    /**
     * @brief operator << surcharge of the opperator << to be able of read the the @a probability table

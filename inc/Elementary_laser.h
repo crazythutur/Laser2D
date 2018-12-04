@@ -16,9 +16,7 @@
  * - the @a pumping_local_rate that represent the portion of the total pump
  * that occur in this @a Elementary_laser (for exemple by a gaussian distribution).
  *
- * - the @a exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
- *
- * - the @a temperature is used for the electron tranferts rates
+ * - the @a temperature represent the temperature in the laser
  *
  * - the @a neighboring_lasers regroup all neigbooring laser in direction @a UP, @a RIGHT, @a DOWN and @a LEFT
  */
@@ -36,31 +34,33 @@
 class Elementary_laser
 {
 public:
+
+    /********************/
+    /*Public enumeration*/
+    /********************/
+
+    /**
+     * @brief The direction enum represent the 4 directions for the @a neighboring_lasers
+     * it can be use for exemple with neighboring_lasers[UP]
+     */
+    enum direction{UP, RIGHT, DOWN, LEFT, DIRECTION_NUMBER};
+
    /************************/
    /*Constructor/Destructor*/
    /************************/
+
+  Elementary_laser ();
 
   /**
    * @brief Elementary_laser Constructor to initialise the private parameters
    *
    * @param pumping_local_rate represent the portion of the total pump
    * that occur in this @a Elementary_laser (for exemple by a gaussian distribution).
-   * @param temperaturecis used for the electron tranferts rates
-   * @param q represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
+   * @param exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
    */
-   Elementary_laser (double const pumping_local_rate, const double temperature, double const q);
+   Elementary_laser (double const pumping_local_rate, double const temperature);
 
    virtual ~Elementary_laser ();
-
-   /********************/
-   /*Public enumeration*/
-   /********************/
-
-   /**
-    * @brief The direction enum represent the 4 directions for the @a neighboring_lasers
-    * it can be use for exemple with neighboring_lasers[UP]
-    */
-   enum direction{UP, RIGHT, DOWN, LEFT, DIRECTION_NUMBER};
 
    /*****************/
    /*Getters/Setters*/
@@ -71,15 +71,11 @@ public:
        return pumping_local_rate;
    }
 
-   double getExponential_temperature() const
-   {
-      return exponential_temperature;
-   }
-
    double getTemperature() const
    {
-       return temperature;
+      return temperature;
    }
+
 
    Elementary_laser getNeighboring_laser (direction const value)   const{
       return *neighboring_lasers[value];
@@ -92,15 +88,11 @@ public:
        pumping_local_rate = value;
    }
 
-   void setExponential_temperature(double const value)
+   void setTemperature(double const value)
    {
-      exponential_temperature = value;
+      temperature = value;
    }
 
-   void setTemperature(double value)
-   {
-       temperature = value;
-   }
 
    void setNeighboring_laser(Elementary_laser new_elementary_laser, direction laser_direction)
    {
@@ -121,12 +113,7 @@ private :
     double pumping_local_rate;
 
     /**
-     * @brief exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
-     */
-    double exponential_temperature;
-
-    /**
-     * @brief temperature is used for the electron tranferts rates contrary to the @a exponential_temperature it's not deffined exponentialy
+     * @brief temperature represent the temperature in the @a Elementary laser
      */
     double temperature;
 

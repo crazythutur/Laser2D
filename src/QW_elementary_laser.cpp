@@ -25,9 +25,9 @@ using namespace std;
 /*Constructor/Destructor*/
 /************************/
 
-QW_elementary_laser::QW_elementary_laser(const double pumping_local_rate, const double temperature, const double q,
+QW_elementary_laser::QW_elementary_laser(const double pumping_local_rate, const double q,
                                          const unsigned int *laser_levels, map<double, Electron_presence*> &electron_presence_map) :
-   Elementary_laser(pumping_local_rate, temperature,  q)
+   Elementary_laser(pumping_local_rate,  q)
 {
    if(!electron_presence_map.count(q))
    {      
