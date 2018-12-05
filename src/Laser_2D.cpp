@@ -31,22 +31,29 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *
       this->laser_table.push_back(QW_elementary_laser(parameters.local_pump[laser_num], q ,laser_levels, electron_presence_map));
 
    }
+   organize_neighborhood();
 
 }
 
 Laser_2D::~Laser_2D ()
 {}
 
-unsigned int gcd(unsigned int a,unsigned int b)
+unsigned int find_height(unsigned int area)
 {
-    return b ?  gcd(b,a%b) : a;
+    /// we check first the sqrt of the area like a possible height
+    unsigned int height = static_cast <unsigned int> (std::floor(std::sqrt(area)));
+
+    /// while ths height is not a possible height for the rectangle we decrease it
+    while(area % height > 0) height--;
+
+    return height;
 }
 
 
 void  Laser_2D::organize_neighborhood(){
 
-   unsigned const int width  = gcd(this->elementary_laser_number,1);
-   unsigned const int height = this->elementary_laser_number/width;
+   unsigned const int height  = find_height(this->elementary_laser_number);
+   unsigned const int width = this->elementary_laser_number/height;
 
    unsigned int position;
 
@@ -63,7 +70,7 @@ void  Laser_2D::organize_neighborhood(){
       for(unsigned int it_x = 0 ; it_x < width ; it_x++ )
       {
          position = it_y * width + it_x;
-         laser_table[position].setNeighboring_laser(laser_table[position - width], Elementary_laser::DOWN);
+         laser_table[position].setNeighboring_laser(laser_table[position - width], Elementary_laser::UP);
       }
    }
 }// end of Laser_2D::organize_neighborhood()

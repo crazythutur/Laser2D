@@ -133,8 +133,8 @@ private:
    * to obtain
    * \f$ occ_k(B-N-2) = 1-q^{B-1-k}occ_k(B-N-1)\frac{1-q^{N+1}}{q^N-q^B}\f$
    *
-   * For the pumping level probability it's a sipmpler formula :
-   * \f$ occ_B(N) = \frac{q^{B}}{q^N}\frac{1-q^{N}}{1-q^B}\f$
+   * For the pumping level probability it's a simpler formula :
+   * \f$ occ_B(N) = \frac{q^B}{q^N}\frac{1-q^N}{1-q^B}\f$
    *
    *
    * B is abreviation for @a energy_level_number
@@ -143,7 +143,7 @@ private:
    *
    * all result are contain in @a lasing_lvl_prob for lasing level and @a pumping_lvl_prob for pumping level
    * first dimention for witch number of electrons in CB, and the second dimention is for each laser mode and the pumping level.
-   * @param laser_levels table that contain all laser level for each mode
+   * @param laser_levels table that contain all laser levels for each mode
    * @param q represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
                    in our unity E=1meV, Kb is Boltzmann constant 1,38064852.10^-23 and T temperature in °K
     */

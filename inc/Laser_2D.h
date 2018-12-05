@@ -38,6 +38,7 @@
 #define LASER_2D_H
 
 #include <vector>
+#include <cmath>
 #include "Elementary_laser.h"
 #include "QW_elementary_laser.h"
 //#include "QD_elementary_laser.h"
@@ -214,11 +215,11 @@ private:
 };// end of class Laser_2D
 
 /**
- * @brief gcd return the Great common
+ * @brief find_width return the height of a rectangle with the more square shape possible
  *
- * It's a recursive function that return the value modulo by b until b is not null
- * @return the Great common divisor of @param a and @param b
+ *
+ * @return the height of a rectangle with area of @param area
  */
-unsigned int gcd(unsigned int a,unsigned int b);
+unsigned int find_height(unsigned int area);
 
 #endif // LASER_2D_H
