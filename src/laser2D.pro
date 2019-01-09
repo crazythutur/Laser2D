@@ -1,30 +1,43 @@
-QT += core
+QT-= core
 QT -= gui
 
 CONFIG += c++17
 
 TARGET = laser2D
 CONFIG += console
-CONFIG -= app_bundle
+#CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES +=  Marmote.main.cpp \
+SOURCES +=  \
             #QW_elementary_laser.main.cpp \
             QW_elementary_laser.cpp \
             Electron_presence.cpp \
             Elementary_laser.cpp \
-            Laser_2D.cpp
-
+            Laser_2D.cpp \
+            LaserTransitionStructure.cpp \
+            Marmote.main.cpp
+#            Marmote.main
 
 
 HEADERS +=  ../inc/Electron_presence.h \
             ../inc/Elementary_laser.h \
             ../inc/QW_elementary_laser.h\
-            ../inc/Laser.h
+            ../inc/Laser_2D.h \
+            ../inc/LaserTransitionStructure.h
+            ../inc/LaserTransitionStructure.h
 
 QMAKE_CXXFLAGS += -Wall -Wextra  -pedantic -ansi -Wwrite-strings -Wuninitialized -Wunreachable-code
 
 #QMAKE_CXXFLAGS +=-Werror# Warning to Error at complilation
 
-#DISTFILES += QW_elementary_laser.cpp Electron_presence.cpp Elementary_laser.cpp
+QMAKE_EXT_CPP += .main
+
+
+
+
+#MARMOTE libraries
+LIBS += -L/home/thutur/marmotecore_1.2.3/lib -lMarmoteCore -lXborne -lpsi
+
+LIBS += -lboost_thread -lboost_system
+INCLUDEPATH += /home/thutur/marmotecore_1.2.3

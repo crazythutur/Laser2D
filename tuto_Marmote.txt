@@ -1,0 +1,66 @@
+Tuto utiliser Marmote
+
+sudo apt install libboost-all-dev
+
+Ci-jointe donc une archive avec le source.
+Mode d'emploi:
+
+1. se mettre dans un repertoire, disons TOTO
+2. tar zf marmotecore_1.2.3_source.tgz
+3. cd marmotecore_1.2.3
+4. make libraries
+5. soit: installer les bibliotheques obtenues dans lib/*.a dans /usr/local/marmote
+    soit: compiler les applications avec la commande: make LOCAL=true MARMOTEDIR=TOTO/marmotecore_1.2.3
+
+
+
+pour moi TOTO est ~
+cd ~/marmoteapplis_1.2.0/Examples/Basic
+
+make MARMOTEDIR=~/marmotecore_1.2.3
+
+new make file for Examples/Basic : 
+****************************************
+# Choice of Marmote library: distrib/installed or development
+ifdef DISTRIB
+MARMOTEDIR=/usr/local/marmotecore
+INCLUDEDIR=$(MARMOTEDIR)/include
+else ifdef LOCAL
+INCLUDEDIR=$(MARMOTEDIR)/include
+else
+MARMOTEDIR=../../../marmotecoredev
+INCLUDEDIR=$(MARMOTEDIR)
+endif
+LIBDIR=$(MARMOTEDIR)/lib
+
+# Flag for interaction with R
+ifdef WITH_R
+RFLAGS = -DWITH_R -I/usr/include/R -I/usr/lib64/R/library/Rcpp/include -I/usr/lib64/R/library/RInside/include -L/usr/lib64/R/lib -lR  -L/usr/lib64/R/library/RInside/lib -lRInside -Wl,-rpath,/usr/lib64/R/library/RInside/lib
+else
+RFLAGS = 
+endif
+
+# Choice of C compiler and options
+ifeq ($(OS),Windows_NT)
+CFLAGS += -std=gnu++11
+endif
+
+CPPCOMPILER = g++
+#CPPCOMPILER=clang++ -v
+#CPPCOMPILER=/usr/bin/g++-4.8
+#CPPCOMPILER=/usr/bin/g++-4.9
+
+CFLAGS += -ansi -Wall -pedantic -g
+VAL=valgrind --leak-check=full --show-leak-kinds=all
+
+LIBRARIES=$(addprefix -l, MarmoteCore Xborne psi boost_thread boost_system)
+APPLIS= example1 example2 example3 example4 example5 example6 example7
+
+all: $(APPLIS)
+
+%: %.cpp
+	$(CPPCOMPILER) $(CFLAGS) -I$(INCLUDEDIR) $^ -o $@ -L$(LIBDIR) $(LIBRARIES)
+
+clean:
+	/bin/rm $(APPLIS)
+*************************************************************

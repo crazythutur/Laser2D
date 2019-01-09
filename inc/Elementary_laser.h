@@ -13,6 +13,8 @@
  * This object is virtual and can be deffined as a Quantum Dot (DQ) laser or a Quantum Well (QW) laser.
  * Each  @a Elementary_laser is composed by  :
  *
+ * - the @a laser_num represent the number of the laser in the @a Laser_2D
+ *
  * - the @a pumping_local_rate that represent the portion of the total pump
  * that occur in this @a Elementary_laser (for exemple by a gaussian distribution).
  *
@@ -66,6 +68,11 @@ public:
    /*Getters/Setters*/
    /*****************/
 
+   unsigned int getLaser_num() const
+   {
+       return laser_num;
+   }
+
    double getPumping_local_rate() const
    {
        return pumping_local_rate;
@@ -79,7 +86,10 @@ public:
 
    Elementary_laser getNeighboring_laser (direction const value)   const{
       return *neighboring_lasers[value];
+   }
 
+   Elementary_laser *getNeighboring_laser (int const value)   const{
+      return neighboring_lasers[value];
    }
 
 
@@ -106,6 +116,12 @@ private :
    /*********************/
    /*Privates attributes*/
    /*********************/
+
+
+   /**
+     * @brief laser_num represent the number of the laser in the @a Laser_2D
+     */
+    unsigned int laser_num;
 
     /**
      * @brief pumping_local_rate : Local pumping rate deffined by a portion of the total pump, for exemple by gaussian distribution.

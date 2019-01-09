@@ -91,7 +91,14 @@ public:
    Laser_2D (Laser_init_parameters const parameters);
 
 
-
+   /**
+    * @brief Laser_2D Constructor for a 2D laser QW
+    * @param parameters classics parameter to initialise the laser
+    * @param laser_levels array of each lasing level
+    * @param energy_level_splitting energy that sperate 2 energy levels  in meV
+    * @param electron_presence_map map of all @a Electron_presence. This permit to not recalculate the @a Electron_presence
+    * a new entry will be added if the value are not already calculated
+    */
    Laser_2D (Laser_init_parameters const parameters, unsigned int const *laser_levels, double const energy_level_splitting,
              std::map<double, Electron_presence *> &electron_presence_map);
 
@@ -132,12 +139,12 @@ public:
       return cavity_escape_rate[mode];
    }
 
-   Elementary_laser getElementary_laser(unsigned int laser_number) const
+   Elementary_laser *getElementary_laser(unsigned int laser_number)
    {
-      return laser_table[laser_number];
+      return &laser_table[laser_number];
    }
 
-
+//============================================================================================================================
 
    void setMode_number(unsigned int value)
    {
@@ -200,6 +207,8 @@ private:
    */
   vector<Elementary_laser> laser_table;
 
+//============================================================================================================================
+
   /********************/
   /*Privates function */
   /********************/
@@ -208,11 +217,12 @@ private:
     * @brief organize_neighborhood initialize all @a Elementary_laser.neighboring_lasers
     *
     * all direction are initialisated with @a Elementary_laser.setNeighboring_laser we make two loop
-    * for height and width
+    * one for the width and the other for the height
     */
    void organize_neighborhood();
 
 };// end of class Laser_2D
+//============================================================================================================================
 
 /**
  * @brief find_width return the height of a rectangle with the more square shape possible

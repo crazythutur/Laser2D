@@ -23,6 +23,8 @@
 #include <iostream>
 #include <cmath>
 
+//============================================================================================================================
+
 class Electron_presence
 {
  public:
@@ -38,13 +40,13 @@ class Electron_presence
    /*Getters/Setters*/
    /*****************/
 
-   unsigned int getMode_number() const
+   static unsigned int getMode_number()
    {
       return mode_number;
    }//unsigned int Electron_presence::getMode_number
 
 
-   unsigned int getEnergy_level_number() const
+   static unsigned int getEnergy_level_number()
    {
       return energy_level_number;
    }//unsigned int Electron_presence::getEnergy_level_number
@@ -60,6 +62,8 @@ class Electron_presence
       return pumping_lvl_prob[electron_number];
    }//double Electron_presence::getLasing_lvl_prob
 
+   //============================================================================================================================
+
    void setLasing_lvl_prob(const unsigned int electron_number, const unsigned int mode,const double value)
    {
       lasing_lvl_prob[electron_number + mode * mode_number ] = value;
@@ -69,7 +73,7 @@ class Electron_presence
       pumping_lvl_prob[electron_number] = value;
    }//void Electron_presence::setLasing_lvl_prob
 
-
+//============================================================================================================================
 
    /******************/
    /*Public functions*/
@@ -110,6 +114,7 @@ private:
     */
    static unsigned int energy_level_number;
 
+//============================================================================================================================
 
    /*******************/
    /*Private functions*/
