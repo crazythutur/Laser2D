@@ -141,7 +141,7 @@ public:
 
    Elementary_laser *getElementary_laser(unsigned int laser_number)
    {
-      return &laser_table[laser_number];
+      return laser_table[laser_number];
    }
 
 //============================================================================================================================
@@ -203,9 +203,9 @@ private:
   double *cavity_escape_rate;
 
   /**
-   * @brief laser_table array of a number @a elementary_laser_number of @a Elementary_laser
+   * @brief laser_table array of a number @a elementary_laser_number of @a Elementary_laser pointer
    */
-  vector<Elementary_laser> laser_table;
+  vector<Elementary_laser *> laser_table;
 
 //============================================================================================================================
 

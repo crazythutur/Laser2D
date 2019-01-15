@@ -15,19 +15,19 @@ using namespace std;
 int main()
 {
    const unsigned int mode_number =2;
-   const unsigned int lasing_level[2]={399,401};
-   Electron_presence::initialize_size(mode_number,800);
+   const unsigned int lasing_level[2]={50,51};
+   Electron_presence::initialize_size(mode_number,100);
    double q1=0.962090;
    double q2=0.97;
    double q3=0.98;
-   Electron_presence occ (lasing_level,q1);
+   //Electron_presence occ (lasing_level,q1);
 
    cout << "affichage occupancies"  << endl;
    //cout << occ;
    //cout << *occ2;
 
    map<double,Electron_presence*> occ_map;
-   occ_map[q1]= &occ;
+   //occ_map[q1]= &occ;
    double J=1.2;
 
 
@@ -44,8 +44,8 @@ int main()
    Electron_presence *electron_presence = las2->getElectron_presence();
    cout << *electron_presence;
    /** @todo DEBUG that**/
-   cout << las1->getElectron_presence()->getLasing_lvl_prob(700,1) << endl;
-   cout << electron_presence->getLasing_lvl_prob(700,2) << endl;
+   cout << las1->getElectron_presence()->getLasing_lvl_prob(97,1) << endl;
+   cout << electron_presence->getLasing_lvl_prob(97,2) << endl;
 
    cout << "QW testing" <<endl;
    QW_elementary_laser *qw1 = new QW_elementary_laser(J, q1,lasing_level, occ_map);
@@ -53,10 +53,10 @@ int main()
    QW_elementary_laser *qw3 = new QW_elementary_laser(J, q3,lasing_level, occ_map);
 
 
-   cout << "electron presence1 " << qw1->getElectron_presence()->getLasing_lvl_prob(700,1) << endl;
+   cout << "electron presence1 " << qw1->getElectron_presence()->getLasing_lvl_prob(97,1) << endl;
    cout << "Jloc " <<qw1->getPumping_local_rate() <<  " q " << qw1->getTemperature() <<endl;
-   cout << "electron presence2 " << qw2->getElectron_presence()->getLasing_lvl_prob(700,1) << endl;
-   cout << "electron presence3 " << qw3->getElectron_presence()->getLasing_lvl_prob(700,1) << endl;
+   cout << "electron presence2 " << qw2->getElectron_presence()->getLasing_lvl_prob(97,1) << endl;
+   cout << "electron presence3 " << qw3->getElectron_presence()->getLasing_lvl_prob(97,1) << endl;
    cout << occ_map.size() << endl;
 
 

@@ -45,6 +45,7 @@
 
 //Other includes
 #include "Laser_2D.h"
+#include "rate_array.h"
 #include <iostream>
 #include <string>
 
@@ -91,7 +92,41 @@ public:
     */
    DiscreteDistribution *initial_state(int *photon_distr, int *CB_electrons_distr);
 
-   //============================================================================================================================
+   /**
+    * @brief decode_laser_state permit to decode the state number @param state_num and put the result table input
+    * @param photon array of number of photon of each mode should be initialisated with
+    *   a size this->laser->getMode_number()
+    * @param CB_electrons array of number of electron in conduction band for each @a Elementary_laser
+    *   should be initialisated with a size this->laser->getMode_number()
+    * @param state_num number of the event
+    */
+   void decode_laser_state(int *photon, int *CB_electrons, int state_num);
+
+   /**
+    * @brief print_trajectory print the trajectory with a readable format
+    * @param flux output flux
+    * @param result the result of the @a MarkovChain
+    * @return
+    */
+   std::ostream& print_trajectory(std::ostream& flux, SimulationResult *result);
+
+   /**
+    * @brief print_event print the @param event_number state with a proper definition
+    * @param result the result of the @a MarkovChain
+    * @param event_number number of the event in the trace
+    * @param flux output flux
+    * @return the output with the added string
+    */
+   std::ostream& print_event(std::ostream& flux, SimulationResult *result, int event_number);
+
+   /**
+    * @brief print_header print the header of the trace of a chain for the @a print_event
+    * @param flux outpt flux
+    * @return the output with the added string
+    */
+   std::ostream& print_header(std::ostream& flux);
+
+//============================================================================================================================
 
    /*************************/
    /*Pure Virtuals function */
@@ -108,11 +143,20 @@ public:
    virtual DiscreteDistribution* TransDistrib(int i);
 
    /**
+    * @brief getEntry return the rate associated with the transition from state @param i to @param j
+    *
+    * by convention the rate from i to i is minus the sum of all others rates
+    *
+    * @return the rate from @param i to @param j
+    */
+   virtual double getEntry(int i, int j);
+
+   /**
     * All these pure virtual Functions Are Not Implemented
     * @todo To Implement
     */
    virtual bool setEntry(int i, int j, double val);
-   virtual double getEntry(int i, int j);
+
    virtual int getNbElts(int i);
    virtual int getCol(int i, int k);
    virtual double getEntryByCol(int i, int k);
@@ -125,6 +169,7 @@ public:
 //============================================================================================================================
 
 private:
+
    /*********************/
    /*Privates attributes*/
    /*********************/
@@ -133,12 +178,18 @@ private:
     * @brief photon_max limit of number of photon this limit is just for simplicity
     * in practice this value should be modify until the probability of having @a photon_max is negligeable
     */
-   static const int photon_max = 10000;
+   static const int photon_max = 10;
 
+   /**
+    * @brief electron_max maximum numer of electorn in the conduction band
+    */
+   unsigned int electron_max;
    /**
     * @brief n_dims numbers of dimentions for the Markov chain is the sum of @a photon and @a CB_electrons dimentions
     */
    int n_dims;
+
+
 
    /**
     * @brief set represent the Carthesian product of the two Set @a photon and @a CB_electrons
@@ -178,6 +229,20 @@ private:
     */
    void init_state(int *photon_prev_state, int *photon_next_state, int *elec_prev_state, int *elec_next_state);
 
+   /**
+    * @brief transition_probabilities return the transition probability from a state @param i
+    * neccessary to implement getEntry and Trans_distrib functions from @a Transition_structure
+    *
+    * The function possed all events
+    * the sheme is simple we test if the event is possible
+    * then make a copy of the state
+    * calculate the rate
+    * add the application of the rate for the new state
+    * add the rate and the new rates for the return value
+    */
+   Rate_array *transition_probabilities(int i);
+
 };// end of class Laser_transition_structure
 //============================================================================================================================
+
 #endif // LASER_TRANSITION_STRUCTURE_H

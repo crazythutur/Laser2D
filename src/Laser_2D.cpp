@@ -63,6 +63,8 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *
 
    for(unsigned int laser_num=0 ; laser_num < this->mode_number ; laser_num++)
    {
+       QW_elementary_laser *elem_laser;
+
       /*
        * we use (e/1000 / k_B) = 11.60451812 with e elementary charge and k_B boltzman constant
        * this permit to transform q=exp(-Epsilon/(Kb*T)) to q= exp(-11.60451812 * energy_level_splitting / temperature)
@@ -70,8 +72,10 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *
        */
       q=exp(-11.60451812 * energy_level_splitting / parameters.temperature[laser_num]);
 
-      this->laser_table.push_back(QW_elementary_laser(parameters.local_pump[laser_num], q ,laser_levels, electron_presence_map));
+      elem_laser = new QW_elementary_laser(parameters.local_pump[laser_num], q ,laser_levels, electron_presence_map);
+      elem_laser->setLaser_num(laser_num);
 
+      this->laser_table.push_back(elem_laser);
    }
    organize_neighborhood();
 
@@ -80,7 +84,9 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *
 //=====================================================================================================================================
 
 Laser_2D::~Laser_2D ()
-{}//Laser_2D::~Laser_2D (
+{
+    this->laser_table.clear();
+}//Laser_2D::~Laser_2D (
 
 //=====================================================================================================================================
 
@@ -101,7 +107,7 @@ void  Laser_2D::organize_neighborhood(){
       for(unsigned int it_x = 1 ; it_x < width ; it_x++ )
       {
          position = it_y * width + it_x;
-         laser_table[position].setNeighboring_laser(laser_table[position - 1], Elementary_laser::LEFT);
+         laser_table[position]->setNeighboring_laser(laser_table[position - 1], Elementary_laser::LEFT);
       }
    }
    /** Second loop is for fill all vertical neigboor**/
@@ -109,7 +115,7 @@ void  Laser_2D::organize_neighborhood(){
       for(unsigned int it_x = 0 ; it_x < width ; it_x++ )
       {
          position = it_y * width + it_x;
-         laser_table[position].setNeighboring_laser(laser_table[position - width], Elementary_laser::UP);
+         laser_table[position]->setNeighboring_laser(laser_table[position - width], Elementary_laser::UP);
       }
    }
 }// end of Laser_2D::organize_neighborhood()

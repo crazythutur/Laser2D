@@ -28,6 +28,8 @@
 
 #include "../inc/LaserTransitionStructure.h"
 
+using namespace std;
+
 //=====================================================================================================================================
 
 /************************/
@@ -37,11 +39,14 @@
 Laser_transition_structure::Laser_transition_structure (Laser_2D *laser)
 {
    /** Parameters for TransitionStructure **/
-   this->type_  = DISCRETE;
+   this->type_  = CONTINUOUS;
    this->uniformization_rate_ = 0.0;
 
    this->laser = laser;
    this->n_dims = laser->getMode_number() + laser->getElementary_laser_number();
+
+   this->electron_max = Electron_presence::getEnergy_level_number() + 1;
+    // the number of electron at maximum is the band full hence +1
 
    /** Initialisation of the state space  with the two @a MarmoteBox photon and CB_electrons **/
    int *photon_dim_size   = new int[laser->getMode_number()];
@@ -59,7 +64,8 @@ Laser_transition_structure::Laser_transition_structure (Laser_2D *laser)
    {
        for(unsigned int dimention = 0 ; dimention < laser->getElementary_laser_number() ; dimention ++)
        {
-           electron_dim_size[dimention] = Electron_presence::getEnergy_level_number();
+           electron_dim_size[dimention] = this->electron_max;
+
        }
    }
    this->CB_electrons = new MarmoteBox(laser->getElementary_laser_number(), electron_dim_size);
@@ -70,6 +76,9 @@ Laser_transition_structure::Laser_transition_structure (Laser_2D *laser)
    liste[1] = this->CB_electrons;
 
    this->set = new MarmoteSet(liste, 2, MarmoteSet::PRODUCT);
+
+   this->orig_size_ = set->Cardinal();
+   this->dest_size_ = set->Cardinal();
 
    /** free memory used for the state space **/
    delete[] photon_dim_size;
@@ -121,34 +130,211 @@ DiscreteDistribution *Laser_transition_structure::initial_state(int *photon_dist
 
 //=====================================================================================================================================
 
+void Laser_transition_structure::decode_laser_state(int *photon, int *CB_electrons , int state_num)
+{
+    int* prev_state         = new int[this->n_dims];
+
+    /** DecodeState permit with a int in index to obtain a array of int that represent the state **/
+    this->set->DecodeState(state_num , prev_state);
+
+    /** Then the total state is divisate the first values are for the photons the other part are the other **/
+//    photon  = prev_state;//It's a tricky part the first part of the table is for photon
+//    CB_electrons = &prev_state[this->laser->getMode_number()];//The second part begin by the next index so the laser number
+    int* limit = prev_state + this->laser->getMode_number();
+
+    std::copy(prev_state, limit , photon);
+    std::copy(limit, limit + this->laser->getElementary_laser_number() , CB_electrons);
+
+    delete[](prev_state);
+}//void Laser_transition_structure::decode_laser_state(int *photon, int *CB_electrons , int state_num)
+
+//=====================================================================================================================================
+
+ostream &Laser_transition_structure::print_trajectory(ostream &flux, SimulationResult *result)
+{
+    int size = result->trajectorySize();
+
+
+    this->print_header(flux);
+
+    for(int state =0; state < size ; state ++)
+    {
+     this->print_event(flux,result, state);
+    }
+    return cout;
+}
+
+//=====================================================================================================================================
+
+std::ostream& Laser_transition_structure::print_event(std::ostream& flux, SimulationResult *result, int event_number)
+{
+
+
+    int size = result->trajectorySize();
+    double date;
+    int* photons_number  = new int[this->laser->getMode_number()];
+    int* CB_electrons_number = new int[this->laser->getElementary_laser_number()];
+
+
+
+    if(event_number < size){
+
+        decode_laser_state(photons_number, CB_electrons_number, result->states()[event_number]);
+
+        date = result->dates()[event_number];
+
+        flux << '[' << event_number << "],\t" << result->states()[event_number] << ",\t" << date << ",\t" << 0;
+
+        for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
+        {
+            flux << ",\t" << photons_number[mode] ;
+
+        }
+        for(unsigned int laser_num = 0 ; laser_num < this->laser->getElementary_laser_number() ; laser_num ++)
+        {
+            flux << ",\t" << CB_electrons_number[laser_num] ;
+
+        }
+        flux << endl;
+    }
+
+    delete[](photons_number);
+    delete[](CB_electrons_number);
+
+    return flux;
+
+}//std::ostream& Laser_transition_structure::print_event(std::ostream& flux, SimulationResult *result, int event_number)
+
+//=====================================================================================================================================
+
+std::ostream& Laser_transition_structure::print_header(std::ostream& flux)
+{
+    flux << "event_num, state, time, duration";
+    for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
+    {
+        flux << ", photon";
+        if(this->laser->getMode_number() > 1)
+        {
+           flux << "_" << mode + 1;
+        }
+    }
+    for(unsigned int laser_num = 0 ; laser_num < this->laser->getElementary_laser_number() ; laser_num ++)
+    {
+        flux << ", electron";
+        if(this->laser->getElementary_laser_number() > 1)
+        {
+           flux << "_" << laser_num + 1;
+        }
+    }
+
+    flux << endl;
+    return flux;
+}//std::ostream& Laser_transition_structure::print_header(std::ostream& flux)
+
+//=====================================================================================================================================
+
 /*************************/
 /*Pure Virtuals function */
 /*************************/
 
 DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
 {
+    DiscreteDistribution * result;    
+
+    Rate_array *trans_probas = transition_probabilities(i);
+
+    for(int index = 0 ; index < trans_probas->getSize() ; index ++)
+    {
+        trans_probas->setRate(index, trans_probas->getRate(index) / trans_probas->rateSum());
+    }
+    result = new DiscreteDistribution(trans_probas->getSize(), trans_probas->getValues(), trans_probas->getRates());
+
+    delete trans_probas;
+
+    return result;
+
+}// DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
+
+//=====================================================================================================================================
+
+double Laser_transition_structure::getEntry(int i, int j)
+{
+    double result;
+    Rate_array* trans_probas = transition_probabilities(i);
+
+    if(i==j)//by convention the rate associated for the same state is the minus sum of all others rates
+    {
+        result = - trans_probas->rateSum();
+    }
+    else
+    {
+        result = trans_probas->rate(j);
+    }
+
+    delete trans_probas;
+    return result;
+}//double Laser_transition_structure::getEntry(int i, int j)
+
+//=====================================================================================================================================
+
+/**
+ * All these pure virtual Functions Are Not Implemented
+ * @todo To Implement
+ */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+bool Laser_transition_structure::setEntry(int i, int j, double val) {cerr << "Warning Not Implemented setEntry" << endl; return false;}
+int Laser_transition_structure::getNbElts(int i)  {cerr << "Warning Not Implemented getNbElts" << endl; return 0;}
+int Laser_transition_structure::getCol(int i, int k)  {cerr << "Warning Not Implemented getCol" << endl; return 0;}
+double Laser_transition_structure::getEntryByCol(int i, int k)  {cerr << "Warning Not Implemented getEntryByCol" << endl;return 0;}
+double Laser_transition_structure::RowSum(int i)  {cerr << "Warning Not Implemented RowSum" << endl;return 0; }
+TransitionStructure* Laser_transition_structure::Copy()  {cerr << "Warning Not Implemented Copy" << endl; return nullptr;}
+TransitionStructure* Laser_transition_structure::Uniformize()  {cerr << "Warning Not Implemented Uniformize" << endl; return nullptr;}
+TransitionStructure* Laser_transition_structure::Embed()  {cerr << "Warning Not Implemented Embed" << endl; return nullptr;}
+void Laser_transition_structure::EvaluateValue(double* v, double* res)  {cerr << "Warning Not Implemented EvaluateValue" << endl; }
+#pragma GCC diagnostic pop
+
+//=====================================================================================================================================
+
+/********************/
+/*Privates function */
+/********************/
+
+void Laser_transition_structure::init_state(int *photon_prev_state, int *photon_next_state,
+                                            int *elec_prev_state,int *elec_next_state )
+{
+    /** The 2 previous states are copied in the 2 next states **/
+    std::copy(photon_prev_state, photon_prev_state + this->laser->getMode_number(),photon_next_state );
+    std::copy(elec_prev_state, elec_prev_state + this->laser->getElementary_laser_number(),elec_next_state );
+}//void Laser_transition_structure::init_state(int *, int * int *,int * )
+
+//=====================================================================================================================================
+
+Rate_array *Laser_transition_structure::transition_probabilities(int i)
+{
     //states manipulation
-    int* photon_prev_state(0);
-    int* photon_next_state(0);
-    int* CB_elec_prev_state(0);
-    int* CB_elec_next_state(0);
+    int* photon_prev_state= new int[this->laser->getMode_number()] ;
+    int* CB_elec_prev_state = new int[this->laser->getElementary_laser_number()];
+
+
+    int* photon_next_state  = new int[this->laser->getMode_number()];
+    int* CB_elec_next_state = new int[this->laser->getElementary_laser_number()];
 
 
     //return values
-    double *rate=new double[this->n_dims];
-    double *next_index=new double[this->n_dims];
-    double rate_sum=0.0;
+    double *rate=new double[this->n_dims * 9];//For all dimentions the number of transition is at max 9
+    double *next_index=new double[this->n_dims* 9];
     int trans_indice = 0;//number of the transition to add the 2 tables upper
 
-    this->photon->      DecodeState(i,photon_prev_state);
-    this->CB_electrons->DecodeState(i,CB_elec_prev_state);
+    /** decoding the state and add it in photon_prev_state and CB_elec_prev_state **/
+    this->decode_laser_state(photon_prev_state, CB_elec_prev_state, i);
 
     //------------------------//
     // Event : Out of cavity  //
     //------------------------//
     for( unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++ )
     {
-        if(photon_prev_state[mode]>0){
+        if(photon_prev_state[mode] > 0){
 
             init_state(photon_prev_state, photon_next_state, CB_elec_prev_state, CB_elec_next_state);//previous state copy
 
@@ -156,7 +342,7 @@ DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
             rate[trans_indice] = this->laser->getCavity_escape_rate(mode) * photon_prev_state[mode];
             photon_next_state[mode]--;//next state is the previous state with a photon lower
 
-            /** update the next index       **/            
+            /** update the next index       **/
             next_index[trans_indice++] = myGetIndex(photon_next_state, CB_elec_next_state);
         }
     }
@@ -174,7 +360,7 @@ DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
         //---------------//
         // Event : Pump  //
         //---------------//
-        if(electron_number < Electron_presence::getEnergy_level_number())
+        if(electron_number < this->electron_max)
         {
             init_state(photon_prev_state, photon_next_state, CB_elec_prev_state, CB_elec_next_state);//previous state copy
 
@@ -190,16 +376,17 @@ DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
         //-----------------------------//
         // Event : Electron Transfert  //
         //-----------------------------//
-        if(electron_number < Electron_presence::getEnergy_level_number())
+        if(electron_number < this->electron_max)
         {
             init_state(photon_prev_state, photon_next_state, CB_elec_prev_state, CB_elec_next_state);//previous state copy
 
             for (int direction = 0 ; direction < Elementary_laser::DIRECTION_NUMBER ; direction ++)
             {
-
-                if(elem_laser->getNeighboring_laser(direction))
+                /** If T **/
+                if(elem_laser->getNeighboring_laser(direction) &&
+                        CB_elec_prev_state[elem_laser->getNeighboring_laser(direction)->getLaser_num()])
                 {
-                    /** The rates associated with the electron tranfert is n * T * K**/
+                    /** The rates associated with the electron tranferhe t is n * T * K**/
                     rate[trans_indice] = elem_laser->getTemperature() * electron_number * temperature_coefficient;
 
                     CB_elec_next_state[laser_num]--;//next state is the previous state with a electron less in the elementary laser
@@ -235,7 +422,7 @@ DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
             //------------------------------//
             // Event : Coherent absorbtion  //
             //------------------------------//
-            if(photon_prev_state[mode] > 0 && electron_number <  Electron_presence::getEnergy_level_number())
+            if(photon_prev_state[mode] > 0 && electron_number <  this->electron_max)
             {
                 init_state(photon_prev_state, photon_next_state, CB_elec_prev_state, CB_elec_next_state);//previous state copy
 
@@ -266,55 +453,17 @@ DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
         }
     }
 
+    Rate_array *result = new Rate_array(trans_indice, next_index, rate);
 
-    for(int index = 0 ; index < trans_indice ; index ++){
-        rate_sum += rate[index];
-    }
-
-    for(int index = 0 ; index < trans_indice ; index ++)
-    {
-        rate[index] /= rate_sum;
-    }
-    delete[] (next_index);
+    delete[](next_index);
     delete[](rate);
+    delete[](photon_prev_state);
+    delete[](CB_elec_prev_state);
+    delete[](photon_next_state);
+    delete[](CB_elec_next_state);
 
-    return  new DiscreteDistribution(trans_indice, next_index, rate);
-
-}// DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
-
-//=====================================================================================================================================
-
-/**
- * All these pure virtual Functions Are Not Implemented
- * @todo To Implement
- */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-bool Laser_transition_structure::setEntry(int i, int j, double val) {cerr << "Warning Not Implemented" << endl; return false;}
-double Laser_transition_structure::getEntry(int i, int j) {cerr << "Warning Not Implemented" << endl; return 0; }
-int Laser_transition_structure::getNbElts(int i)  {cerr << "Warning Not Implemented" << endl; return 0;}
-int Laser_transition_structure::getCol(int i, int k)  {cerr << "Warning Not Implemented" << endl; return 0;}
-double Laser_transition_structure::getEntryByCol(int i, int k)  {cerr << "Warning Not Implemented" << endl;return 0;}
-double Laser_transition_structure::RowSum(int i)  {cerr << "Warning Not Implemented" << endl;return 0; }
-TransitionStructure* Laser_transition_structure::Copy()  {cerr << "Warning Not Implemented" << endl; return nullptr;}
-TransitionStructure* Laser_transition_structure::Uniformize()  {cerr << "Warning Not Implemented" << endl; return nullptr;}
-TransitionStructure* Laser_transition_structure::Embed()  {cerr << "Warning Not Implemented" << endl; return nullptr;}
-void Laser_transition_structure::EvaluateValue(double* v, double* res)  {cerr << "Warning Not Implemented" << endl; }
-#pragma GCC diagnostic pop
-
-//=====================================================================================================================================
-
-/********************/
-/*Privates function */
-/********************/
-
-void Laser_transition_structure::init_state(int *photon_prev_state, int *photon_next_state,
-                                            int *elec_prev_state,int *elec_next_state )
-{
-    /** The 2 previous states are copied in the 2 next states **/
-    std::copy(photon_prev_state, photon_prev_state + this->laser->getMode_number(),photon_next_state );
-    std::copy(elec_prev_state, elec_prev_state + this->laser->getElementary_laser_number(),elec_next_state );
-}//void Laser_transition_structure::init_state(int *photon_prev_state, int *photon_next_state,int *elec_prev_state,int *elec_next_state )
+    return result;
+}//Rate_array Laser_transition_structure::transition_probabilities(int i)
 
 
 // end of class Laser_transition_structure
