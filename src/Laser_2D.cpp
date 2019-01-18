@@ -100,24 +100,28 @@ void  Laser_2D::organize_neighborhood(){
    unsigned const int width = this->elementary_laser_number/height;
 
    unsigned int position;
+   if(this->elementary_laser_number > 1)
+   {
+       //we make two loops for no care about the edge conditions
+       /** First loop is for fill all lateral neigboor**/
+       for(unsigned int it_y = 0 ; it_y < height ; it_y++ ){
+          for(unsigned int it_x = 1 ; it_x < width ; it_x++ )
+          {
+             position = it_y * width + it_x;
+             laser_table[position]->setNeighboring_laser(laser_table[position - 1], Elementary_laser::LEFT);
+          }
+       }
+       /** Second loop is for fill all vertical neigboor**/
+       for(unsigned int it_y = 1 ; it_y < height ; it_y++ ){
+          for(unsigned int it_x = 0 ; it_x < width ; it_x++ )
+          {
+             position = it_y * width + it_x;
+             laser_table[position]->setNeighboring_laser(laser_table[position - width], Elementary_laser::UP);
+          }
+       }
+   }
 
-   //we make two loops for no care about the edge conditions
-   /** First loop is for fill all lateral neigboor**/
-   for(unsigned int it_y = 0 ; it_y < height ; it_y++ ){
-      for(unsigned int it_x = 1 ; it_x < width ; it_x++ )
-      {
-         position = it_y * width + it_x;
-         laser_table[position]->setNeighboring_laser(laser_table[position - 1], Elementary_laser::LEFT);
-      }
-   }
-   /** Second loop is for fill all vertical neigboor**/
-   for(unsigned int it_y = 1 ; it_y < height ; it_y++ ){
-      for(unsigned int it_x = 0 ; it_x < width ; it_x++ )
-      {
-         position = it_y * width + it_x;
-         laser_table[position]->setNeighboring_laser(laser_table[position - width], Elementary_laser::UP);
-      }
-   }
+
 }// end of Laser_2D::organize_neighborhood()
 
 //=====================================================================================================================================

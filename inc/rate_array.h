@@ -89,11 +89,11 @@ public:
     /******************/
 
     /**
-     * @brief rate give the rate from a corresponding value
+     * @brief rate_from_value give the rate from a corresponding value
      * @param value input
      * @return the rate correspoonding to the @param value input
      */
-    double rate(const double value);
+    double rate_from_value(const double value);
 
     /**
      * @brief rateSum make the sum of all rates avaible in the current state

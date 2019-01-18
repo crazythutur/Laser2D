@@ -45,8 +45,8 @@ Laser_transition_structure::Laser_transition_structure (Laser_2D *laser)
    this->laser = laser;
    this->n_dims = laser->getMode_number() + laser->getElementary_laser_number();
 
-   this->electron_max = Electron_presence::getEnergy_level_number() + 1;
-    // the number of electron at maximum is the band full hence +1
+   this->electron_dim = Electron_presence::getEnergy_level_number() + 1;
+    // the number of electron at maximum is the band full hence
 
    /** Initialisation of the state space  with the two @a MarmoteBox photon and CB_electrons **/
    int *photon_dim_size   = new int[laser->getMode_number()];
@@ -54,7 +54,7 @@ Laser_transition_structure::Laser_transition_structure (Laser_2D *laser)
 
    for(unsigned int dimention = 0 ; dimention < laser->getMode_number() ; dimention ++)
    {
-       photon_dim_size[dimention] = Laser_transition_structure::photon_max;
+       photon_dim_size[dimention] = Laser_transition_structure::photon_max +1;
        //the limit photon_max is just convenance the Marmotecore permit infinit space, but forbid staionnary distribution
    }
    this->photon =       new MarmoteBox(this-> laser->getMode_number(), photon_dim_size);
@@ -64,7 +64,7 @@ Laser_transition_structure::Laser_transition_structure (Laser_2D *laser)
    {
        for(unsigned int dimention = 0 ; dimention < laser->getElementary_laser_number() ; dimention ++)
        {
-           electron_dim_size[dimention] = this->electron_max;
+           electron_dim_size[dimention] = this->electron_dim;
 
        }
    }
@@ -159,57 +159,36 @@ ostream &Laser_transition_structure::print_trajectory(ostream &flux, SimulationR
 
     for(int state =0; state < size ; state ++)
     {
-     this->print_event(flux,result, state);
+     this->print_event(flux, result->trajectorySize(), result->dates(), result->states(), state);
     }
     return cout;
-}
+}//ostream &Laser_transition_structure::print_trajectory(ostream &flux, SimulationResult *result)
 
 //=====================================================================================================================================
 
-std::ostream& Laser_transition_structure::print_event(std::ostream& flux, SimulationResult *result, int event_number)
+std::ostream& Laser_transition_structure::print_event(std::ostream& flux, int size, double *dates, int *states, int event_number)
 {
-
-
-    int size = result->trajectorySize();
     double date;
-    int* photons_number  = new int[this->laser->getMode_number()];
-    int* CB_electrons_number = new int[this->laser->getElementary_laser_number()];
-
-
 
     if(event_number < size){
 
-        decode_laser_state(photons_number, CB_electrons_number, result->states()[event_number]);
+        date = dates[event_number];
 
-        date = result->dates()[event_number];
+        flux << '[' << event_number << "],\t" << states[event_number] << ",\t" << date ;
 
-        flux << '[' << event_number << "],\t" << result->states()[event_number] << ",\t" << date << ",\t" << 0;
+        print_state(flux, states[event_number]);
 
-        for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
-        {
-            flux << ",\t" << photons_number[mode] ;
-
-        }
-        for(unsigned int laser_num = 0 ; laser_num < this->laser->getElementary_laser_number() ; laser_num ++)
-        {
-            flux << ",\t" << CB_electrons_number[laser_num] ;
-
-        }
-        flux << endl;
     }
-
-    delete[](photons_number);
-    delete[](CB_electrons_number);
 
     return flux;
 
-}//std::ostream& Laser_transition_structure::print_event(std::ostream& flux, SimulationResult *result, int event_number)
+}//std::ostream& Laser_transition_structure::print_event(std::ostream& flux, int size, int *dates, int *states, int event_number)
 
 //=====================================================================================================================================
 
 std::ostream& Laser_transition_structure::print_header(std::ostream& flux)
 {
-    flux << "event_num, state, time, duration";
+    flux << "event_num, state, time";
     for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
     {
         flux << ", photon";
@@ -233,8 +212,73 @@ std::ostream& Laser_transition_structure::print_header(std::ostream& flux)
 
 //=====================================================================================================================================
 
+int Laser_transition_structure::test_Encoding()
+{
+    int error_number=0;
+    int state;
+    int* photons= new int[this->laser->getMode_number()] ;
+    int* electrons = new int[this->laser->getElementary_laser_number()];
+    for (int i =0 ; i < this->set->Cardinal() ; i++)
+    {
+        decode_laser_state(photons, electrons, i);
+        state = myGetIndex(photons, electrons);
+        if (state != i)
+        {
+            error_number++;
+            cout << "error in encoding for encoriding state " << i << " value is " << state << endl;
+            cout << "corresponding state " << i << " ";
+            print_state(cout, state );
+
+            cout << "corresponding state " << state << " ";
+            print_state(cout, state );
+            error_number++;
+        }
+
+    }
+    delete[] (photons);
+    delete[] (electrons);
+
+    return error_number;
+}//int Laser_transition_structure::test_Encoding()
+
+//=====================================================================================================================================
+
+void Laser_transition_structure::print_matrix(string filename)
+{
+    double rate;
+    int j;
+    FILE *file = fopen(filename.c_str(),"w");
+    Rate_array *rate_array(0);
+    if(file)
+    {
+        for( int i = 0 ; i < this->set->Cardinal() ; i++)
+        {
+            fprintf(file,"%10d %10d %12e\n", i, i ,getEntry(i,i) );
+            rate_array = transition_probabilities(i);
+            for( int rate_it = 0 ; rate_it < rate_array->getSize() ; rate_it++)
+            {
+                j = rate_array->getValue(rate_it);
+                rate = rate_array->getRate(rate_it);
+                if (rate !=0)
+                {
+                    fprintf(file,"%10d %10d %12e\n", i, j ,rate );
+
+                }
+
+            }
+        }
+        fclose(file);
+    }
+    else
+        cerr << "unable to open matrix file !" << endl;
+    delete(rate_array);
+
+}//void Laser_transition_structure::print_matrix()
+
+//=====================================================================================================================================
+
 /*************************/
-/*Pure Virtuals function */
+/*Pure virtual functions */
 /*************************/
 
 DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
@@ -243,9 +287,11 @@ DiscreteDistribution *Laser_transition_structure::TransDistrib(int i)
 
     Rate_array *trans_probas = transition_probabilities(i);
 
+    double rate_sum =  trans_probas->rateSum();
+
     for(int index = 0 ; index < trans_probas->getSize() ; index ++)
     {
-        trans_probas->setRate(index, trans_probas->getRate(index) / trans_probas->rateSum());
+        trans_probas->setRate(index, trans_probas->getRate(index) / rate_sum);
     }
     result = new DiscreteDistribution(trans_probas->getSize(), trans_probas->getValues(), trans_probas->getRates());
 
@@ -268,7 +314,7 @@ double Laser_transition_structure::getEntry(int i, int j)
     }
     else
     {
-        result = trans_probas->rate(j);
+        result = trans_probas->rate_from_value(j);
     }
 
     delete trans_probas;
@@ -310,6 +356,33 @@ void Laser_transition_structure::init_state(int *photon_prev_state, int *photon_
 
 //=====================================================================================================================================
 
+std::ostream& Laser_transition_structure::print_state(std::ostream& flux, int state)
+{
+    int* photons_number  = new int[this->laser->getMode_number()];
+    int* CB_electrons_number = new int[this->laser->getElementary_laser_number()];
+
+    decode_laser_state(photons_number, CB_electrons_number, state);
+
+    for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
+    {
+        flux << ",\t" << photons_number[mode] ;
+
+    }
+    for(unsigned int laser_num = 0 ; laser_num < this->laser->getElementary_laser_number() ; laser_num ++)
+    {
+        flux << ",\t" << CB_electrons_number[laser_num] ;
+
+    }
+    flux << endl;
+
+    delete[](photons_number);
+    delete[](CB_electrons_number);
+
+    return flux;
+}//std::ostream& Laser_transition_structure::print_state(std::ostream& flux, int state)
+
+//=====================================================================================================================================
+
 Rate_array *Laser_transition_structure::transition_probabilities(int i)
 {
     //states manipulation
@@ -320,6 +393,7 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
     int* photon_next_state  = new int[this->laser->getMode_number()];
     int* CB_elec_next_state = new int[this->laser->getElementary_laser_number()];
 
+    int electron_max = this->electron_dim -1;// the number of electron at maximum is the band full hence
 
     //return values
     double *rate=new double[this->n_dims * 9];//For all dimentions the number of transition is at max 9
@@ -350,7 +424,7 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
     for( unsigned int laser_num = 0 ; laser_num < this->laser->getMode_number() ; laser_num ++ )
     {
 
-        unsigned int electron_number = CB_elec_prev_state[laser_num];
+        int electron_number = CB_elec_prev_state[laser_num];
         QW_elementary_laser *elem_laser = static_cast<QW_elementary_laser*>(this->laser->getElementary_laser(laser_num));
         double pump_electron_presence = elem_laser->getElectron_presence()->getPumping_lvl_prob(electron_number);
         double lasing_lvl_electron_pres;
@@ -360,12 +434,13 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
         //---------------//
         // Event : Pump  //
         //---------------//
-        if(electron_number < this->electron_max)
+        if(electron_number < electron_max)
         {
             init_state(photon_prev_state, photon_next_state, CB_elec_prev_state, CB_elec_next_state);//previous state copy
 
             /** The rates associated with the pump transition n_i -> n_i + 1 is J * pump_lvl_occ(n)**/
-            rate[trans_indice] = elem_laser->getPumping_local_rate() * pump_electron_presence;
+            rate[trans_indice] = elem_laser->getPumping_local_rate()
+                    * (1-pump_electron_presence) * (1-pump_electron_presence);
             CB_elec_next_state[laser_num]++;//next state is the previous state with a electron more in the elementary laser
 
             /** update the next index       **/
@@ -376,7 +451,7 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
         //-----------------------------//
         // Event : Electron Transfert  //
         //-----------------------------//
-        if(electron_number < this->electron_max)
+        if(electron_number > 0)
         {
             init_state(photon_prev_state, photon_next_state, CB_elec_prev_state, CB_elec_next_state);//previous state copy
 
@@ -384,7 +459,7 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
             {
                 /** If T **/
                 if(elem_laser->getNeighboring_laser(direction) &&
-                        CB_elec_prev_state[elem_laser->getNeighboring_laser(direction)->getLaser_num()])
+                        CB_elec_prev_state[elem_laser->getNeighboring_laser(direction)->getLaser_num()] < electron_max)
                 {
                     /** The rates associated with the electron tranferhe t is n * T * K**/
                     rate[trans_indice] = elem_laser->getTemperature() * electron_number * temperature_coefficient;
@@ -422,7 +497,7 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
             //------------------------------//
             // Event : Coherent absorbtion  //
             //------------------------------//
-            if(photon_prev_state[mode] > 0 && electron_number <  this->electron_max)
+            if(photon_prev_state[mode] > 0 && electron_number <  electron_max)
             {
                 init_state(photon_prev_state, photon_next_state, CB_elec_prev_state, CB_elec_next_state);//previous state copy
 
@@ -457,14 +532,13 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
 
     delete[](next_index);
     delete[](rate);
-    delete[](photon_prev_state);
+    delete[](photon_prev_state) ;
     delete[](CB_elec_prev_state);
     delete[](photon_next_state);
     delete[](CB_elec_next_state);
 
     return result;
 }//Rate_array Laser_transition_structure::transition_probabilities(int i)
-
 
 // end of class Laser_transition_structure
 //============================================================================================================================

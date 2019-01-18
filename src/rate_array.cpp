@@ -53,11 +53,12 @@ Rate_array::~Rate_array()
 
 //============================================================================================================================
 
-double Rate_array::rate(const double value)
+double Rate_array::rate_from_value(const double value)
 {
-    int result =0;
 
-    for(int num ; num < this->size; num ++)
+    double result =0;
+
+    for(int num = 0 ; num < this->size; num ++)
     {
         if(value==this->values[num])
         {

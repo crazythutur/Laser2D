@@ -7,7 +7,8 @@
 #include "Distribution/dirac_distribution.h"
 #include <string>
 #include <map>
-
+#include<cstdlib>
+#include <fstream>
 
 using namespace std;
 
@@ -18,23 +19,30 @@ using namespace std;
  */
 int main()
 {
-   const unsigned int laser_number=2;
-   const unsigned int mode_number =2;
-   const unsigned int lasing_level[2]={5,6};
+   srand(0);
+   const unsigned int laser_number=1;
+   const unsigned int mode_number =1;
+   const unsigned int energies_levels=801;
+
+   Electron_presence::initialize_size(mode_number,energies_levels);
+
+   const unsigned int lasing_level[mode_number]={energies_levels/2};
 
    int photons[mode_number];
    int electrons[laser_number];
 
-   double cavity_escape_rates[2]={0.9,0.9};
+   double cavity_escape_rates[mode_number];
    double local_pump[laser_number];
    double temperature[laser_number];
-   std::fill_n(local_pump, laser_number, 200);
+   std::fill_n(local_pump, laser_number, 35);
    std::fill_n(temperature, laser_number, 300);
+   std::fill_n(cavity_escape_rates, mode_number, 0.6);
 
-   std::fill_n(photons, mode_number, 1);
-   std::fill_n(electrons, laser_number, 6);
 
-   Electron_presence::initialize_size(mode_number,10);
+   std::fill_n(photons, mode_number, 58);
+   std::fill_n(electrons, laser_number, lasing_level[0]);//fill until lasing level
+
+
 
    map<double,Electron_presence*> occ_map;
 
@@ -57,23 +65,37 @@ int main()
 
    chain->set_init_distribution(initial);
 
-   int time=10;
+   int      time            = 10000;
    bool  	stats           = false;
    bool  	traj            = true;
    bool  	withIncrements  = false;
-   bool  	trace           = true;
+   bool  	trace           = false;
 
    SimulationResult *result =  chain->SimulateChainCT(time,stats,traj,withIncrements,trace);
 
+   string const nomFichier("../traj.csv");
 
+    ofstream monFlux(nomFichier.c_str());
 
+    if(monFlux)
 
-   trans_struct->print_trajectory(cout, result);
+    {
+     trans_struct->print_trajectory(monFlux, result);
+    }else
+    {
+      cerr << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+    }
 
-   cout << "transitions " << trans_struct->getEntry(1440,1441) << " and " << trans_struct->getEntry(1441,1452) << endl;
+   //For print Electron presence to debug
+   //cout << *qw->getElectron_presence();
+
+   //For print matrix to debug
+   //trans_struct->print_matrix("../matrix.txt");
 
    cout << "end of simulation" << endl;
 
+   //for test matrix
+   //cout << "error number"  << trans_struct->test_Encoding() <<endl;
 
    occ_map.clear();
    delete laser_2D;

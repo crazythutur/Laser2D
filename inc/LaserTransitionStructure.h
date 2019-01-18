@@ -48,6 +48,7 @@
 #include "rate_array.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -112,12 +113,15 @@ public:
 
    /**
     * @brief print_event print the @param event_number state with a proper definition
-    * @param result the result of the @a MarkovChain
-    * @param event_number number of the event in the trace
     * @param flux output flux
+    * @param size size of the dates and states
+    * @param dates array of all dates of the events
+    * @param states array of all states
+    * @param event_number number of the event in the trace
+    *
     * @return the output with the added string
     */
-   std::ostream& print_event(std::ostream& flux, SimulationResult *result, int event_number);
+   std::ostream& print_event(std::ostream& flux, int size, double *dates, int *states, int event_number);
 
    /**
     * @brief print_header print the header of the trace of a chain for the @a print_event
@@ -125,6 +129,19 @@ public:
     * @return the output with the added string
     */
    std::ostream& print_header(std::ostream& flux);
+
+   /**
+    * @brief test_Encoding test if the encoding and decoding is reciproque to use for debug
+    * @return number of error
+    */
+   int test_Encoding();
+
+   /**
+    * @brief print_matrix print the matrix in the file input in a format to be used for Marmote Prossesing
+    * @todo complete format by adding continus the size and the stop marker
+    * @param filename name of the file with the extention
+    */
+   void print_matrix(string filename);
 
 //============================================================================================================================
 
@@ -178,12 +195,13 @@ private:
     * @brief photon_max limit of number of photon this limit is just for simplicity
     * in practice this value should be modify until the probability of having @a photon_max is negligeable
     */
-   static const int photon_max = 10;
+   static const int photon_max = 1000;
 
    /**
-    * @brief electron_max maximum numer of electorn in the conduction band
+    * @brief electron_dim number of values that electron can be so is the size of a band +1
+    * because the band can be full of empty
     */
-   unsigned int electron_max;
+   unsigned int electron_dim;
    /**
     * @brief n_dims numbers of dimentions for the Markov chain is the sum of @a photon and @a CB_electrons dimentions
     */
@@ -230,6 +248,14 @@ private:
    void init_state(int *photon_prev_state, int *photon_next_state, int *elec_prev_state, int *elec_next_state);
 
    /**
+    * @brief print_state print the state decoded
+    * @param flux flux to put the output
+    * @param state state to write the corresponding staet
+    * @return the flux
+    */
+   std::ostream& print_state(std::ostream& flux, int state);
+
+   /**
     * @brief transition_probabilities return the transition probability from a state @param i
     * neccessary to implement getEntry and Trans_distrib functions from @a Transition_structure
     *
@@ -241,6 +267,8 @@ private:
     * add the rate and the new rates for the return value
     */
    Rate_array *transition_probabilities(int i);
+
+
 
 };// end of class Laser_transition_structure
 //============================================================================================================================
