@@ -4,8 +4,9 @@ QT -= gui
 CONFIG += c++17
 
 TARGET = laser2D
-CONFIG += console
-#CONFIG -= app_bundle
+CONFIG += console#CONFIG -= app_bundle
+
+
 
 TEMPLATE = app
 
@@ -43,3 +44,15 @@ LIBS += -L/home/thutur/Work/programmes/Marmote/marmotecore_1.2.4/lib -lMarmoteCo
 
 LIBS += -lboost_thread -lboost_system
 INCLUDEPATH += /home/thutur/Work/programmes/Marmote/marmotecore_1.2.4/
+
+
+
+#dox.target = doc
+#dox.commands = doxygen doc/doxyfile.cfg;
+
+#dox.depends =
+
+...
+# somewhere else in the *.pro file
+#QMAKE_EXTRA_UNIX_TARGETS += dox
+

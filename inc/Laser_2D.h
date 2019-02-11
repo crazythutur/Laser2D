@@ -7,8 +7,21 @@
  *
  * @date $Date: 2018/10/29$
  *
- *
- * @brief a 2 dimmmentions (2d) laser represent a grind of elementary laser used previously[1].
+ */
+
+#ifndef LASER_2D_H
+#define LASER_2D_H
+
+#include <vector>
+#include <cmath>
+#include "Elementary_laser.h"
+#include "QW_elementary_laser.h"
+//#include "QD_elementary_laser.h"
+
+using namespace std;
+
+/**
+ * @brief The Laser_2D class is a 2 dimmmentions (2d) laser represent a grind of elementary laser used previously[1].
  *
  * These @a Elementary_laser are putted in a square mesh. The electrons can be tranfert between
  * 2 @a Elementary_laser, with a rate that depend of the number of electron, the temperature
@@ -33,18 +46,6 @@
  * Markov model of quantum fluctuations at the transition to lasing of semiconductor nanolasers.
  * Physica E: Low-dimensional Systems and Nanostructures, 105, 97-104.
  */
-
-#ifndef LASER_2D_H
-#define LASER_2D_H
-
-#include <vector>
-#include <cmath>
-#include "Elementary_laser.h"
-#include "QW_elementary_laser.h"
-//#include "QD_elementary_laser.h"
-
-using namespace std;
-
 class Laser_2D
 {
 public:   
@@ -53,9 +54,9 @@ public:
    /*Public Enum/Struc */
    /********************/
 
-   /**
-    * @brief The Laser_init_parameters struct regroup all general parameters for intitialisate the laser
-    */
+    /**
+     * @brief The Laser_init_parameters struct regroup all general parameters for intitialisate the laser
+     */
    struct Laser_init_parameters {
 
       unsigned int mode_number;              ///< mode_number number of mode in the laser
@@ -74,7 +75,8 @@ public:
 
    };//struct Laser_init_parameters
 
-   typedef struct Laser_init_parameters Laser_init_parameters;
+
+   typedef struct Laser_init_parameters Laser_init_parameters;///< struture def
 
    /**
     * @brief type of the laser can be Quantum Well(QW), or Quantum Dot (QD)
@@ -109,59 +111,62 @@ public:
    /*Getters/Setters*/
    /*****************/
 
+   /**
+    * @return the type of the laser can be QW(Quantum Wells) or QD(Quantum dots)
+    */
    laser_type getType() const
    {
       return type;
    }
 
+   /**
+    * @return th mode number of the laser
+    */
    unsigned int getMode_number() const
    {
       return mode_number;
    }
 
+   /**
+    * @return the number of @a Elementary_laser that contain the object
+    */
    unsigned int getElementary_laser_number() const
    {
      return elementary_laser_number;
    }
 
+   /**
+    * @return the pump phase numbers
+    */
    unsigned int getPumps_phases () const
    {
     return pumps_phases;
    }
 
+   /**
+    * @return the proportion of the spontaneous emision that emit in the lasing mode in ]0,1]
+    */
    double getBeta ()  const
    {
     return beta;
    }
 
+   /**
+    * @param mode lasing mode
+    * @return the cavity escape rate of the cavity for the given lasiing mode
+    */
    double getCavity_escape_rate(unsigned int mode) const
    {
       return cavity_escape_rate[mode];
    }
 
+   /**
+    * @param laser_number the number of the laser wanted
+    * @return @a Elementary_laser of the table corresponding to the number input
+    */
    Elementary_laser *getElementary_laser(unsigned int laser_number)
    {
       return laser_table[laser_number];
-   }
-
-//============================================================================================================================
-
-   void setMode_number(unsigned int value)
-   {
-      mode_number = value;
-   }
-
-   void setPumps_phases (unsigned int new_var)   {
-       pumps_phases = new_var;
-   }
-
-   void setBeta (double new_var)   {
-       beta = new_var;
-   }
-
-   void setCavity_escape_rate(unsigned int mode, double value)
-   {
-      cavity_escape_rate[mode] = value;
    }
 
 //============================================================================================================================
@@ -227,8 +232,8 @@ private:
 /**
  * @brief find_width return the height of a rectangle with the more square shape possible
  *
- *
- * @return the height of a rectangle with area of @param area
+ * @param area of the most square shape
+ * @return the height of a rectangle with area input
  */
 unsigned int find_height(unsigned int area);
 

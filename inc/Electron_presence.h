@@ -13,7 +13,6 @@
  * this probability is deffined for each lasing mode by  by @a getLasing_lvl_prob([)CB_Electron_number, mode)
  * or for pumping level by @a pumping_lvl_prob[CB_Electron_number]
  * the @a mode_number
- * @a energy_level_number  represent the maximum electron capacity of the CB that correspond to the energy level number
  */
 
 
@@ -32,6 +31,12 @@ class Electron_presence
    /*Constructor/Destructor*/
    /************************/
 
+    /**
+    * @brief Electron_presence Constructor for the table of probability to find a electron
+    * @param laser_levels lasing levels, need to be the same size as mode_number
+    * @param exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
+                   in our unity E=1meV, Kb is Boltzmann constant 1,38064852.10^-23 and T temperature in °K
+    */
    Electron_presence(unsigned int const *laser_levels, double const exponential_temperature);
 
    ~Electron_presence();
@@ -40,23 +45,40 @@ class Electron_presence
    /*Getters/Setters*/
    /*****************/
 
+   /**
+    * @return the numbers of mode in the laser
+    */
    static unsigned int getMode_number()
    {
       return mode_number;
    }//unsigned int Electron_presence::getMode_number
 
 
+   /**
+    * @return the the number of energy levels
+    */
    static unsigned int getEnergy_level_number()
    {
       return energy_level_number;
    }//unsigned int Electron_presence::getEnergy_level_number
 
 
+   /**
+    * @brief getLasing_lvl_prob get the probability of finding an electron at pumping level
+    * @param electron_number in the conduction band
+    * @param mode of the laser
+    * @return probaility corresponding at lasing level to parrameters
+    */
    double getLasing_lvl_prob( const unsigned int electron_number, const unsigned int mode) const
    {
       return lasing_lvl_prob[electron_number * mode_number  + mode ];
    }//double Electron_presence::getLasing_lvl_prob
 
+   /**
+    * @brief getPumping_lvl_prob get the probability of finding an electron at pumping level
+    * @param electron_number in the conduction band
+    * @return the probability corresponding to the electron_number
+    */
    double getPumping_lvl_prob( const unsigned int electron_number) const
    {
       return pumping_lvl_prob[electron_number];
@@ -64,10 +86,22 @@ class Electron_presence
 
    //============================================================================================================================
 
+   /**
+    * @brief setLasing_lvl_prob set the lasing level probability of finding an electron
+    * @param electron_number electron number in the CB
+    * @param mode lasing mode to consider
+    * @param value corresponding value
+    */
    void setLasing_lvl_prob(const unsigned int electron_number, const unsigned int mode,const double value)
    {
       lasing_lvl_prob[electron_number * mode_number + mode ] = value;
    }//void Electron_presence::setLasing_lvl_prob
+
+   /**
+    * @brief setPumping_lvl_prob set the pumping level probability of finding an electron
+    * @param electron_number electron number in the CB
+    * @param value corresponding value
+    */
    void setPumping_lvl_prob(const unsigned int electron_number ,const double value)
    {
       pumping_lvl_prob[electron_number] = value;
@@ -149,14 +183,14 @@ private:
    * all result are contain in @a lasing_lvl_prob for lasing level and @a pumping_lvl_prob for pumping level
    * first dimention for witch number of electrons in CB, and the second dimention is for each laser mode and the pumping level.
    * @param laser_levels table that contain all laser levels for each mode
-   * @param q represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
+   * @param exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
                    in our unity E=1meV, Kb is Boltzmann constant 1,38064852.10^-23 and T temperature in °K
     */
    void initialise_occuancies(unsigned int const *laser_levels, double const exponential_temperature) ;
 
    /**
     * @brief operator << surcharge of the opperator << to be able of read the the @a probability table
-    * @param flux input stram
+    * @param flux input stream
     * @param electron_presence the object to read te table
     * @return
     */

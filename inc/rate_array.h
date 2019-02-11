@@ -1,18 +1,12 @@
 /**
- * @h rate_array
+ * @header rate_array
  *
  * @author Arthur Vallet
  *
  * @version 1.0
  *
  * @date $Date: 2019/01/15$
- *
- *
- * @brief object that contain 2 arrays containing @a size items that contain a couple of rate/value
- *
- * -@a size of the array
- * -@a values array containig @a size values
- * -@a rates array containig @a size rates
+
  *
  */
 
@@ -23,7 +17,13 @@
 
 using namespace std;
 
-
+/**
+ * @brief object that contain 2 arrays containing @a size items that contain a couple of rate/value
+ *
+ * -@a size of the array
+ * -@a values array containig @a size values
+ * -@a rates array containig @a size rates
+ */
 class Rate_array
 {
 public:
@@ -32,8 +32,17 @@ public:
     /*Constructor/Destructor*/
     /************************/
 
+    /**
+     * @brief Rate_array Basic construc for an empty @a Rate_array of size @param size
+     */
     Rate_array(int size);
 
+    /**
+     * @brief Rate_array Constructor For  @a Rate_array
+     * @param size size of @a Rate_array
+     * @param values
+     * @param rates
+     */
     Rate_array(int size, double *values, double *rates);
 
     virtual ~Rate_array ();
@@ -44,24 +53,41 @@ public:
     /*Getters/Setters*/
     /*****************/
 
+    /**
+     * @return the member number of the array
+     */
     int getSize() const
     {
         return size;
     }
 
+    /**
+     * @return all values in the @a rate_array
+     */
     double *getValues() const
     {
         return values;
     }
+
+    /**
+     * @return the rate at the given value @param i
+     */
     double getValue(const int i) const
     {
         return values[i];
     }
 
+    /**
+     * @return all rates in the @a rate_array
+     */
     double *getRates() const
     {
         return rates;
     }
+
+    /**
+     * @return the value at the given value @param i
+     */
     double getRate(const int i) const
     {
         return rates[i];
@@ -69,19 +95,32 @@ public:
 
 //============================================================================================================================
 
+    /**
+     * @brief setValues change the value to @param value
+     * need to have the correct size
+     */
     void setValues(double *value)
     {
         values = value;
     }
 
+    /**
+     * @brief setRates change the rate to @param value
+     * need to have the correct size
+     */
     void setRates(double *value)
     {
         rates = value;
     }
+
+    /**
+     * @brief setRate change the rate to @param value at index @param index
+     */
     void setRate(const int index, const double value)
     {
         rates[index] = value;
     }
+
 //============================================================================================================================
 
     /******************/
@@ -97,7 +136,6 @@ public:
 
     /**
      * @brief rateSum make the sum of all rates avaible in the current state
-     * @return the sum of all other rates in @param trans_probas
      */
     double rateSum();
 

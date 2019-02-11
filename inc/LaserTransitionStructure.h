@@ -78,7 +78,7 @@ public:
        double var_total_CB_electron;   ///< total CB electron variance value
     };//struct Analyse_tool
 
-    typedef struct Analyse_tool Analyse_tool;
+    typedef struct Analyse_tool Analyse_tool;///< struture def
 
    /************************/
    /*Constructor/Destructor*/
@@ -98,23 +98,22 @@ public:
    /*Getters/Setters*/
    /*****************/
 
+   /**
+    * @return the @a MarmoteSet set of this @a TransitionStructure
+    */
    MarmoteSet* getSet() const
    {
       return set;
    }
 
-   int getN_dims() const
-   {
-      return n_dims;
-   }
 
 
 //============================================================================================================================
 
 
-   /******************/
-   /*Public function */
-   /******************/
+   /*******************/
+   /*Public functions */
+   /*******************/
 
    /**
     * @brief myGetIndex permit with the number of photon and eletrons on input to obtain the num of the state
@@ -127,7 +126,7 @@ public:
    /**
     * @brief initial_state return an initial state for the @a Laser_transition_structure
     * @param photon_distr table of all photon for each mode
-    * @param CB_electrons_distrof electron in conduction band
+    * @param CB_electrons_distr electron in conduction band
     * @return @a DiscreteDistribution that represent a deterministic state of the number of photon and electron gave in input
     */
    DiscreteDistribution *initial_state(int *photon_distr, int *CB_electrons_distr);
@@ -211,19 +210,18 @@ public:
    virtual double getEntry(int i, int j);
 
    /**
-    * All these pure virtual Functions Are Not Implemented
-    * @todo To Implement
+    * All these pure virtual Functions Are Not Implemented but they are not needed for simulation
     */
    virtual bool setEntry(int i, int j, double val);
 
-   virtual int getNbElts(int i);
-   virtual int getCol(int i, int k);
-   virtual double getEntryByCol(int i, int k);
-   virtual double RowSum(int i);
-   virtual TransitionStructure* Copy();
-   virtual TransitionStructure* Uniformize();
-   virtual TransitionStructure* Embed();
-   virtual void EvaluateValue(double* v, double* res);
+   virtual int getNbElts(int i);///< @deprecated unimplemented will return error message
+   virtual int getCol(int i, int k);///< @deprecated unimplemented will return error message
+   virtual double getEntryByCol(int i, int k);///< @deprecated unimplemented will return error message
+   virtual double RowSum(int i);///< @deprecated unimplemented will return error message
+   virtual TransitionStructure* Copy();///< @deprecated unimplemented will return error message
+   virtual TransitionStructure* Uniformize();///< @deprecated unimplemented will return error message
+   virtual TransitionStructure* Embed();///< @deprecated unimplemented will return error message
+   virtual void EvaluateValue(double* v, double* res);///< @deprecated unimplemented will return error message
 
 //============================================================================================================================
 

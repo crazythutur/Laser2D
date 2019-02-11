@@ -41,7 +41,6 @@ public:
    * @brief QW_elementary_laser Constructor that overrite the construcotr of @a Elementary_laser
    * @param pumping_local_rate represent the portion of the total pump
  * that occur in this @a Elementary_laser (for exemple by a gaussian distribution).
-   * @param temperature is used for the electron tranferts rates
    * @param q exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
    * @param laser_levels table that contain all laser level for each mode
    *
@@ -59,6 +58,9 @@ public:
    /*Getters/Setters*/
    /*****************/
 
+   /**
+    * @return the pointer to @a Electron_presence associated
+    */
    Electron_presence *getElectron_presence() const
    {
       return electron_presence;

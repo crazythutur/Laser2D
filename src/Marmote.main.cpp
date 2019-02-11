@@ -152,7 +152,7 @@ int main()
      //trans_struct->print_matrix("../matrix.txt");
     int testphoton[2] ={50,50};
     int testphoton2[2] ={49,50};
-    int testphoton3[2] ={50,49};
+    //int testphoton3[2] ={50,49};
     int testelecton[1] ={750};
     int testelecton2[1]= {751};
 

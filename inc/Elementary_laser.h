@@ -28,11 +28,6 @@
 
 
 
-/**
-  * class Elementary_laser
-  * 
-  */
-
 class Elementary_laser
 {
 public:
@@ -58,7 +53,7 @@ public:
    *
    * @param pumping_local_rate represent the portion of the total pump
    * that occur in this @a Elementary_laser (for exemple by a gaussian distribution).
-   * @param exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
+   * @param temperature represent the temperature at non exponential form
    */
    Elementary_laser (double const pumping_local_rate, double const temperature);
 
@@ -68,49 +63,64 @@ public:
    /*Getters/Setters*/
    /*****************/
 
+   /**
+    * @return the number of the laser in the @a Laser2D
+    */
    unsigned int getLaser_num() const
    {
        return laser_num;
    }
 
+   /**
+    * @return the pumping_local_rate
+    */
    double getPumping_local_rate() const
    {
        return pumping_local_rate;
    }
 
+   /**
+    * @return temperature non exponential for electrons tranfers
+    */
    double getTemperature() const
    {
       return temperature;
    }
 
 
+   /**
+    * @param value direction of the neigboring laser using @a direction enum
+    * @return the pointer of the neigbooring laser
+    */
    Elementary_laser getNeighboring_laser (direction const value)   const{
       return *neighboring_lasers[value];
    }
 
+   /**
+    * @param value direction of the neigboring laser without using if @a direction enum
+    * @return the pointer of the neigbooring laser
+    */
    Elementary_laser *getNeighboring_laser (int const value)   const{
       return neighboring_lasers[value];
    }
 
 //=====================================================================================================================================
 
+   /**
+    * @brief setLaser_num set the number of the laser at given value
+    * @param value new number of the laser
+    */
    void setLaser_num(unsigned int const value)
    {
       laser_num = value;
    }
 
-
-   void setPumping_local_rate(double value)
-   {
-       pumping_local_rate = value;
-   }
-
-   void setTemperature(double const value)
-   {
-      temperature = value;
-   }
-
-
+   /**
+    * @brief setNeighboring_laser set the new_elementary_laser at laser_direction,
+    * the reverse association is done too
+    * @param new_elementary_laser the neighbooring laser to add
+    * @param laser_direction the @a direction to add
+    */
    void setNeighboring_laser(Elementary_laser *new_elementary_laser, direction laser_direction)
    {
        neighboring_lasers[laser_direction] = new_elementary_laser;
