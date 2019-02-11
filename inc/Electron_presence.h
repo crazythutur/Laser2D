@@ -54,7 +54,7 @@ class Electron_presence
 
    double getLasing_lvl_prob( const unsigned int electron_number, const unsigned int mode) const
    {
-      return lasing_lvl_prob[electron_number + mode * mode_number ];
+      return lasing_lvl_prob[electron_number * mode_number  + mode ];
    }//double Electron_presence::getLasing_lvl_prob
 
    double getPumping_lvl_prob( const unsigned int electron_number) const
@@ -66,7 +66,7 @@ class Electron_presence
 
    void setLasing_lvl_prob(const unsigned int electron_number, const unsigned int mode,const double value)
    {
-      lasing_lvl_prob[electron_number + mode * mode_number ] = value;
+      lasing_lvl_prob[electron_number * mode_number + mode ] = value;
    }//void Electron_presence::setLasing_lvl_prob
    void setPumping_lvl_prob(const unsigned int electron_number ,const double value)
    {
@@ -95,7 +95,7 @@ private:
    /**
    * @brief lasing_level probability of finding an electron at different level for a @a QW_elementary_laser
    * for different number of electron in Conduction Band (CB)
-   * this probability is deffined for each lasing mode by vector defined by lasing_level[electron_number + mode * mode_number]
+   * this probability is deffined for each lasing mode by vector defined by lasing_level[electron_number * mode_number + mode ]
    * accesible by @a getLasing_lvl_prob(electron_number, mode). This table is reduce in   dimmention table for optimsation and simplicity
    */
    double *lasing_lvl_prob;

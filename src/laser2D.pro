@@ -39,7 +39,7 @@ QMAKE_EXT_CPP += .main
 
 
 #MARMOTE libraries
-LIBS += -L/home/thutur/marmotecore_1.2.3/lib -lMarmoteCore -lXborne -lpsi
+LIBS += -L/home/thutur/Work/programmes/Marmote/marmotecore_1.2.4/lib -lMarmoteCore -lXborne -lpsi
 
 LIBS += -lboost_thread -lboost_system
-INCLUDEPATH += /home/thutur/marmotecore_1.2.3
+INCLUDEPATH += /home/thutur/Work/programmes/Marmote/marmotecore_1.2.4/

@@ -58,6 +58,28 @@ class Laser_transition_structure : public TransitionStructure
 {
 public:   
 
+    /********************/
+    /*Public Enum/Struc */
+    /********************/
+
+    /**
+     * @brief The Analyse_tool struct regroup all analyse value for the laser
+     * like average or variance for photon or electron
+     */
+    struct Analyse_tool {
+
+       double* ave_photon;             ///< photon average value for all modes
+       double* ave_CB_electron;        ///< CB electron average value for all Elementary lasers
+
+       double* var_photon;             ///< photon variance value for all modes
+       double* var_CB_electron;        ///< CB electron variance value for all Elementary lasers
+
+       double var_total_photon;        ///< total photon variance value
+       double var_total_CB_electron;   ///< total CB electron variance value
+    };//struct Analyse_tool
+
+    typedef struct Analyse_tool Analyse_tool;
+
    /************************/
    /*Constructor/Destructor*/
    /************************/
@@ -69,6 +91,23 @@ public:
    Laser_transition_structure (Laser_2D *laser);
 
    virtual ~Laser_transition_structure ();
+
+//============================================================================================================================
+
+   /*****************/
+   /*Getters/Setters*/
+   /*****************/
+
+   MarmoteSet* getSet() const
+   {
+      return set;
+   }
+
+   int getN_dims() const
+   {
+      return n_dims;
+   }
+
 
 //============================================================================================================================
 
@@ -102,6 +141,9 @@ public:
     * @param state_num number of the event
     */
    void decode_laser_state(int *photon, int *CB_electrons, int state_num);
+
+   Analyse_tool analyse_trajectory(SimulationResult* result, double stationnary_time);
+
 
    /**
     * @brief print_trajectory print the trajectory with a readable format
@@ -267,6 +309,8 @@ private:
     * add the rate and the new rates for the return value
     */
    Rate_array *transition_probabilities(int i);
+
+   Analyse_tool init_Analyse_tool();
 
 
 

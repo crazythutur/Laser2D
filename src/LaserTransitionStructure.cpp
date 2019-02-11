@@ -150,11 +150,90 @@ void Laser_transition_structure::decode_laser_state(int *photon, int *CB_electro
 
 //=====================================================================================================================================
 
+
+Laser_transition_structure::Analyse_tool Laser_transition_structure::analyse_trajectory(SimulationResult *result, double stationnary_time)
+{
+    int* photons_number  = new int[this->laser->getMode_number()];
+    int* CB_electrons_number = new int[this->laser->getElementary_laser_number()];
+    int* states = result->states();
+    double* dates = result->dates();
+    int photon_total;
+    int CB_electron_total;
+
+    double time_diff;
+    Analyse_tool tools = init_Analyse_tool();
+
+    int state_max = result->trajectorySize()-1;
+    double analyse_time;
+    int init_state=0;
+
+    /** Steady state **/
+    while(dates[init_state] < stationnary_time)
+    {
+        init_state++;
+    }
+    analyse_time = dates[state_max] - dates[init_state];//this is the last index we substract the time of the begining of the analyse
+    for ( int state_num =init_state; state_num < state_max; state_num++)
+    {
+        photon_total=0;
+        CB_electron_total =0;
+        time_diff = dates[state_num+1] - dates[state_num];
+        decode_laser_state(photons_number, CB_electrons_number, states[state_num]);
+
+        for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
+        {
+            tools.ave_photon[mode] += photons_number[mode] * time_diff;
+            tools.var_photon[mode] += time_diff * photons_number[mode] * photons_number[mode];
+            photon_total += photons_number[mode];
+        }
+        for(unsigned int laser_num = 0 ; laser_num < this->laser->getElementary_laser_number() ; laser_num ++)
+        {
+            tools.ave_CB_electron[laser_num] += CB_electrons_number[laser_num] * time_diff;
+            tools.var_CB_electron[laser_num] += time_diff *
+                   CB_electrons_number[laser_num] * CB_electrons_number[laser_num];
+            CB_electron_total += CB_electrons_number[laser_num];
+        }
+        tools.var_total_photon      += time_diff * photon_total * photon_total;
+        tools.var_total_CB_electron += time_diff * CB_electron_total * CB_electron_total;
+
+    }
+
+    photon_total=0;
+    CB_electron_total =0;
+
+    for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
+    {
+        tools.ave_photon[mode] /=  analyse_time;
+        tools.var_photon[mode] = tools.var_photon[mode] / analyse_time -
+                tools.ave_photon[mode] * tools.ave_photon[mode];
+        photon_total += tools.ave_photon[mode];
+    }
+    for(unsigned int laser_num = 0 ; laser_num < this->laser->getElementary_laser_number() ; laser_num ++)
+    {
+        tools.ave_CB_electron[laser_num] /= analyse_time;
+        tools.var_CB_electron[laser_num] = tools.var_CB_electron[laser_num]  / analyse_time -
+                tools.ave_CB_electron[laser_num] * tools.ave_CB_electron[laser_num];
+        CB_electron_total += tools.ave_CB_electron[laser_num];
+
+    }
+    tools.var_total_photon = tools.var_total_photon / analyse_time - photon_total * photon_total;
+    tools.var_total_CB_electron = tools.var_total_CB_electron / analyse_time -
+            CB_electron_total * CB_electron_total;
+
+    delete[](photons_number);
+    delete[](CB_electrons_number);
+
+    return tools;
+}//Analyse_tool Laser_transition_structure::analyse_trajectory(SimulationResult *result, double stationnary_time)
+
+
+//=====================================================================================================================================
+
 ostream &Laser_transition_structure::print_trajectory(ostream &flux, SimulationResult *result)
 {
     int size = result->trajectorySize();
 
-
+    flux << std::scientific;
     this->print_header(flux);
 
     for(int state =0; state < size ; state ++)
@@ -174,7 +253,9 @@ std::ostream& Laser_transition_structure::print_event(std::ostream& flux, int si
 
         date = dates[event_number];
 
-        flux << '[' << event_number << "],\t" << states[event_number] << ",\t" << date ;
+        flux  <<  right << '[' << std::setw(7) << event_number << "],"
+              << std::setw(6) << states[event_number]  <<  ","
+              << std::setw(10) << date ;
 
         print_state(flux, states[event_number]);
 
@@ -188,7 +269,7 @@ std::ostream& Laser_transition_structure::print_event(std::ostream& flux, int si
 
 std::ostream& Laser_transition_structure::print_header(std::ostream& flux)
 {
-    flux << "event_num, state, time";
+    flux << "event_num, state,      time";
     for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
     {
         flux << ", photon";
@@ -365,12 +446,12 @@ std::ostream& Laser_transition_structure::print_state(std::ostream& flux, int st
 
     for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
     {
-        flux << ",\t" << photons_number[mode] ;
+        flux << "," << std::setw(9) << photons_number[mode] ;
 
     }
     for(unsigned int laser_num = 0 ; laser_num < this->laser->getElementary_laser_number() ; laser_num ++)
     {
-        flux << ",\t" << CB_electrons_number[laser_num] ;
+        flux << "," << std::setw(9) << CB_electrons_number[laser_num] ;
 
     }
     flux << endl;
@@ -421,7 +502,7 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
         }
     }
 
-    for( unsigned int laser_num = 0 ; laser_num < this->laser->getMode_number() ; laser_num ++ )
+    for( unsigned int laser_num = 0 ; laser_num < this->laser->getElementary_laser_number() ; laser_num ++ )
     {
 
         int electron_number = CB_elec_prev_state[laser_num];
@@ -540,8 +621,41 @@ Rate_array *Laser_transition_structure::transition_probabilities(int i)
     return result;
 }//Rate_array Laser_transition_structure::transition_probabilities(int i)
 
+Laser_transition_structure::Analyse_tool Laser_transition_structure::init_Analyse_tool()
+{
+
+    double var_total_photon=0;        ///< total photon variance value
+    double var_total_CB_electron=0;   ///< total CB electron variance value
+
+    double* ave_photon;             ///< photon average value for all modes
+    double* ave_CB_electron;        ///< CB electron average value for all Elementary lasers
+
+    double* var_photon;             ///< photon variance value for all modes
+    double* var_CB_electron;        ///< CB electron variance value for all Elementary lasers
+
+    ave_photon =        new double[this->laser->getMode_number()];
+    ave_CB_electron =   new double[this->laser->getElementary_laser_number()];
+    var_photon =        new double[this->laser->getMode_number()];
+    var_CB_electron =   new double[this->laser->getElementary_laser_number()];
+
+    fill_n(ave_photon,      this->laser->getMode_number(),0);
+    fill_n(ave_CB_electron, this->laser->getElementary_laser_number(),0);
+    fill_n(var_photon,      this->laser->getMode_number(),0);
+    fill_n(var_CB_electron, this->laser->getElementary_laser_number(),0);
+
+    Analyse_tool tool = {ave_photon, ave_CB_electron,
+                         var_photon, var_CB_electron,
+                        var_total_photon, var_total_CB_electron
+                        };
+    return tool;
+
+}//Analyse_tool Laser_transition_structure::init_Analyse_tool()
+
+
 // end of class Laser_transition_structure
 //============================================================================================================================
+
+
 
 
 
