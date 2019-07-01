@@ -1,6 +1,6 @@
-#include "../inc/Elementary_laser.h"
+#include "../inc/Emitter.h"
 #include "../inc/Electron_presence.h"
-#include "../inc/QW_elementary_laser.h"
+#include "../inc/QW_emitter.h"
 #include "../inc/Laser_2D.h"
 #include "../inc/LaserTransitionStructure.h"
 
@@ -30,7 +30,8 @@ int main()
    const unsigned int lasing_level[mode_number]={748,752};//{energies_levels/2};
 
    int photons[mode_number];
-   int electrons[laser_number];
+   int CB_electrons[laser_number];
+   int VB_electrons[laser_number];
 
    double cavity_escape_rates[mode_number];
    double local_pump[laser_number];
@@ -47,18 +48,18 @@ int main()
    photons[0]=336;
    photons[1]=364;
 
-   std::fill_n(electrons, laser_number, energies_levels/2);
-
+   std::fill_n(CB_electrons, laser_number, energies_levels/2);
+   std::fill_n(VB_electrons, laser_number, energies_levels/2);
 
 
    map<double,Electron_presence*> occ_map;
 
-   Laser_2D::Laser_init_parameters parameters = {mode_number, laser_number, 1, 1, cavity_escape_rates,local_pump,temperature};
+   Laser_2D::Laser_init_parameters parameters = {mode_number, laser_number, 1, 1, 1, cavity_escape_rates,local_pump,temperature};
    Laser_2D *laser_2D= new Laser_2D(parameters,lasing_level,1,occ_map);
 
-   cout << "mode number " << laser_2D->getMode_number()<< " laser number " << laser_2D->getElementary_laser_number() << endl;
+   cout << "mode number " << laser_2D->getMode_number()<< " laser number " << laser_2D->getEmitter_number() << endl;
 
-   QW_elementary_laser *qw =  (QW_elementary_laser*)laser_2D->getElementary_laser(0);
+   QW_emitter *qw =  (QW_emitter*)laser_2D->getEmitter(0);
 
    cout << "electron presence "<<qw->getElectron_presence()->getEnergy_level_number() << endl;
 
@@ -77,11 +78,11 @@ int main()
 
    MarkovChain* chain = new MarkovChain(trans_struct);
 
-   DiscreteDistribution* initial = trans_struct->initial_state(photons, electrons);
+   DiscreteDistribution* initial = trans_struct->initial_state(photons, CB_electrons, VB_electrons);
 
    chain->set_init_distribution(initial);
 
-   int      time            = 250000;
+   int      time            = 2500;
    bool  	stats           = false;
    bool  	traj            = true;
    bool  	withIncrements  = false;
@@ -97,6 +98,8 @@ int main()
 
    cout << "begin of simulation" << endl;
    SimulationResult *result;
+
+   cout << initial->values() << endl;
    if(analyse)
    {
      result =  chain->SimulateChainCT_AllOpt(time,stats,traj,withIncrements,trace,CACHE_NONE);
@@ -157,9 +160,9 @@ int main()
     int testelecton2[1]= {751};
 
 
-    int teststate =  trans_struct->myGetIndex(testphoton,testelecton);
-    int teststate2 =  trans_struct->myGetIndex(testphoton2,testelecton);
-    int teststate3 =  trans_struct->myGetIndex(testphoton,testelecton2);
+    long int teststate =  trans_struct->myGetIndex(testphoton,testelecton, testelecton);
+    long int teststate2 =  trans_struct->myGetIndex(testphoton2,testelecton, testelecton);
+    long int teststate3 =  trans_struct->myGetIndex(testphoton,testelecton2, testelecton);
 
 
 

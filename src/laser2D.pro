@@ -12,23 +12,23 @@ TEMPLATE = app
 
 SOURCES +=  \
             #QW_elementary_laser.main.cpp \
-            QW_elementary_laser.cpp \
             Electron_presence.cpp \
-            Elementary_laser.cpp \
             Laser_2D.cpp \
             LaserTransitionStructure.cpp \
             rate_array.cpp \
             Marmote.main.cpp \
+            Emitter.cpp \
+            QW_emitter.cpp
 
 #            QW_elementary_laser.main.cpp
 
 
 HEADERS +=  ../inc/Electron_presence.h \
-            ../inc/Elementary_laser.h \
-            ../inc/QW_elementary_laser.h\
             ../inc/Laser_2D.h \
             ../inc/LaserTransitionStructure.h \
-            ../inc/rate_array.h
+            ../inc/rate_array.h \
+            ../inc/Emitter.h \
+            ../inc/QW_emitter.h
 
 QMAKE_CXXFLAGS += -Wall -Wextra  -pedantic -ansi -Wwrite-strings -Wuninitialized -Wunreachable-code
 

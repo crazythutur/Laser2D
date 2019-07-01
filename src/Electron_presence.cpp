@@ -8,7 +8,7 @@
  * @date $Date: 2018/10/25$
  *
  *
- * @brief The Electron_presence class represent the probability of finding an electron at different level for a @a QW_elementary_laser
+ * @brief The Electron_presence class represent the probability of finding an electron at different level for a @a QW_Emitter
  * for different number of electron in Conduction Band (CB)
  * this probability is deffined for each lasing mode by  by @a getLasing_lvl_prob([)CB_Electron_number, mode)
  * or for pumping level by @a pumping_lvl_prob[CB_Electron_number]

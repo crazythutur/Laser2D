@@ -1,5 +1,5 @@
 /**
- * @class QW_elementary_laser
+ * @class QW_Emitter
  *
  * @author Arthur Vallet
  *
@@ -8,7 +8,7 @@
  * @date $Date: 2018/10/25$
  *
  *
- * @brief a Quantum Well (QW) elementary laser is an elementary laser with QW.
+ * @brief a Quantum Well (QW) Emitter is an Emitter with QW.
  *
  * It's mean that in each band their is energy levels with a probability of finding an Electron
  * With the Fabrice Philippe Formula (see @a Electron_presence) it's possible to calculate this probaility
@@ -16,21 +16,21 @@
  * inititialated by the constructor if they not already exist.
  */
 
-#ifndef QW_ELEMENTARY_LASER_H
-#define QW_ELEMENTARY_LASER_H
+#ifndef QW_EMITTER
+#define QW_EMITTER
 
-#include "Elementary_laser.h"
+#include "Emitter.h"
 #include "Electron_presence.h"
 #include <string>
 #include <map>
 
 
 /**
-  * class QW_elementary_laser
+  * class QW_emitter
   * 
   */
 
-class QW_elementary_laser : public Elementary_laser
+class QW_emitter : public Emitter
 {
 public:
    /************************/
@@ -38,9 +38,9 @@ public:
    /************************/
 
   /**
-   * @brief QW_elementary_laser Constructor that overrite the construcotr of @a Elementary_laser
+   * @brief QW_emitter Constructor that overrite the construcotr of @a Emitter
    * @param pumping_local_rate represent the portion of the total pump
- * that occur in this @a Elementary_laser (for exemple by a gaussian distribution).
+ * that occur in this @a Emitter (for exemple by a gaussian distribution).
    * @param q exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
    * @param laser_levels table that contain all laser level for each mode
    *
@@ -49,10 +49,10 @@ public:
    * this will be associated to the @a electron_presence, if no a new entry will be initialisate by @a Electron_presence constructor
    *
    */
-   QW_elementary_laser (double const pumping_local_rate, double const q,
+   QW_emitter (double const pumping_local_rate, double const q,
                         const unsigned int *laser_levels, std::map<double,Electron_presence*> &electron_presence_map);
 
-   virtual ~QW_elementary_laser ();
+   virtual ~QW_emitter ();
 
    /*****************/
    /*Getters/Setters*/
@@ -76,10 +76,10 @@ private:
 
   /**
    * @brief electron_presence pointer to the probability of finding an electron for each lasing and pumping level
-   * that can be shared between some @a QW_elementary_laser
+   * that can be shared between some @a QW_Emitter
    */
    Electron_presence *electron_presence;
 
 };// end of class Electron_presence
 
-#endif // QW_ELEMENTARY_LASER_H
+#endif // QW_EMITTER

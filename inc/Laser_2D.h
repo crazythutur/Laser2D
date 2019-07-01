@@ -14,19 +14,19 @@
 
 #include <vector>
 #include <cmath>
-#include "Elementary_laser.h"
-#include "QW_elementary_laser.h"
-//#include "QD_elementary_laser.h"
+#include "Emitter.h"
+#include "QW_emitter.h"
+//#include "QD_Emitter.h"
 
 using namespace std;
 
 /**
- * @brief The Laser_2D class is a 2 dimmmentions (2d) laser represent a grind of elementary laser used previously[1].
+ * @brief The Laser_2D class is a 2 dimmmentions (2d) laser represent a grind of emitter used previously[1].
  *
- * These @a Elementary_laser are putted in a square mesh. The electrons can be tranfert between
- * 2 @a Elementary_laser, with a rate that depend of the number of electron, the temperature
+ * These @a Emitter are putted in a square mesh. The electrons can be tranfert between
+ * 2 @a Emitter, with a rate that depend of the number of electron, the temperature
  * and a constant parameter that is proportional of the ratio of the velocity of the electrons
- * and the distance between 2 @a Elementary_laser.
+ * and the distance between 2 @a Emitter.
  *
  * @a mode_number number of mode in the laser
  *
@@ -38,7 +38,7 @@ using namespace std;
  *
  * @a cavity_escape_rate optical cavity escape rate for each modes
  *
- * @a laser_table array of a number @a elementary_laser_number of @a Elementary_laser
+ * @a laser_table array of a number @a Emitter_number of @a Emitter
  *
  *
  *
@@ -61,17 +61,19 @@ public:
 
       unsigned int mode_number;              ///< mode_number number of mode in the laser
 
-      unsigned int elementary_laser_number;  ///< elementary_laser_number is the number of @a Elementary_laser
+      unsigned int emitter_number;  ///< Emitter_number is the number of @a Emitter
 
       unsigned int pumps_phases;             ///< pumps_phases is the number of phase in pumping
 
       double beta;                           ///< beta is the proportion of photon emited in the laser mode(s)
 
+      double electrical_coupling;            ///< coupling factor for electron transfert between two emitters
+
       double *cavity_escape_rate;            ///< cavity_escape_rate is the optical cavity escape rate for each modes
 
-      double *local_pump;                    ///< pump_rate is a table of @a elementary_laser_number values that contain all local pumps
+      double *local_pump;                    ///< pump_rate is a table of @a Emitter_number values that contain all local pumps
 
-      double *temperature;                   ///< temperature is a table of @a elementary_laser_number element of @a Elementary_laser temperature
+      double *temperature;                   ///< temperature is a table of @a Emitter_number elements of @a Emitter temperature
 
    };//struct Laser_init_parameters
 
@@ -128,11 +130,11 @@ public:
    }
 
    /**
-    * @return the number of @a Elementary_laser that contain the object
+    * @return the number of @a Emitter that contain the object
     */
-   unsigned int getElementary_laser_number() const
+   unsigned int getEmitter_number() const
    {
-     return elementary_laser_number;
+     return emitter_number;
    }
 
    /**
@@ -152,6 +154,15 @@ public:
    }
 
    /**
+    * @return the coupling factor for electron transfert between two emitters
+    */
+   double getElectical_coupling ()  const
+   {
+    return electical_coupling;
+   }
+
+
+   /**
     * @param mode lasing mode
     * @return the cavity escape rate of the cavity for the given lasiing mode
     */
@@ -162,12 +173,13 @@ public:
 
    /**
     * @param laser_number the number of the laser wanted
-    * @return @a Elementary_laser of the table corresponding to the number input
+    * @return @a Emitter of the table corresponding to the number input
     */
-   Elementary_laser *getElementary_laser(unsigned int laser_number)
+   Emitter *getEmitter(unsigned int laser_number)
    {
       return laser_table[laser_number];
    }
+
 
 //============================================================================================================================
 
@@ -187,9 +199,9 @@ private:
    unsigned int mode_number;
 
    /**
-    * @brief elementary_laser_number number of @a Elementary_laser
+    * @brief Emitter_number number of @a Emitter
     */
-   unsigned int elementary_laser_number;
+   unsigned int emitter_number;
 
    /**
     * @brief pumps_phases represent the number of phase in pumping, if 1 this correspond to no phase and so a poissonian pumping
@@ -203,14 +215,20 @@ private:
   double beta;
 
   /**
+   * @brief electical_coupling represent the coupling factor for electron transfert between two emitters
+   */
+  double electical_coupling;
+
+  /**
    * @brief cavity_escape_rate optical cavity escape rate for each modes
    */
   double *cavity_escape_rate;
 
+
   /**
-   * @brief laser_table array of a number @a elementary_laser_number of @a Elementary_laser pointer
+   * @brief laser_table array of a number @a Emitter_number of @a Emitter pointer
    */
-  vector<Elementary_laser *> laser_table;
+  vector<Emitter *> laser_table;
 
 //============================================================================================================================
 
@@ -219,9 +237,9 @@ private:
   /********************/
 
   /**
-    * @brief organize_neighborhood initialize all @a Elementary_laser.neighboring_lasers
+    * @brief organize_neighborhood initialize all @a Emitter.neighboring_lasers
     *
-    * all direction are initialisated with @a Elementary_laser.setNeighboring_laser we make two loop
+    * all direction are initialisated with @a Emitter.setNeighboring_laser we make two loop
     * one for the width and the other for the height
     */
    void organize_neighborhood();

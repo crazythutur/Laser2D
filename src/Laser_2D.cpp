@@ -8,12 +8,12 @@
  * @date $Date: 2018/10/29$
  *
  *
- * @brief a 2 dimmmentions (2d) laser represent a grind of elementary laser used previously[1].
+ * @brief a 2 dimmmentions (2d) laser represent a grind of emitter used previously[1].
  *
- * These @a Elementary_laser are putted in a square mesh. The electrons can be tranfert between
- * 2 @a Elementary_laser, with a rate that depend of the number of electron, the temperature
+ * These @a Emitter are putted in a square mesh. The electrons can be tranfert between
+ * 2 @a Emitter, with a rate that depend of the number of electron, the temperature
  * and a constant parameter that is proportional of the ratio of the velocity of the electrons
- * and the distance between 2 @a Elementary_laser.
+ * and the distance between 2 @a Emitter.
  *
  * @a mode_number number of mode in the laser
  *
@@ -25,7 +25,7 @@
  *
  * @a cavity_escape_rate optical cavity escape rate for each modes
  *
- * @a laser_table array of a number @a elementary_laser_number of @a Elementary_laser
+ * @a laser_table array of a number @a Emitter_number of @a Emitter
  *
  *
  *
@@ -46,9 +46,10 @@
 Laser_2D::Laser_2D (Laser_init_parameters const parameters) {
 
    this->mode_number             = parameters.mode_number;
-   this->elementary_laser_number = parameters.elementary_laser_number;
+   this->emitter_number          = parameters.emitter_number;
    this->pumps_phases            = parameters.pumps_phases;
    this->beta                    = parameters.beta;
+   this->electical_coupling      = parameters.electrical_coupling;
    this->cavity_escape_rate      = parameters.cavity_escape_rate;
 }//Laser_2D::Laser_2D (Laser_init_parameters const parameters)
 
@@ -63,7 +64,7 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *
 
    for(unsigned int laser_num=0 ; laser_num < this->mode_number ; laser_num++)
    {
-       QW_elementary_laser *elem_laser;
+       QW_emitter *emitter;
 
       /*
        * we use (e/1000 / k_B) = 11.60451812 with e elementary charge and k_B boltzman constant
@@ -72,10 +73,10 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *
        */
       q=exp(-11.60451812 * energy_level_splitting / parameters.temperature[laser_num]);
 
-      elem_laser = new QW_elementary_laser(parameters.local_pump[laser_num], q ,laser_levels, electron_presence_map);
-      elem_laser->setLaser_num(laser_num);
+      emitter = new QW_emitter(parameters.local_pump[laser_num], q ,laser_levels, electron_presence_map);
+      emitter->setLaser_num(laser_num);
 
-      this->laser_table.push_back(elem_laser);
+      this->laser_table.push_back(emitter);
    }
    organize_neighborhood();
 
@@ -96,11 +97,11 @@ Laser_2D::~Laser_2D ()
 
 void  Laser_2D::organize_neighborhood(){
 
-   unsigned const int height  = find_height(this->elementary_laser_number);
-   unsigned const int width = this->elementary_laser_number/height;
+   unsigned const int height  = find_height(this->emitter_number);
+   unsigned const int width = this->emitter_number/height;
 
    unsigned int position;
-   if(this->elementary_laser_number > 1)
+   if(this->emitter_number > 1)
    {
        //we make two loops for no care about the edge conditions
        /** First loop is for fill all lateral neigboor**/
@@ -108,7 +109,7 @@ void  Laser_2D::organize_neighborhood(){
           for(unsigned int it_x = 1 ; it_x < width ; it_x++ )
           {
              position = it_y * width + it_x;
-             laser_table[position]->setNeighboring_laser(laser_table[position - 1], Elementary_laser::LEFT);
+             laser_table[position]->init_neighboring_emitter(laser_table[position - 1], Emitter::LEFT);
           }
        }
        /** Second loop is for fill all vertical neigboor**/
@@ -116,7 +117,7 @@ void  Laser_2D::organize_neighborhood(){
           for(unsigned int it_x = 0 ; it_x < width ; it_x++ )
           {
              position = it_y * width + it_x;
-             laser_table[position]->setNeighboring_laser(laser_table[position - width], Elementary_laser::UP);
+             laser_table[position]->init_neighboring_emitter(laser_table[position - width], Emitter::UP);
           }
        }
    }
