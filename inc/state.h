@@ -2,6 +2,9 @@
 #define STATE_H
 
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <iomanip> // std::setbase
 
 class State
 {
@@ -24,7 +27,10 @@ public:
     /*     Surcharge        */
     /************************/
 
+
     State& operator=(State const& state_to_copy);
+
+    friend std::ostream &operator<<( std::ostream &out, State const& state );
 
 
 //============================================================================================================================
@@ -78,6 +84,8 @@ public:
 
 
 
+
+
 //============================================================================================================================
 
     /*******************/
@@ -86,6 +94,10 @@ public:
 private:
 
     void init();///< initialisation of tables
+
+    void print(std::ostream& out) const; ///< print the state in the flux
+
+
 
     /*********************/
     /*Privates attributes*/

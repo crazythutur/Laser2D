@@ -111,18 +111,19 @@ std::ostream& Markov_Chain::print_header(std::ostream& flux)
 //=====================================================================================================================================
 
 
-double Markov_Chain::rates_sum( std::vector<Transition> transition_structure)
+double Markov_Chain::rates_sum( std::vector<Transition> *transition_structure)
 {
     vector<Markov_Chain::Transition>::iterator iterator; //iterator overs transitions
     double sum =0.0;
-    for(iterator = transition_structure.begin(); iterator!=transition_structure.end(); ++iterator)
+    for(iterator = transition_structure->begin(); iterator!=transition_structure->end(); ++iterator)
         {
 
             sum += iterator->rate;
         }
 
     return sum;
-}//double Markov_Chain::rates_sum(std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure)
+}//double Markov_Chain::rates_sum( std::vector<Transition> *transition_structure)
+
 
 
 //=====================================================================================================================================
@@ -135,7 +136,7 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
     double weight_sum;
     double event_selector;
     double event_mark;
-    std::vector<Markov_Chain::Transition> transitions;
+    std::vector<Markov_Chain::Transition> *transitions = new std::vector<Markov_Chain::Transition>();
     std::vector<Markov_Chain::Transition>::iterator iterator;  //iterator overs transitions
     Markov_Chain::Transition next_transition;
 
@@ -148,7 +149,7 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
     {
 
         /** Transition structure  from the state **/
-        transitions = transition_structure(&current_state);
+        transition_structure(transitions, &current_state);
 
 
         /** Sum of the weights **/
@@ -168,8 +169,8 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
 
             /** Selection of the next event at the position given by event_selector **/
             event_mark =0.0;
-            for(iterator = transitions.begin();
-                (event_mark<event_selector) && ( iterator != transitions.end() ) ;
+            for(iterator = transitions->begin();
+                (event_mark<event_selector) && ( iterator != transitions->end() ) ;
                 iterator++)
             {
                 next_transition = *iterator;
@@ -185,7 +186,7 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
             current_state = next_state;
 
         }
-
+        transitions->clear();
         instant_time += waiting_time;
     }
 
@@ -201,6 +202,7 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
 
     *initial_state = current_state;
 
+    delete transitions;
     return initial_state;
 
 }//State * Markov_Chain::simulate(double max_time, State *initial_state)d
@@ -246,17 +248,19 @@ std::ostream& Markov_Chain::print_state(std::ostream& flux, const State *state)
 
 //=====================================================================================================================================
 
-std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State  * const current_state)
+std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
+        std::vector<Markov_Chain::Transition> * transitions, State  * const current_state)
 {
     unsigned int electron_max = Electron_presence::getEnergy_level_number();// the number of electron at maximum is the band full hence
     ///@todo change electron max
 
     //return values
-    std::vector<Markov_Chain::Transition> transitions ;
+
 
     Electron_presence *electron_presence;
     double CB_lasing_lvl_electron_pres;
     double VB_lasing_lvl_hole_pres;
+    double rate;
 
 
 
@@ -272,7 +276,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
             /** The rates associated with the transition m_i -> m_i - 1 is α * m **/
-            double rate=this->laser->getCavity_escape_rate(mode) * current_state->getPhotons(mode);
+            rate=this->laser->getCavity_escape_rate(mode) * current_state->getPhotons(mode);
 
 
             /** give the transition name    **/
@@ -285,7 +289,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
             /** update the next index       **/
-            transitions.push_back({name.str(), rate, next_state});
+            transitions->push_back({name.str(), rate, next_state});
         }
     }
 
@@ -307,7 +311,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
             /** The rates associated with the pump transition n_i -> n_i + 1 is J * pump_lvl_occ(n)**/
-            double rate = emitter->getPumping_local_rate()
+            rate = emitter->getPumping_local_rate()
                     * (1 - electron_presence->getPumping_lvl_prob(CB_electron_number))
                     * (1 - electron_presence->getPumping_lvl_prob(VB_holes_number));
 
@@ -323,7 +327,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
             /** update the next index       **/
-            transitions.push_back({name.str(), rate,next_state});
+            transitions->push_back({name.str(), rate, next_state});
 
         }
 
@@ -346,7 +350,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
                 ){
 
                     /** The rates associated with the electron tranferhe t is n * T * K**/
-                    double rate = emitter->getMetropolis_criteria(direction)
+                    rate = emitter->getMetropolis_criteria(direction)
                             * CB_electron_number * this->laser->getElectical_coupling();
 
 
@@ -363,7 +367,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
                     /** update the next index       **/
-                    transitions.push_back({name.str(), rate, next_state});
+                    transitions->push_back({name.str(), rate, next_state});
                 }
             }
         }
@@ -386,7 +390,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
                         < electron_max
                 ){
                     /** The rates associated with the electron tranferhe t is n * T * K**/
-                    double rate = emitter->getMetropolis_criteria(direction)
+                    rate = emitter->getMetropolis_criteria(direction)
                             * current_state->getVB_electrons(emitter_num) * this->laser->getElectical_coupling();
 
 
@@ -403,7 +407,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
                     /** update the next index       **/
-                    transitions.push_back({name.str(), rate, next_state});
+                    transitions->push_back({name.str(), rate, next_state});
                 }
             }
         }
@@ -423,7 +427,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
                 /** The rates associated with the coherent emission in n_L² * (m + β) **/
-                double rate = CB_lasing_lvl_electron_pres * VB_lasing_lvl_hole_pres
+                rate = CB_lasing_lvl_electron_pres * VB_lasing_lvl_hole_pres
                         *  ( current_state->getPhotons(mode) + this->laser->getBeta() );
 
 
@@ -441,7 +445,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
                 /** update the next index       **/
-                transitions.push_back({name.str(), rate, next_state});
+                transitions->push_back({name.str(), rate, next_state});
             }
 
             //------------------------------//
@@ -453,7 +457,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
                 /** The rates associated with the coherent absorbtion is (1- n_L)² * m **/
-                double rate =
+                rate =
                         (1 - CB_lasing_lvl_electron_pres) * (1 - VB_lasing_lvl_hole_pres) * current_state->getPhotons(mode);
 
 
@@ -471,7 +475,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
                 /** update the next index       **/
-                transitions.push_back({name.str(), rate, next_state});
+                transitions->push_back({name.str(), rate, next_state});
             }
 
             //------------------------------//
@@ -483,7 +487,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
                 /** The rates associated with the uncoherent emission is n_L² * (1 - β) **/
-                double rate =  CB_lasing_lvl_electron_pres * VB_lasing_lvl_hole_pres * (1 - this->laser->getBeta() );
+                rate =  CB_lasing_lvl_electron_pres * VB_lasing_lvl_hole_pres * (1 - this->laser->getBeta() );
 
 
                 /** give the transition name    **/
@@ -498,7 +502,7 @@ std::vector<Markov_Chain::Transition> Markov_Chain::transition_structure( State 
 
 
                 /** update the next index       **/
-                transitions.push_back({name.str(), rate, next_state});
+                transitions->push_back({name.str(), rate, next_state});
             }
         }
     }

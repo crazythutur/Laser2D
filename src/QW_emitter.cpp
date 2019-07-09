@@ -24,9 +24,9 @@ using namespace std;
 /*Constructor/Destructor*/
 /************************/
 
-QW_emitter::QW_emitter(const double pumping_local_rate, const double q,
-                                         const unsigned int *laser_levels, map<double, Electron_presence*> &electron_presence_map) :
-   Emitter(pumping_local_rate,  q)
+QW_emitter::QW_emitter(const double pumping_local_rate, const double q, const unsigned int number_of_modes,
+                       const unsigned int *laser_levels, map<double, Electron_presence*> &electron_presence_map)
+    : Emitter(pumping_local_rate, q, number_of_modes)
 {
    if(!electron_presence_map.count(q))
    {      

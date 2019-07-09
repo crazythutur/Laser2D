@@ -193,7 +193,7 @@ private:
   /*Privates function */
   /********************/
 
-   double rates_sum(const std::vector<Markov_Chain::Transition> transition_structure);
+   double rates_sum( std::vector<Transition> *transition_structure);
 
    /**
     * @brief init_state copy the previous state to new state
@@ -227,8 +227,8 @@ private:
     * add the application of the rate for the new state
     * add the rate and the new rates for the return value
     */
-   std::vector<Transition> transition_structure(State * const current_state);
-
+   std::vector<Markov_Chain::Transition> *transition_structure(
+           std::vector<Markov_Chain::Transition> * transitions, State  * const current_state);
    void init_random(const long unsigned int seed);
 
    void trajectory_analysis(const State *current_state, const Markov_Chain::Transition *transition, const double waiting_time);

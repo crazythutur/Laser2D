@@ -75,6 +75,7 @@ public:
 
       double *temperature;                   ///< temperature is a table of @a Emitter_number elements of @a Emitter temperature
 
+
    };//struct Laser_init_parameters
 
 
@@ -103,8 +104,8 @@ public:
     * @param electron_presence_map map of all @a Electron_presence. This permit to not recalculate the @a Electron_presence
     * a new entry will be added if the value are not already calculated
     */
-   Laser_2D (Laser_init_parameters const parameters, unsigned int const *laser_levels, double const energy_level_splitting,
-             std::map<double, Electron_presence *> &electron_presence_map);
+   Laser_2D (Laser_init_parameters const parameters, unsigned int const *laser_levels,
+            double const energy_level_splitting, std::map<double, Electron_presence *> &electron_presence_map);
 
    virtual ~Laser_2D ();
 
@@ -183,6 +184,19 @@ public:
 
 //============================================================================================================================
 
+
+public:
+
+   /**
+    * @brief gaussian_coupling create a coupling factor for all emiter for all mode depending of the parameters input
+    * @param FWHM_x Full width at half maximum(FWHM) for the x axis for all modes
+    * @param FWHM_x Full width at half maximum(FWHM) for the y axis for all modes
+    */
+   void gaussian_coupling(double *FWHM_x, double *FWHM_y);
+
+
+//============================================================================================================================
+
 private:
    /*********************/
    /*Privates attributes*/
@@ -223,6 +237,16 @@ private:
    * @brief cavity_escape_rate optical cavity escape rate for each modes
    */
   double *cavity_escape_rate;
+
+  /**
+   * @brief height of the Laser 2D
+   */
+  unsigned int height;
+
+  /**
+   * @brief width of the Laser 2D
+   */
+  unsigned int width;
 
 
   /**

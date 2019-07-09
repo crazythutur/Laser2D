@@ -42,15 +42,18 @@ public:
    * @param pumping_local_rate represent the portion of the total pump
  * that occur in this @a Emitter (for exemple by a gaussian distribution).
    * @param q exponential_temperature represent the temperature at exponential form q=exp(-E/(KbT)), E is the energy lvl between two lvl
+   *
    * @param laser_levels table that contain all laser level for each mode
+   *
+   * @param number_of_modes numer of modes in the laser
    *
    * @param electron_presence_map map that contain for each @a exponential_temperature a @a Electron_presence pointer
    * if the map contain already the @a Electron_presence conresponding to the @a exponential_temperature
    * this will be associated to the @a electron_presence, if no a new entry will be initialisate by @a Electron_presence constructor
    *
    */
-   QW_emitter (double const pumping_local_rate, double const q,
-                        const unsigned int *laser_levels, std::map<double,Electron_presence*> &electron_presence_map);
+   QW_emitter (double const pumping_local_rate, double const q, unsigned const int number_of_modes,
+               const unsigned int *laser_levels, std::map<double,Electron_presence*> &electron_presence_map);
 
    virtual ~QW_emitter ();
 

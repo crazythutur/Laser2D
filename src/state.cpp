@@ -191,5 +191,39 @@ void State::init()
     this->VB_electrons  = new unsigned int[State::number_of_emiters];
 }
 
+void State::print(std::ostream &out) const
+{
+    for(unsigned int mode = 0 ; mode < this->number_of_modes ; mode ++)
+    {
+        out <<  "  m_" << mode+1 << "," ;
+    }
+    for(unsigned int emitter_num = 0 ; emitter_num < this->number_of_emiters ; emitter_num ++)
+    {
+        out <<  " nc_"<< emitter_num+1 << "," ;
+        out <<  " nv_"<< emitter_num+1 << ",";
+    }
+    out << std:: endl;
+    for(unsigned int mode = 0 ; mode < this->number_of_modes ; mode ++)
+    {
+        out << std::setw(5) << this->getPhotons(mode) << "," ;
+
+    }
+    for(unsigned int emitter_num = 0 ; emitter_num < this->number_of_emiters ; emitter_num ++)
+    {
+        out << std::setw(5) << this->getCB_electrons(emitter_num) << "," ;
+        out << std::setw(5) << this->getVB_electrons(emitter_num) << ",";
+    }
+    out << std::endl;
+}//void State::print(ostream &out) const
+
+//============================================================================================================================
+
+std::ostream &operator<<( std::ostream &out, State const& state )
+{
+    state.print(out);
+    return out;
+
+}//ostream &operator<<( ostream &out, Duree const& duree )
+
 //============================================================================================================================
 //End of Class State

@@ -55,14 +55,15 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters) {
 
 //=====================================================================================================================================
 
-Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *laser_levels, double const energy_level_splitting,
-                    std::map<double,Electron_presence*> &electron_presence_map) : Laser_2D(parameters)
+Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *laser_levels,
+                    double const energy_level_splitting, std::map<double,Electron_presence*> &electron_presence_map)
+    : Laser_2D(parameters)
 {
    this->type=QW;
 
    double q;
 
-   for(unsigned int laser_num=0 ; laser_num < this->mode_number ; laser_num++)
+   for(unsigned int laser_num=0 ; laser_num < this->emitter_number ; laser_num++)
    {
        QW_emitter *emitter;
 
@@ -73,7 +74,8 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *
        */
       q=exp(-11.60451812 * energy_level_splitting / parameters.temperature[laser_num]);
 
-      emitter = new QW_emitter(parameters.local_pump[laser_num], q ,laser_levels, electron_presence_map);
+      emitter = new QW_emitter(parameters.local_pump[laser_num], q , this->mode_number,
+                               laser_levels, electron_presence_map);
       emitter->setLaser_num(laser_num);
 
       this->laser_table.push_back(emitter);
@@ -91,6 +93,62 @@ Laser_2D::~Laser_2D ()
 
 //=====================================================================================================================================
 
+
+void Laser_2D::gaussian_coupling(double *FWHM_x, double *FWHM_y)
+{
+
+    double x0 = 0.5;
+    double y0 = 0.5;
+
+    unsigned int position;
+    double value_x, x;
+    double value_y, y;
+
+    if(width > 1)
+    {
+        for(unsigned int mode=0 ; mode < this->getMode_number() ; mode ++)
+        {
+            for(unsigned int it_x = 0 ; it_x < width ; it_x++ )
+            {
+
+                x= it_x * 1.0 / (width - 1.0);
+                value_x = 1/sqrt(2*M_PI*FWHM_x[mode]*FWHM_x[mode])*exp(-(x-x0)*(x-x0)/(2*FWHM_x[mode]*FWHM_x[mode]));
+                if(height>1)
+                {
+                    for(unsigned int it_y = 0 ; it_y < height ; it_y++ )
+                    {
+                        position = it_y * width + it_x;
+                        y = it_y / (height - 1 );
+
+                        value_y = 1/sqrt(2*M_PI*FWHM_y[mode]*FWHM_y[mode])*exp(-(y-y0)*(y-y0)/(2*FWHM_y[mode]*FWHM_y[mode]));
+                        laser_table[position]->setCavity_coupling(mode, value_x * value_y);
+
+                    }
+                }
+                else
+                {
+                    position =   it_x;
+                    laser_table[position]->setCavity_coupling(mode, value_x);
+
+                }
+            }
+        }
+
+
+    }
+    else
+    {
+        for(unsigned int mode=0 ; mode < this->getMode_number() ; mode ++)
+        {
+            laser_table[0]->setCavity_coupling(mode, 1.0);
+        }
+    }
+
+
+
+}
+//=====================================================================================================================================
+
 /*******************/
 /*Private functions*/
 /*******************/
@@ -99,6 +157,9 @@ void  Laser_2D::organize_neighborhood(){
 
    unsigned const int height  = find_height(this->emitter_number);
    unsigned const int width = this->emitter_number/height;
+
+   this->height = height;
+   this->width = width;
 
    unsigned int position;
    if(this->emitter_number > 1)

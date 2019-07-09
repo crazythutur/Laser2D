@@ -20,6 +20,8 @@
  *
  * - the @a temperature represent the temperature in the laser
  *
+ * - the @a cavity_coupling define the coupling optical between the emiter and the cavity for each mode
+ *
  * - the @a neighboring_lasers regroup all neigbooring laser in direction @a UP, @a RIGHT, @a DOWN and @a LEFT
  */
 
@@ -54,8 +56,9 @@ public:
    * @param pumping_local_rate represent the portion of the total pump
    * that occur in this @a Emitter (for exemple by a gaussian distribution).
    * @param temperature represent the temperature at non exponential form
+   *
    */
-   Emitter (double const pumping_local_rate, double const temperature);
+   Emitter (double const pumping_local_rate, double const temperature, const unsigned int number_of_modes);
 
    virtual ~Emitter ();
 
@@ -87,6 +90,14 @@ public:
       return temperature;
    }
 
+   /**
+    * @return the coupling optical between the emiter and the cavity
+    */
+   double getCavity_coupling(const int mode) const
+   {
+      return cavity_coupling[mode];
+   }
+
 
    /**
     * @param value direction of the neigboring emitter using @a direction enum
@@ -114,8 +125,9 @@ public:
        return metropolis_critera_table[direction];
    }
 
-//=====================================================================================================================================
 
+
+//=====================================================================================================================================
    /**
     * @brief setLaser_num set the number of the laser at given value
     * @param value new number of the laser
@@ -123,6 +135,11 @@ public:
    void setLaser_num(unsigned int const value)
    {
       emitter_num = value;
+   }
+
+   void setCavity_coupling( unsigned int const mode, double const value)
+   {
+      this->cavity_coupling[mode] = value;
    }
 
 
@@ -164,6 +181,11 @@ private :
      * @brief temperature represent the temperature in the @a Emitter
      */
     double temperature;
+
+    /**
+     * @brief cavity_coupling define the coupling optical between the emiter and the cavity for each mode
+     */
+    double *cavity_coupling;
 
     /**
      * @brief neighboring_emitters regroup all neigbooring laser in direction @a UP, @a RIGHT, @a DOWN and @a LEFT

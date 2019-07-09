@@ -29,7 +29,7 @@
 /*Constructor/Destructor*/
 /************************/
 
-Emitter::Emitter (double const pumping_local_rate, double const temperature) {
+Emitter::Emitter (double const pumping_local_rate, double const temperature, const unsigned int number_of_modes) {
 
    for(int i=0 ; i < Emitter::DIRECTION_NUMBER ; i++ )
    {
@@ -39,10 +39,13 @@ Emitter::Emitter (double const pumping_local_rate, double const temperature) {
 
    this->pumping_local_rate=pumping_local_rate;
    this->temperature=temperature;
+   this->cavity_coupling = new double [number_of_modes];
 
 }//Emitter::Emitter
 
-Emitter::~Emitter () { }
+Emitter::~Emitter () {
+    delete [] this->cavity_coupling;
+}
 
 //=====================================================================================================================================
 
