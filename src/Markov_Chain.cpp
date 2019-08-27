@@ -37,15 +37,28 @@ using namespace std;
 /*Constructor/Destructor*/
 /************************/
 
-Markov_Chain::Markov_Chain (Laser_2D *laser, int seed)
+Markov_Chain::Markov_Chain (Laser_2D *laser, unsigned long seed)
 {
     this->laser = laser;
     init_random(seed);
     this->analyse_tool = new Analyse_tool (laser->getMode_number(), laser->getEmitter_number());
 
+
 }//Markov_Chain::Markov_Chain (Laser_2D laser)
 
 //=====================================================================================================================================
+
+Markov_Chain::Markov_Chain (Laser_2D *laser, unsigned long seed, Analyse_init_params parameters)
+{
+    this->laser = laser;
+    init_random(seed);
+    this->analyse_tool = new Analyse_tool (laser->getMode_number(), laser->getEmitter_number(), parameters);
+
+
+}//Markov_Chain::Markov_Chain (Laser_2D laser)
+
+//=====================================================================================================================================
+
 
 Markov_Chain::~Markov_Chain ()
 {
@@ -67,11 +80,10 @@ std::ostream& Markov_Chain::print_event(std::ostream& flux, const Transition *tr
 {
 
 
-    flux  <<  right << std::setw(6) << date                             <<  ",";
+    flux   << date << "\t"                    ;
     this->print_state(flux, &transition->state);
     flux                  <<  ",";
-    flux  << std::setw(6) << transition->name                           <<  ",";
-    flux  << std::setw(10)<< date ;
+    flux  << std::setw(5) << transition->name << endl;
 
     return flux;
 
@@ -132,10 +144,11 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
 {
 
     double instant_time = 0.0;
-    double waiting_time;
+    double waiting_time = 0.0;
     double weight_sum;
     double event_selector;
     double event_mark;
+    double verbose_mark=0;
     std::vector<Markov_Chain::Transition> *transitions = new std::vector<Markov_Chain::Transition>();
     std::vector<Markov_Chain::Transition>::iterator iterator;  //iterator overs transitions
     Markov_Chain::Transition next_transition;
@@ -179,11 +192,21 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
             next_state = next_transition.state;
 
 
+
             /** analyse **/
-            trajectory_analysis(&current_state, &next_transition, waiting_time);
+            trajectory_analysis(&current_state, &next_transition, waiting_time, instant_time);
 
             /** event application **/
             current_state = next_state;
+
+
+            /** print advance   **/
+            if(this->getAnalyse_tool()->verbose_flag && instant_time > verbose_mark)
+            {
+                verbose_mark +=  max_time /10;
+                cout << "avancement  : " << verbose_mark / max_time *100 << "% " << endl;
+
+            }
 
         }
         transitions->clear();
@@ -193,9 +216,15 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
     /** Correct the waiting as the last event not occur **/
     waiting_time = max_time - instant_time + waiting_time;
 
+    if(this->analyse_tool->analyse_flag)
+    {
+        this->update_stat(&current_state, waiting_time);
+
+    }
+
 
     // At this point the time mark in correlation differ from instant time so the reatribuaton of waiting time permit to not segmentation faults
-    update_stat(&current_state, this->getAnalyse_tool()->correlation_interval_duration -this->getAnalyse_tool()->correlation_time_mark );
+    //update_stat(&current_state, this->getAnalyse_tool()->correlation_interval_duration -this->getAnalyse_tool()->correlation_time_mark );
 
 
     post_calcul_analyse( max_time );
@@ -206,6 +235,9 @@ State * Markov_Chain::simulate(double max_time, State *initial_state)
     return initial_state;
 
 }//State * Markov_Chain::simulate(double max_time, State *initial_state)d
+
+
+
 
 //=====================================================================================================================================
 
@@ -233,15 +265,15 @@ std::ostream& Markov_Chain::print_state(std::ostream& flux, const State *state)
 
     for(unsigned int mode = 0 ; mode < this->laser->getMode_number() ; mode ++)
     {
-        flux << "," << std::setw(9) << state->getPhotons(mode) ;
+        flux << "," << std::setw(5) << state->getPhotons(mode) ;
 
     }
     for(unsigned int emitter_num = 0 ; emitter_num < this->laser->getEmitter_number() ; emitter_num ++)
     {
-        flux << "," << std::setw(9) << state->getCB_electrons(emitter_num) ;
-        flux << "," << std::setw(9) << state->getVB_electrons(emitter_num) ;
+        flux << "," << std::setw(5) << state->getCB_electrons(emitter_num) ;
+        flux << "," << std::setw(5) << state->getVB_electrons(emitter_num) ;
     }
-    flux << endl;
+
 
     return flux;
 }//std::ostream& Markov_Chain::print_state(std::ostream& flux, int state)
@@ -289,7 +321,10 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
 
             /** update the next index       **/
-            transitions->push_back({name.str(), rate, next_state});
+            if(rate >0)
+            {
+               transitions->push_back({name.str(), rate, next_state});
+            }
         }
     }
 
@@ -327,7 +362,10 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
 
             /** update the next index       **/
-            transitions->push_back({name.str(), rate, next_state});
+            if(rate >0)
+            {
+               transitions->push_back({name.str(), rate, next_state});
+            }
 
         }
 
@@ -367,7 +405,10 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
 
                     /** update the next index       **/
-                    transitions->push_back({name.str(), rate, next_state});
+                    if(rate >0)
+                    {
+                        transitions->push_back({name.str(), rate, next_state});
+                    }
                 }
             }
         }
@@ -407,7 +448,10 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
 
                     /** update the next index       **/
-                    transitions->push_back({name.str(), rate, next_state});
+                    if(rate >0)
+                    {
+                       transitions->push_back({name.str(), rate, next_state});
+                    }
                 }
             }
         }
@@ -428,7 +472,7 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
                 /** The rates associated with the coherent emission in n_L² * (m + β) **/
                 rate = CB_lasing_lvl_electron_pres * VB_lasing_lvl_hole_pres
-                        *  ( current_state->getPhotons(mode) + this->laser->getBeta() );
+                        *  ( current_state->getPhotons(mode)* emitter->getCavity_coupling(mode) + this->laser->getBeta() );
 
 
                 /** give the transition name    **/
@@ -445,7 +489,10 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
 
                 /** update the next index       **/
-                transitions->push_back({name.str(), rate, next_state});
+                if(rate >0)
+                {
+                   transitions->push_back({name.str(), rate, next_state});
+                }
             }
 
             //------------------------------//
@@ -458,7 +505,8 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
                 /** The rates associated with the coherent absorbtion is (1- n_L)² * m **/
                 rate =
-                        (1 - CB_lasing_lvl_electron_pres) * (1 - VB_lasing_lvl_hole_pres) * current_state->getPhotons(mode);
+                        (1 - CB_lasing_lvl_electron_pres) * (1 - VB_lasing_lvl_hole_pres)
+                        * current_state->getPhotons(mode) *emitter->getCavity_coupling(mode);
 
 
                 /** give the transition name    **/
@@ -475,7 +523,10 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
 
                 /** update the next index       **/
-                transitions->push_back({name.str(), rate, next_state});
+                if(rate >0)
+                {
+                   transitions->push_back({name.str(), rate, next_state});
+                }
             }
 
             //------------------------------//
@@ -502,7 +553,10 @@ std::vector<Markov_Chain::Transition> *Markov_Chain::transition_structure(
 
 
                 /** update the next index       **/
-                transitions->push_back({name.str(), rate, next_state});
+                if(rate >0)
+                {
+                   transitions->push_back({name.str(), rate, next_state});
+                }
             }
         }
     }
@@ -535,7 +589,8 @@ void Markov_Chain::init_random(long unsigned int seed)
 
 //============================================================================================================================
 
-void Markov_Chain::trajectory_analysis(const State *current_state, const Transition *transition, const double waiting_time)
+void Markov_Chain::trajectory_analysis(const State *current_state, const Transition *transition,
+                                       const double waiting_time, const double current_time )
 {
     if(this->analyse_tool->analyse_flag)
     {
@@ -551,15 +606,29 @@ void Markov_Chain::trajectory_analysis(const State *current_state, const Transit
         /** print event event **/
         if(this->analyse_tool->event_flag)
         {
-            if(event_file)
+            if(cout)
             {
-                this->print_event(event_file, transition, waiting_time);
+                this->print_event(cout, transition, current_time);
             }else
             {
                        cerr << "ERREUR: Unable to open the evnt file : " << endl;
             }
 
         }
+
+        if(this->analyse_tool->sd_flag && transition->name.at(0)=='O')
+        {
+            for(unsigned int mode=0; mode < this->getLaser()->getMode_number() ; mode ++)
+            {
+                string out_name_mode = "O" + std::to_string(mode);
+
+                if(transition->name == out_name_mode)
+                {
+                    this->update_SD(mode, current_time);
+                }
+            }
+        }
+
 
         /** calculate shutdowns     **/
         for(unsigned int mode=0; mode < this->laser->getMode_number() ; mode++)
@@ -750,18 +819,58 @@ void Markov_Chain::post_calcul_analyse(const double end_time)
 
 }
 
+void Markov_Chain::update_SD(int mode, double instant_time)
+{
+    double SD_exchange_terme;   // temporal variable for Spectral Density sin and cosinus exchange
+
+    double cos_instant_time;    // a tempory cos for each time
+    double sin_instant_time;    // a tempory sin for each time
+
+    double tmp_cos_SD=1.;      // each SD are initialised at 0 so for this cosinus it's 1
+    double tmp_sin_SD=0.;      // each SD are initialised at 0 so for this sinus   it's 0
+
+    double frequency_precision_min = 2.0 * M_PI / this->getAnalyse_tool()->end_time;// precision maximum that we can obtain in the spectral density
+
+    /** temporaly sinus and cosinus calcul that will be used more later**/
+    cos_instant_time = cos( frequency_precision_min * instant_time);
+    sin_instant_time = sin( frequency_precision_min * instant_time);
+
+
+    /** for each point we calculate the cosinus and sinus of SDs with the previous one thanks to sinus identities
+     * @todo add sinus Identity formula to this com
+    **/
+    for (unsigned int points_iterator = 0 ; points_iterator < this->getAnalyse_tool()->SD_points_number ; points_iterator++)
+    {
+        SD_exchange_terme = tmp_cos_SD * cos_instant_time - tmp_sin_SD * sin_instant_time;
+
+        tmp_sin_SD        = tmp_sin_SD * cos_instant_time +tmp_cos_SD * sin_instant_time;
+        tmp_cos_SD        = SD_exchange_terme;
+
+        this->getAnalyse_tool()->cos_SD[mode][points_iterator] += tmp_cos_SD;
+        this->getAnalyse_tool()->sin_SD[mode][points_iterator] += tmp_sin_SD;
+
+
+    }
+}//void Markov_Chain::update_SD(int mode, double instant_time)
+
+
+//============================================================================================================================
+
+
 
 void Markov_Chain::calcul_histogramme(const State *state, const double waiting_time)
 {
-    cerr << "non implemented" << state->getPhotons(0) << waiting_time ;
+    cerr << "calcul_histogramme non implemented" << state->getPhotons(0) << endl << waiting_time ;
 }
 
 //============================================================================================================================
 
 void Markov_Chain::correlation_update(const State *state, const double waiting_time)
 {
-    cerr << "non implemented" << state->getPhotons(0) << waiting_time ;
+    cerr << "correlation_update non implemented" << state->getPhotons(0) << endl << waiting_time ;
 }
+
+
 
 
 

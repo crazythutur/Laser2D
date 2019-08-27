@@ -84,9 +84,10 @@ public:
 
 
 
-    };//struct Analyse_tool
+    };//struct Transition
 
     typedef struct Transition Transition;///< struture def
+
 
 
    /************************/
@@ -97,7 +98,11 @@ public:
     * @brief Markov_Chain create a transition structure based on the @param laser
     * @param laser laser that contain all information for calculate the generator infinitesimal generator
     */
-   Markov_Chain (Laser_2D *laser, int seed);
+   Markov_Chain (Laser_2D *laser, long unsigned int seed);
+
+
+   Markov_Chain (Laser_2D *laser, unsigned long seed, Analyse_init_params parameters);
+
 
    virtual ~Markov_Chain ();
 
@@ -117,8 +122,6 @@ public:
    {
        return this->analyse_tool;
    }
-
-
 
 
 
@@ -150,9 +153,20 @@ public:
     */
    std::ostream& print_header(std::ostream& flux);
 
+   /**
+    * @brief print_state print the state decoded
+    * @param flux flux to put the output
+    * @param state the state to write
+    * @return the flux
+    */
+   std::ostream& print_state(std::ostream& flux, const State *state);
+
+
 
    State * simulate(double max_time, State *initial_state);
 
+
+   std::ostream& write_csv(std::ostream& flux);
 
 
 //============================================================================================================================
@@ -183,8 +197,6 @@ private:
 
    gsl_rng *rng_generator[RANDOM_NUMBERS];
 
-   ofstream event_file;
-
 
 
 //============================================================================================================================
@@ -208,13 +220,6 @@ private:
                    int *CBelec_prev_state, int *CBelec_next_state,
                    int *VBelec_prev_state, int *VBelec_next_state );
 
-   /**
-    * @brief print_state print the state decoded
-    * @param flux flux to put the output
-    * @param state the state to write
-    * @return the flux
-    */
-   std::ostream& print_state(std::ostream& flux, const State *state);
 
    /**
     * @brief transition_probabilities return the transition probability from a state @param i
@@ -231,12 +236,16 @@ private:
            std::vector<Markov_Chain::Transition> * transitions, State  * const current_state);
    void init_random(const long unsigned int seed);
 
-   void trajectory_analysis(const State *current_state, const Markov_Chain::Transition *transition, const double waiting_time);
+   void trajectory_analysis(const State *current_state, const Markov_Chain::Transition *transition,
+                            const double waiting_time, const double current_time);
 
 
    void update_stat(const State *state, const double waiting_time);
 
    void post_calcul_analyse(const double end_time);
+
+   void update_SD(int mode, double instant_time);
+
 
    void calcul_histogramme(const State *state, const double waiting_time);
 

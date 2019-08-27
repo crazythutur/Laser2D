@@ -51,11 +51,13 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters) {
    this->beta                    = parameters.beta;
    this->electical_coupling      = parameters.electrical_coupling;
    this->cavity_escape_rate      = parameters.cavity_escape_rate;
+   this->number_of_photonic_phases = parameters.number_of_photonic_phases;
+   this->weigth_of_photonic_phases = parameters.weigth_of_photonic_phases;
 }//Laser_2D::Laser_2D (Laser_init_parameters const parameters)
 
 //=====================================================================================================================================
 
-Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *laser_levels,
+Laser_2D::Laser_2D (Laser_init_parameters const parameters,
                     double const energy_level_splitting, std::map<double,Electron_presence*> &electron_presence_map)
     : Laser_2D(parameters)
 {
@@ -75,7 +77,7 @@ Laser_2D::Laser_2D (Laser_init_parameters const parameters, unsigned int const *
       q=exp(-11.60451812 * energy_level_splitting / parameters.temperature[laser_num]);
 
       emitter = new QW_emitter(parameters.local_pump[laser_num], q , this->mode_number,
-                               laser_levels, electron_presence_map);
+                               parameters.lasing_level, electron_presence_map);
       emitter->setLaser_num(laser_num);
 
       this->laser_table.push_back(emitter);
@@ -93,6 +95,20 @@ Laser_2D::~Laser_2D ()
 
 //=====================================================================================================================================
 
+
+void Laser_2D::uniform_coupling(double *value)
+{
+    for(std::vector<Emitter *>::iterator it = laser_table.begin(); it != laser_table.end(); ++it)
+    {
+        for(unsigned int mode=0 ; mode < this->getMode_number() ; mode++)
+        {
+            (*it)->setCavity_coupling(mode, value[mode]);
+        }
+    }
+}//void Laser_2D::uniform_coupling(double *value)
+
+
+//=====================================================================================================================================
 
 void Laser_2D::gaussian_coupling(double *FWHM_x, double *FWHM_y)
 {

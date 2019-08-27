@@ -75,6 +75,12 @@ public:
 
       double *temperature;                   ///< temperature is a table of @a Emitter_number elements of @a Emitter temperature
 
+      double number_of_photonic_phases;
+
+      double weigth_of_photonic_phases;
+
+      unsigned int *lasing_level;
+
 
    };//struct Laser_init_parameters
 
@@ -104,8 +110,8 @@ public:
     * @param electron_presence_map map of all @a Electron_presence. This permit to not recalculate the @a Electron_presence
     * a new entry will be added if the value are not already calculated
     */
-   Laser_2D (Laser_init_parameters const parameters, unsigned int const *laser_levels,
-            double const energy_level_splitting, std::map<double, Electron_presence *> &electron_presence_map);
+   Laser_2D (Laser_init_parameters const parameters,
+             double const energy_level_splitting, std::map<double, Electron_presence *> &electron_presence_map);
 
    virtual ~Laser_2D ();
 
@@ -195,6 +201,10 @@ public:
    void gaussian_coupling(double *FWHM_x, double *FWHM_y);
 
 
+   void uniform_coupling(double *value);
+
+
+
 //============================================================================================================================
 
 private:
@@ -248,6 +258,9 @@ private:
    */
   unsigned int width;
 
+  double number_of_photonic_phases;
+
+  double weigth_of_photonic_phases;
 
   /**
    * @brief laser_table array of a number @a Emitter_number of @a Emitter pointer

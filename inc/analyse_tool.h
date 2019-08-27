@@ -19,6 +19,38 @@
 //============================================================================================================================
 
 
+struct Analyse_init_params {
+
+
+    int SD_points_number;
+    double correlation_interval_duration;
+    double correlation_max;
+    double end_time;
+
+
+    bool event_flag;
+
+    bool g2_flag;
+
+    bool histo_flag;
+
+    bool sd_flag;
+
+    bool verbose_flag;
+
+    int seed;
+
+
+};//struct Laser_init_params
+
+typedef struct Analyse_init_params Analyse_init_params;///< struture def
+
+
+//========================================================================================================================================
+
+
+
+
 /**
  * @brief The Analyse_tool struct regroup all analyse value for the laser
  * like average or variance for photon or electron
@@ -29,9 +61,7 @@ struct Analyse_tool {
 
    Analyse_tool(unsigned int const number_of_modes, unsigned int const number_of_emitters);
 
-   Analyse_tool(unsigned int const number_of_modes, unsigned int const number_of_emitters,
-                              int SD_points_number, double correlation_interval_duration,
-                              double correlation_max, double end_time);
+   Analyse_tool(unsigned int const number_of_modes, unsigned int const number_of_emitters, Analyse_init_params parameters);
 
     ~Analyse_tool();
 
@@ -54,9 +84,11 @@ struct Analyse_tool {
 
        double end_time;
 
-       /** contain cosinus of Spectral Density for each @a Markov_Parameters.SD_points_number  **/
+       unsigned int SD_points_number;
+
+       /** contain cosinus of Spectral Density for each @a SD_points_number  **/
        double ** cos_SD;
-       /** contain sinus   of Spectral Density for each @a Markov_Parameters.SD_points_number  **/
+       /** contain sinus   of Spectral Density for each @a SD_points_number  **/
        double ** sin_SD;
 
        /** histogramm of photon number in the cavity each photon is represented in a box it must be a dynamic.
@@ -98,6 +130,8 @@ struct Analyse_tool {
 
        bool sd_flag;
 
+       bool verbose_flag;
+
 };//struct Analyse_tool
 
 typedef struct Analyse_tool Analyse_tool;                ///< struture def
@@ -106,6 +140,8 @@ typedef struct Analyse_tool Analyse_tool;                ///< struture def
 std::ostream& print_statistic(std::ostream& flux, const Analyse_tool *analyse_tool);
 
 //========================================================================================================================================
+
+
 
 double ** init_tab_dynamic( int x_size, int y_size );
 

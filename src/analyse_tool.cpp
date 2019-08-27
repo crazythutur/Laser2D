@@ -55,6 +55,7 @@ Analyse_tool::Analyse_tool(unsigned int const number_of_modes, unsigned int cons
    this->g2_flag    = false;
    this->histo_flag = false;
    this->sd_flag = false;
+   this->verbose_flag = false;
 
 
 }
@@ -63,11 +64,16 @@ Analyse_tool::Analyse_tool(unsigned int const number_of_modes, unsigned int cons
 
 
 Analyse_tool::Analyse_tool(unsigned int const number_of_modes, unsigned int const number_of_emitters,
-                           int SD_points_number, double correlation_interval_duration,
-                           double correlation_max, double end_time)
+                           Analyse_init_params parameters)
    :Analyse_tool( number_of_modes, number_of_emitters)
 {
 
+
+    this->event_flag    = parameters.event_flag;
+    this->g2_flag       = parameters.g2_flag;
+    this->histo_flag    = parameters.histo_flag;
+    this->sd_flag       = parameters.sd_flag;
+    this->verbose_flag  = parameters.verbose_flag;
 
     if(this->histo_flag)
     {
@@ -78,24 +84,27 @@ Analyse_tool::Analyse_tool(unsigned int const number_of_modes, unsigned int cons
 
     if(this->g2_flag)
     {
-        this->partial_average_photons = init_tab_dynamic(ceil(end_time/correlation_interval_duration),number_of_modes);
-        this->second_order_correlation = init_tab_dynamic(floor(correlation_max / correlation_interval_duration ) +1 ,number_of_modes);
+        this->partial_average_photons = init_tab_dynamic(
+                    ceil(parameters.end_time/parameters.correlation_interval_duration),number_of_modes);
+        this->second_order_correlation = init_tab_dynamic(
+                    floor(parameters.correlation_max / parameters.correlation_interval_duration ) +1 ,number_of_modes);
 
         this->correlation_time_mark=0;
         this->correlation_interval_number=0;
-        this->correlation_interval_duration=correlation_interval_duration;
-        this->correlation_max_value=correlation_max;
+        this->correlation_interval_duration=parameters.correlation_interval_duration;
+        this->correlation_max_value=parameters.correlation_max;
     }
 
    if(this->sd_flag)
    {
-       this->cos_SD= init_tab_dynamic(number_of_modes,SD_points_number);
-       this->sin_SD= init_tab_dynamic(number_of_modes,SD_points_number);
+       this->SD_points_number = parameters.SD_points_number;
+       this->cos_SD= init_tab_dynamic(number_of_modes,parameters.SD_points_number);
+       this->sin_SD= init_tab_dynamic(number_of_modes,parameters.SD_points_number);
 
    }
 
 
-   this->end_time = end_time;
+   this->end_time = parameters.end_time;
 
    this->var_total_photon=0;        ///< total photon variance value
    this->allocation_size=ALLOCATION_BASE;
@@ -159,15 +168,15 @@ std::ostream& print_statistic(std::ostream& flux, const Analyse_tool *analyse_to
         for(unsigned int mode=0 ; mode < analyse_tool->number_of_modes ; mode++ )
         {
             flux << "% Mode " << mode+1
-                 << ": shutdown=" << analyse_tool->shutdown[mode]
-                 << ", <m>="    << analyse_tool->ave_photon[mode]
-                 <<  ",var(m)=" << analyse_tool->var_photon[mode]
+                 << " : shutdown=" << analyse_tool->shutdown[mode]
+                 << ",\t<m>="    << analyse_tool->ave_photon[mode]
+                 <<  ",\tvar(m)=" << analyse_tool->var_photon[mode]
                  << endl;
             total_average += analyse_tool->ave_photon[mode];
             total_shutdown += analyse_tool->shutdown[mode];
         }
         flux << "% Total \t"
-             << ": shutdown="   << total_shutdown
+             << " : shutdown="   << total_shutdown
              << ",\t<m>="        << total_average
              <<  ",\tvar(m)="     << analyse_tool->var_total_photon
              << endl;
@@ -187,10 +196,10 @@ std::ostream& print_statistic(std::ostream& flux, const Analyse_tool *analyse_to
         for(unsigned int emitter = 0 ; emitter < analyse_tool->number_of_emitter ; emitter++ )
         {
             flux << "% Emitter "          << emitter + 1
-                 << " : <n_C>="            << analyse_tool->ave_CB_electron[emitter]
-                 << ",var(n_C)="         << analyse_tool->var_CB_electron[emitter]
-                 << ", <n_V>="            << analyse_tool->ave_VB_electron[emitter]
-                 << ",var(n_V)="         << analyse_tool->var_VB_electron[emitter]
+                 << "\t: <n_C>="            << analyse_tool->ave_CB_electron[emitter]
+                 << ",\tvar(n_C)="         << analyse_tool->var_CB_electron[emitter]
+                 << ",\t<n_V>="            << analyse_tool->ave_VB_electron[emitter]
+                 << ",\tvar(n_V)="         << analyse_tool->var_VB_electron[emitter]
                  << endl;
         }
     }

@@ -16,12 +16,14 @@ SOURCES +=  \
             Laser_2D.cpp \
             LaserTransitionStructure.cpp \
             rate_array.cpp \
-            Markov.main.cpp \
+            main.cpp \
             Emitter.cpp \
             QW_emitter.cpp \
             state.cpp \
             Markov_Chain.cpp \
-            analyse_tool.cpp
+            analyse_tool.cpp \
+            io.cpp \
+            ../lib/argtable3.c
 
 #            QW_elementary_laser.main.cpp
 
@@ -34,7 +36,9 @@ HEADERS +=  ../inc/Electron_presence.h \
             ../inc/QW_emitter.h \
             ../inc/state.h \
             ../inc/Markov_Chain.h \
-            ../inc/analyse_tool.h
+            ../inc/analyse_tool.h \
+            ../inc/io.h \
+            ../lib/argtable3.h
 
 
    QMAKE_CXXFLAGS += -Wall -Wextra  -pedantic -ansi -Wwrite-strings -Wuninitialized -Wunreachable-code
@@ -66,15 +70,18 @@ INCLUDEPATH += /home/thutur/Work/programmes/Marmote/marmotecore_1.2.4/
 
 unix|win32: LIBS += -lgsl
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../../usr/local/lib/release/ -lgslcblas
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../../usr/local/lib/debug/ -lgslcblas
-else:unix: LIBS += -L$$PWD/../../../../../../usr/local/lib/ -lgslcblas
+win32:CONFIG(release, debug|release): LIBS += -L/usr/local/lib/release/ -lgslcblas
+else:win32:CONFIG(debug, debug|release): LIBS += -L/usr/local/lib/debug/ -lgslcblas
+else:unix: LIBS += -L/usr/local/lib/ -lgslcblas
 
-INCLUDEPATH += $$PWD/../../../../../../usr/local/include
-DEPENDPATH += $$PWD/../../../../../../usr/local/include
+INCLUDEPATH += /usr/local/include
+DEPENDPATH += /usr/local/include
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../../usr/local/lib/release/libgslcblas.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../../usr/local/lib/debug/libgslcblas.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../../usr/local/lib/release/gslcblas.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../../usr/local/lib/debug/gslcblas.lib
-else:unix: PRE_TARGETDEPS += $$PWD/../../../../../../usr/local/lib/libgslcblas.a
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += /usr/local/lib/release/libgslcblas.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += /usr/local/lib/debug/libgslcblas.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += /usr/local/lib/release/gslcblas.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += /usr/local/lib/debug/gslcblas.lib
+else:unix: PRE_TARGETDEPS += /usr/local/lib/libgslcblas.a
+
+
+unix|win32:CONFIG(profile): QMAKE_CXXFLAGS += -pg -g

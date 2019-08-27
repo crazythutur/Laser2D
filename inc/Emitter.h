@@ -98,6 +98,14 @@ public:
       return cavity_coupling[mode];
    }
 
+   /**
+    * @return the coupling optical between the emiter and the cavity
+    */
+   double* getCavity_coupling() const
+   {
+      return cavity_coupling;
+   }
+
 
    /**
     * @param value direction of the neigboring emitter using @a direction enum
