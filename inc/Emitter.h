@@ -23,6 +23,21 @@
  * - the @a cavity_coupling define the coupling optical between the emiter and the cavity for each mode
  *
  * - the @a neighboring_lasers regroup all neigbooring laser in direction @a UP, @a RIGHT, @a DOWN and @a LEFT
+ *
+ * This file is part of Laser2D.
+ *
+ *   Laser2D is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Laser2D is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Laser2D.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef EMITTER_H
@@ -56,6 +71,7 @@ public:
    * @param pumping_local_rate represent the portion of the total pump
    * that occur in this @a Emitter (for exemple by a gaussian distribution).
    * @param temperature represent the temperature at non exponential form
+   * @param number_of_modes number of lasing modes
    *
    */
    Emitter (double const pumping_local_rate, double const temperature, const unsigned int number_of_modes);
@@ -145,6 +161,9 @@ public:
       emitter_num = value;
    }
 
+   /**
+    * @brief setCavity_coupling update the cavity coupling for the @param mode to the @param value
+    */
    void setCavity_coupling( unsigned int const mode, double const value)
    {
       this->cavity_coupling[mode] = value;

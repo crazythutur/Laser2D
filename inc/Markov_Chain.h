@@ -24,6 +24,22 @@
  * then for being simulated By MarmoteCore the function TransDistrib is overwrited all the events are inside
  * For using this object it should be used in the object @a MarkovChain then initialisated by the function initial_state
  * Before being simulated.
+ *
+ *
+ * This file is part of Laser2D.
+ *
+ *   Laser2D is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Laser2D is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Laser2D.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #ifndef MARKOV_CHAIN_H
@@ -97,10 +113,17 @@ public:
     /**
     * @brief Markov_Chain create a transition structure based on the @param laser
     * @param laser laser that contain all information for calculate the generator infinitesimal generator
+    * @param seed  of the trajectory
     */
-   Markov_Chain (Laser_2D *laser, long unsigned int seed);
+   Markov_Chain (Laser_2D *laser, unsigned long seed);
 
 
+   /**
+    * @brief Markov_Chain create a transition structure based on the @param laser and the @param parameters given
+    * @param laser laser that contain all information for calculate the generator infinitesimal generator
+    * @param seed  of the trajectory
+    * @param parameters parameters for the analysis
+    */
    Markov_Chain (Laser_2D *laser, unsigned long seed, Analyse_init_params parameters);
 
 
@@ -112,12 +135,17 @@ public:
    /*Getters/Setters*/
    /*****************/
 
+   /**
+    * @return the laser of the chain
+    */
    Laser_2D *getLaser() const
    {
        return this->laser;
    }
 
-
+   /**
+    * @return the analysis tool
+    */
    Analyse_tool *getAnalyse_tool() const
    {
        return this->analyse_tool;
@@ -135,12 +163,10 @@ public:
 
 
    /**
-    * @brief print_event print the @param event_number state with a proper definition
+    * @brief print_event print the event
     * @param flux output flux
-    * @param size size of the dates and states
-    * @param dates array of all dates of the events
-    * @param states array of all states
-    * @param event_number number of the event in the trace
+    * @param transition transition of the event to print
+    * @param date date of the evet
     *
     * @return the output with the added string
     */
@@ -165,7 +191,11 @@ public:
 
    State * simulate(double max_time, State *initial_state);
 
-
+   /**
+    * @brief write_csv the csv file representing the chain
+    * @param flux to put the output
+    * @return the flux
+    */
    std::ostream& write_csv(std::ostream& flux);
 
 
@@ -193,8 +223,14 @@ private:
     */
    Laser_2D *laser;
 
+   /**
+    * @brief analyse_tool regroup all data for the anlasis of the chain
+    */
    Analyse_tool *analyse_tool;
 
+   /**
+    * @brief rng_generator for all random values
+    */
    gsl_rng *rng_generator[RANDOM_NUMBERS];
 
 
@@ -205,6 +241,10 @@ private:
   /*Privates function */
   /********************/
 
+   /**
+    * @brief rates_sum make the sum of all rates from a @param transition_structure
+    * @return the sum of all rates
+    */
    double rates_sum( std::vector<Transition> *transition_structure);
 
    /**
@@ -222,8 +262,8 @@ private:
 
 
    /**
-    * @brief transition_probabilities return the transition probability from a state @param i
-    * neccessary to implement getEntry and Trans_distrib functions from @a Transition_structure
+    * @brief transition_probabilities return the transition probability from a state @param current_state
+    * neccessary to implement getEntry and Trans_distrib functions from @param transitions
     *
     * The function possed all events
     * the sheme is simple we test if the event is possible
@@ -247,8 +287,19 @@ private:
    void update_SD(int mode, double instant_time);
 
 
+   /**
+    * @brief calcul_histogramme update the histogramme analysis
+    * @param state state input for the update
+    * @param waiting_time time during the state will not change
+    */
    void calcul_histogramme(const State *state, const double waiting_time);
 
+
+   /**
+    * @brief correlation_update update the correlations
+    * @param state state input for the update
+    * @param waiting_time  time during the state will not change
+    */
    void correlation_update(const State *state, const double waiting_time);
 
 

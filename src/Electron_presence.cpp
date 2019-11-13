@@ -14,6 +14,21 @@
  * or for pumping level by @a pumping_lvl_prob[CB_Electron_number]
  * the @a mode_number
  * @a energy_level_number  represent the maximum electron capacity of the CB that correspond to the energy level number
+ *
+ * This file is part of Laser2D.
+ *
+ *   Laser2D is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Laser2D is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Laser2D.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include "../inc/Electron_presence.h"
@@ -94,7 +109,7 @@ ostream& operator<<(ostream& flux, const Electron_presence& electron_presence)
 void Electron_presence::initialise_occuancies(unsigned int const *laser_levels, double const q)
 
 {
-   size_t energy_lvl, inv_energy_lvl, mode; //incrementations variables
+   size_t energy_lvl, inv_energy_lvl; //incrementations variables
 
    unsigned int middle = (energy_level_number - 1) / 2; // represent the middle band we need to calculate the two band half separely
    double factor;
@@ -106,8 +121,8 @@ void Electron_presence::initialise_occuancies(unsigned int const *laser_levels, 
    double *q_invk = new double[mode_number];    // k_invk is symetric value of  laser_levels k
    double q_N;
 
-   q_B =    pow(q, energy_level_number);
-   for(mode = 0 ; mode < mode_number ; mode++)
+   q_B =    pow(q, energy_level_number);   
+   for(unsigned int mode = 0 ; mode < mode_number ; mode++)
    {
       q_k[mode] = pow(q, laser_levels[mode]);
       q_invk[mode]= pow(q, energy_level_number - 1 - laser_levels[mode] );
@@ -130,7 +145,7 @@ void Electron_presence::initialise_occuancies(unsigned int const *laser_levels, 
       factor = (1 - q_N * q ) / (q_N - q_B);
 
 
-      for( mode = 0 ; mode < mode_number ; mode++ )
+      for(unsigned int mode = 0 ; mode < mode_number ; mode++ )
       {
 
          this->setLasing_lvl_prob( energy_lvl + 1, mode,

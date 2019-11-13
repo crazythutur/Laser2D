@@ -1,0 +1,4 @@
+\form#0:$ occ_k(N+1) = (q^k (1-occ_k(N)) \frac{1-q^{N+1}}{q^N-q^B}$
+\form#1:$occ_k(N)=1-occ_{B-1-k}(B-N)$
+\form#2:$ occ_k(B-N-2) = 1-q^{B-1-k}occ_k(B-N-1)\frac{1-q^{N+1}}{q^N-q^B}$
+\form#3:$ occ_B(N) = \frac{q^B}{q^N}\frac{1-q^N}{1-q^B}$

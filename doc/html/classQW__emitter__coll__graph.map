@@ -1,0 +1,4 @@
+<map id="QW_emitter" name="QW_emitter">
+<area shape="rect" id="node2" href="$classEmitter.html" title="Reprensent the emitter that will put in the lactice of the 2D_laser. " alt="" coords="5,5,69,32"/>
+<area shape="rect" id="node3" href="$classElectron__presence.html" title="The Electron_presence class represent the probability of finding an electron at different level for a..." alt="" coords="243,5,373,32"/>
+</map>

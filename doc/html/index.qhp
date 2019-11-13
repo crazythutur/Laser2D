@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+  <namespace>Laser.2D</namespace>
+  <virtualFolder>doc</virtualFolder>
+  <filterSection>
+    <filterAttribute>doxygen</filterAttribute>
+    <toc>
+      <section title="Laser 2D Project" ref="index.html">
+        <section title="Todo List" ref="todo.html" />
+        <section title="Deprecated List" ref="deprecated.html" />
+        <section title="Data Structures" ref="annotated.html">
+          <section title="Data Structures" ref="annotated.html">
+            <section title="Analyse_init_params" ref="structAnalyse__init__params.html">
+              <section title="correlation_interval_duration" ref="structAnalyse__init__params.html#a0ef7dadf9aa12174a7490d2a67be5842" />
+              <section title="correlation_max" ref="structAnalyse__init__params.html#a3316b6dc5372401736957eab86a80ea4" />
+              <section title="end_time" ref="structAnalyse__init__params.html#ac750985af5edd7149112251f8d0dc827" />
+              <section title="event_flag" ref="structAnalyse__init__params.html#a5457872d8524b40a9d0c045d74a2b25a" />
+              <section title="g2_flag" ref="structAnalyse__init__params.html#a66345b1dad5babd32c7ce043e7872899" />
+              <section title="histo_flag" ref="structAnalyse__init__params.html#a8f8ef836ab7457303df19a3858cc0616" />
+              <section title="sd_flag" ref="structAnalyse__init__params.html#a92a59e1085bb88581f1bd96523e51cdb" />
+              <section title="SD_points_number" ref="structAnalyse__init__params.html#ad8bea5f9144ec5fa902707f95c519368" />
+              <section title="seed" ref="structAnalyse__init__params.html#ad535c94eb5108889b5ec09e293ec19b6" />
+              <section title="stationnary_time" ref="structAnalyse__init__params.html#ab8018f8b33a049f518d1be93ede2db5b" />
+              <section title="verbose_flag" ref="structAnalyse__init__params.html#a04530df13b246f14893b0bc1ca10d526" />
+            </section>
+            <section title="Analyse_tool" ref="structAnalyse__tool.html">
+              <section title="Analyse_tool" ref="structAnalyse__tool.html#ad2e6211300d30000c204c78d9f243195" />
+              <section title="Analyse_tool" ref="structAnalyse__tool.html#a202e952bd587d5370df6293025242964" />
+              <section title="~Analyse_tool" ref="structAnalyse__tool.html#aa5d6e3ce0408cf613ff5abbc5b5ca88c" />
+              <section title="allocation_size" ref="structAnalyse__tool.html#a9675d8eefbe471f77d09c7c4d43d3932" />
+              <section title="analyse_flag" ref="structAnalyse__tool.html#a41de543c71ddb9f44065d10f2126ac39" />
+              <section title="ave_CB_electron" ref="structAnalyse__tool.html#a5f2ba2291d73909e00d60986ee72c8e3" />
+              <section title="ave_photon" ref="structAnalyse__tool.html#a742916e4994f5f71c5767b02fa171136" />
+              <section title="ave_VB_electron" ref="structAnalyse__tool.html#a26ab6c3bf29a3a6524a0884e49b99a33" />
+              <section title="correlation_interval_duration" ref="structAnalyse__tool.html#a3956bdea8d5775c7c44973d7c5ee2007" />
+              <section title="correlation_interval_number" ref="structAnalyse__tool.html#a11f804c097bf0ebffd80427093dac779" />
+              <section title="correlation_max_value" ref="structAnalyse__tool.html#ad80e0c45d2aff3e3b13a35f55f5f57c8" />
+              <section title="correlation_time_mark" ref="structAnalyse__tool.html#ae8d24f7ecd9c44f81a5628826bb623b4" />
+              <section title="cos_SD" ref="structAnalyse__tool.html#a45c0aab0cf80db0431dc07150290bd72" />
+              <section title="end_time" ref="structAnalyse__tool.html#a6b712697ffa4ae499057d19928445fd9" />
+              <section title="event_counter" ref="structAnalyse__tool.html#a8543c6fd5e0191a24a4a2397372951b8" />
+              <section title="event_flag" ref="structAnalyse__tool.html#a3200d2ee63c1f76e2ba69dd1fa7f62db" />
+              <section title="g2_flag" ref="structAnalyse__tool.html#ac9ba3e65453e8c1fe8c4f418997d511c" />
+              <section title="histo_flag" ref="structAnalyse__tool.html#abc0fb4749f2cf1298375e594f5665f98" />
+              <section title="number_of_emitter" ref="structAnalyse__tool.html#a9f9f7f8417a76c61ab66d990faa8b34d" />
+              <section title="number_of_modes" ref="structAnalyse__tool.html#ab131472a5fab888ecb00af5d2c77e673" />
+              <section title="partial_average_photons" ref="structAnalyse__tool.html#a71ef68f08dfc1fddf68e93d645284eaf" />
+              <section title="photon_histogramm" ref="structAnalyse__tool.html#a4a04d986c0e93ad2a6911086909360d7" />
+              <section title="sd_flag" ref="structAnalyse__tool.html#a4b7b87202420fcb8b7a143ac24219f64" />
+              <section title="SD_points_number" ref="structAnalyse__tool.html#aa593d55d78623dd5c57bc6943743f54d" />
+              <section title="second_order_correlation" ref="structAnalyse__tool.html#a6421ca27c0c47962583750a579339733" />
+              <section title="shutdown" ref="structAnalyse__tool.html#aa6811bc1658cd63804e545561d083af0" />
+              <section title="sin_SD" ref="structAnalyse__tool.html#ac2868ed07ddf9a557115fc58eecb8969" />
+              <section title="var_CB_electron" ref="structAnalyse__tool.html#a697ca76431116c5294f47aab74b7b4d2" />
+              <section title="var_photon" ref="structAnalyse__tool.html#a06a2be012cdd8cbdbde482043952cf2f" />
+              <section title="var_total_photon" ref="structAnalyse__tool.html#a6da62e6ff3f4199d5ab17530bd710b9f" />
+              <section title="var_VB_electron" ref="structAnalyse__tool.html#a335af7d77ab6fadc34e6678599b79185" />
+              <section title="verbose_flag" ref="structAnalyse__tool.html#a26f3b40774d3f6be56d8ae0d1319b547" />
+            </section>
+            <section title="D_laser" ref="classD__laser.html" />
+            <section title="Electron_presence" ref="classElectron__presence.html">
+              <section title="Electron_presence" ref="classElectron__presence.html#ad0f20fc5669c98b72f695ef5fa47d083" />
+              <section title="~Electron_presence" ref="classElectron__presence.html#ab13ace7af430877bf219470b7dbd7fb8" />
+              <section title="getEnergy_level_number" ref="classElectron__presence.html#a31902f24b56c05d295951c16cda833ce" />
+              <section title="getLasing_lvl_prob" ref="classElectron__presence.html#acc8ac0d5ec723cd9814714de94d56d21" />
+              <section title="getMode_number" ref="classElectron__presence.html#acfa1cbcdea411990199c976c766b9342" />
+              <section title="getPumping_lvl_prob" ref="classElectron__presence.html#af45a8108e3f2920e441717e1cab12a91" />
+              <section title="initialise_occuancies" ref="classElectron__presence.html#aaf74d6fb4b3c2129e4f2817dc88fe400" />
+              <section title="initialize_size" ref="classElectron__presence.html#a3bd8193033230465bcf115d3ffe75722" />
+              <section title="setLasing_lvl_prob" ref="classElectron__presence.html#ae95be27cb31d64f4ab1cae31df77cd8e" />
+              <section title="setPumping_lvl_prob" ref="classElectron__presence.html#a2fc0289484a862f6daca5f069d657082" />
+              <section title="operator&lt;&lt;" ref="classElectron__presence.html#a12d5b77611d7ff92c8081130091e3edf" />
+              <section title="energy_level_number" ref="classElectron__presence.html#adf6d0802d205eb1dbff9bd1d2c7c12d6" />
+              <section title="lasing_lvl_prob" ref="classElectron__presence.html#a887456a743c43794884067415cafc6c5" />
+              <section title="mode_number" ref="classElectron__presence.html#aa65150056a5525b8e782ce4786d49ea9" />
+              <section title="pumping_lvl_prob" ref="classElectron__presence.html#ad630d042747b93747e6dcbcdabde344f" />
+            </section>
+            <section title="Emitter" ref="classEmitter.html">
+              <section title="direction" ref="classEmitter.html#a09986fc934bc1464209533fa321facb5">
+                <section title="UP" ref="classEmitter.html#a09986fc934bc1464209533fa321facb5ae08bc8b8053ac2699bb3f01f5de05867" />
+                <section title="RIGHT" ref="classEmitter.html#a09986fc934bc1464209533fa321facb5a67cc7314271036818289fcef88858ebe" />
+                <section title="DOWN" ref="classEmitter.html#a09986fc934bc1464209533fa321facb5a656b2798c66c70a8a5e85481e122bc70" />
+                <section title="LEFT" ref="classEmitter.html#a09986fc934bc1464209533fa321facb5abe96357b468d5f629c737e324b71b03b" />
+                <section title="DIRECTION_NUMBER" ref="classEmitter.html#a09986fc934bc1464209533fa321facb5a2dd220e4272b57d559b9bcfe6f16068e" />
+              </section>
+              <section title="Emitter" ref="classEmitter.html#abf64c2bcea8e7f44d41998c63dd17445" />
+              <section title="Emitter" ref="classEmitter.html#aeea41e2828333f5d6ae58d50a2f58556" />
+              <section title="~Emitter" ref="classEmitter.html#a0af9a50316daf2580cde9b99fe7c6f96" />
+              <section title="getCavity_coupling" ref="classEmitter.html#a9a60da2253a0826938913cd6e5892dae" />
+              <section title="getCavity_coupling" ref="classEmitter.html#a8aebcf9eee936cc4cadd2079d10ea4d0" />
+              <section title="getEmitter_num" ref="classEmitter.html#ab242187f0be624de63479eac8f21fcdd" />
+              <section title="getMetropolis_criteria" ref="classEmitter.html#a783b8b49e8f9b5985cd062cde1702cfe" />
+              <section title="getNeighboring_emitter" ref="classEmitter.html#acc00d357e505d1f40a94528142793f2f" />
+              <section title="getNeighboring_emitter" ref="classEmitter.html#a3e4ffe1e486a94ccd61623588610e763" />
+              <section title="getPumping_local_rate" ref="classEmitter.html#aeb58a02984bc164b3e4e9e20a69e7aef" />
+              <section title="getTemperature" ref="classEmitter.html#ab92f129cce03f545ba430836adc05f84" />
+              <section title="init_neighboring_emitter" ref="classEmitter.html#a259ecef59b8b6444d296b830759c1bfe" />
+              <section title="metropolis_criteria" ref="classEmitter.html#a29d4999b2773bd87fc770ca0128aae8a" />
+              <section title="setCavity_coupling" ref="classEmitter.html#a073aee7adcc638c914ec36609f3ffaf5" />
+              <section title="setLaser_num" ref="classEmitter.html#a97ed09881ead2fd25d397f2cc00a61ee" />
+              <section title="cavity_coupling" ref="classEmitter.html#a45ed5e106e4eaf150e8a5e6ab6f44965" />
+              <section title="emitter_num" ref="classEmitter.html#ab6495dc29755d0c6c2c3dc1db231edaa" />
+              <section title="metropolis_critera_table" ref="classEmitter.html#a8a1bbbbe90521f29c9f73649aca0ddeb" />
+              <section title="neighboring_emitters" ref="classEmitter.html#a0fa0c9d3350237dfd439bb9c1afaec4d" />
+              <section title="pumping_local_rate" ref="classEmitter.html#a5cdc2ac67941f63336d411397b702514" />
+              <section title="temperature" ref="classEmitter.html#a81df590613aed25eea9289aefb09be35" />
+            </section>
+            <section title="io" ref="classio.html" />
+            <section title="IO" ref="classIO.html">
+              <section title="Input_parameters" ref="structIO_1_1Input__parameters.html">
+                <section title="Input_parameters" ref="structIO_1_1Input__parameters.html#ac78f959e6aec699d9eed33a1734f6160" />
+                <section title="Input_parameters" ref="structIO_1_1Input__parameters.html#aafa1ab91a9a4cc41fbba620522905c60" />
+                <section title="~Input_parameters" ref="structIO_1_1Input__parameters.html#a878aab9b1c34cf743d9b1e2018e643c9" />
+                <section title="beta" ref="structIO_1_1Input__parameters.html#ad5f53dc61dc2d1633dc16493626b4d19" />
+                <section title="cavity_coupling" ref="structIO_1_1Input__parameters.html#aead975f7574c2573fc6f94c79583b0be" />
+                <section title="cavity_escape_rate" ref="structIO_1_1Input__parameters.html#ac5956f05c3353ba7783ebabfd8b95367" />
+                <section title="electrical_coupling" ref="structIO_1_1Input__parameters.html#a43ccbf414e63f716fc9615368eb3cf6a" />
+                <section title="energies_levels" ref="structIO_1_1Input__parameters.html#a8d8827426dff9e8d930321dc9a0c8195" />
+                <section title="event_flag" ref="structIO_1_1Input__parameters.html#a7a88915bca158852bc114dfb25f224b6" />
+                <section title="g2_flag" ref="structIO_1_1Input__parameters.html#a5cc4567fcf163bcfcfc3ef8cf7ee9343" />
+                <section title="help_flag" ref="structIO_1_1Input__parameters.html#a5d3495aad825bd952178a814be1a55d4" />
+                <section title="histo_flag" ref="structIO_1_1Input__parameters.html#a6c4982309d7ee0d8972d39ee91b82915" />
+                <section title="initial_CBelectrons_number" ref="structIO_1_1Input__parameters.html#a3f584c05a834db28d05a6cbcf2b2ec32" />
+                <section title="initial_photons_number" ref="structIO_1_1Input__parameters.html#a8504056d3fc5d72f4992eebd72b6de25" />
+                <section title="initial_VBelectrons_number" ref="structIO_1_1Input__parameters.html#a85e8485976649c1af334e8934b657f23" />
+                <section title="lasing_levels" ref="structIO_1_1Input__parameters.html#a8b74832c08289db9c05235e5b87c1302" />
+                <section title="number_of_emitters" ref="structIO_1_1Input__parameters.html#ae6aa62b4bef99485a231a6dc6f973b68" />
+                <section title="number_of_modes" ref="structIO_1_1Input__parameters.html#ab12ed2a8883e89cdaa2d0b0cf2c58636" />
+                <section title="output_file" ref="structIO_1_1Input__parameters.html#ab11ec3dd0e5a71111efd56f563a253b5" />
+                <section title="pump" ref="structIO_1_1Input__parameters.html#a1ddbee7f40c4c907a7ea7523a0a1e12a" />
+                <section title="pump_phases" ref="structIO_1_1Input__parameters.html#a38c9e0f3b2f18873a8216d8a4ca0fd64" />
+                <section title="sd_flag" ref="structIO_1_1Input__parameters.html#a77b35daaf92379a64077e142231e6b5b" />
+                <section title="SD_point_numbers" ref="structIO_1_1Input__parameters.html#a395c1951b2765e57707cd9549b825058" />
+                <section title="seed" ref="structIO_1_1Input__parameters.html#ae4ed49c7659be1e26a3f294ffbf18134" />
+                <section title="stationnary_time" ref="structIO_1_1Input__parameters.html#a719ad4760c1190c55d6e896f8e8b3dd2" />
+                <section title="temerature" ref="structIO_1_1Input__parameters.html#ace76b23c1d6d5f8f4e02577bc60ea08b" />
+                <section title="time" ref="structIO_1_1Input__parameters.html#ad4d0bfcbca909242037da5dc0ad13284" />
+                <section title="verbose" ref="structIO_1_1Input__parameters.html#a117da15a9ed582a38da7ff7c42f8cef5" />
+              </section>
+              <section title="Input_parameters" ref="classIO.html#aa1b1e37c17ba12547e0194854764077c" />
+              <section title="CSV_LOOP_BREAKER" ref="classIO.html#add70fac06e65a695c67b3244e84a1f7c">
+                <section title="TOTAL_BREAKER" ref="classIO.html#add70fac06e65a695c67b3244e84a1f7ca1ad24d716886a3d63b48034eb1b2947d" />
+                <section title="HISTO_BREAKER" ref="classIO.html#add70fac06e65a695c67b3244e84a1f7ca9d088edcb27dda35dd05cb239abd4929" />
+                <section title="SD_BREAKER" ref="classIO.html#add70fac06e65a695c67b3244e84a1f7ca7e325e82a1461be6262ff2045cd03995" />
+                <section title="G2_BREAKER" ref="classIO.html#add70fac06e65a695c67b3244e84a1f7cafcaadb5b51d0da2af5118960838fdf39" />
+                <section title="EVENT_BREAKER" ref="classIO.html#add70fac06e65a695c67b3244e84a1f7cabc1bf99783bcec21d3fa9055b041c509" />
+                <section title="MAX_BREAKER" ref="classIO.html#add70fac06e65a695c67b3244e84a1f7cac577e38f805231627d30f7c8ee2899b8" />
+              </section>
+              <section title="init_seed" ref="classIO.html#a58f31eaedebceceb9112fe27f9f33770" />
+              <section title="read_argtable" ref="classIO.html#a9071e9a3e1e9f5675cbb5d5bc01fb364" />
+              <section title="write_command" ref="classIO.html#a3dc2d3e4ad46fb6462a6e15f0a36e8fe" />
+              <section title="write_csv" ref="classIO.html#a7c6c83f5843cf9fe2472dcac52c7142b" />
+              <section title="write_table" ref="classIO.html#a5f99e3067e29aab3813efe31b540ca0b" />
+            </section>
+            <section title="Laser_2D" ref="classLaser__2D.html">
+              <section title="Laser_init_parameters" ref="structLaser__2D_1_1Laser__init__parameters.html">
+                <section title="beta" ref="structLaser__2D_1_1Laser__init__parameters.html#a3bee511c7ffdd98090254bc6b9dcd000" />
+                <section title="cavity_escape_rate" ref="structLaser__2D_1_1Laser__init__parameters.html#afc6f0d897621c6a65757c73847b80b37" />
+                <section title="electrical_coupling" ref="structLaser__2D_1_1Laser__init__parameters.html#a358aa131014ae01c98e7b3693ee75480" />
+                <section title="emitter_number" ref="structLaser__2D_1_1Laser__init__parameters.html#aa9710ffdee2753be3e4fad19551cb4b8" />
+                <section title="lasing_level" ref="structLaser__2D_1_1Laser__init__parameters.html#a374eb163e2f62d583007be13802a5546" />
+                <section title="local_pump" ref="structLaser__2D_1_1Laser__init__parameters.html#a74f410bf8dd55720f06c591b11315343" />
+                <section title="mode_number" ref="structLaser__2D_1_1Laser__init__parameters.html#a693ea56830c2e744e6b0c54066432e27" />
+                <section title="number_of_photonic_phases" ref="structLaser__2D_1_1Laser__init__parameters.html#a8c6d7da28b4550af255b881f31e34fb9" />
+                <section title="pumps_phases" ref="structLaser__2D_1_1Laser__init__parameters.html#acbee9815e64350319e7cba39e19e034b" />
+                <section title="temperature" ref="structLaser__2D_1_1Laser__init__parameters.html#abbdea7116ba42353c04bddc1dd73c86d" />
+                <section title="weigth_of_photonic_phases" ref="structLaser__2D_1_1Laser__init__parameters.html#a5f67a8ead198dd456050576b02be288c" />
+              </section>
+              <section title="Laser_init_parameters" ref="classLaser__2D.html#afa293e775bdf2f70ae7e8efda660afb7" />
+              <section title="laser_type" ref="classLaser__2D.html#aac0580e5acbe53e91d98d1468d2ae16e">
+                <section title="QW" ref="classLaser__2D.html#aac0580e5acbe53e91d98d1468d2ae16eab413ffe7cded2f67c69c4d703c1f52f9" />
+                <section title="QD" ref="classLaser__2D.html#aac0580e5acbe53e91d98d1468d2ae16ead264e9c4c5aa0addcfdf40e905e0f21e" />
+              </section>
+              <section title="Laser_2D" ref="classLaser__2D.html#a555b63535d4550843565b4412c293464" />
+              <section title="Laser_2D" ref="classLaser__2D.html#a313d4e4e2491bc6bc611909869441984" />
+              <section title="~Laser_2D" ref="classLaser__2D.html#acad6a2e245ec83a7bb9c11b3a3bc9279" />
+              <section title="gaussian_coupling" ref="classLaser__2D.html#a9fb17ace979eb6323a0a08b5ebe914f3" />
+              <section title="getBeta" ref="classLaser__2D.html#af0a12b993c56de9276dbbc087e170f14" />
+              <section title="getCavity_escape_rate" ref="classLaser__2D.html#ab1dbe6e51df56d31dca4c9913030d751" />
+              <section title="getElectical_coupling" ref="classLaser__2D.html#ae68ee32c5ec38bc42669d712155bb7f1" />
+              <section title="getEmitter" ref="classLaser__2D.html#a3e61ec9b077d5a43b881cd9e1e0afe97" />
+              <section title="getEmitter_number" ref="classLaser__2D.html#a6e533f1db18a551b2923bff7b0f44d86" />
+              <section title="getMode_number" ref="classLaser__2D.html#a2860d0395d596d8bfa30be1579c7480f" />
+              <section title="getPumps_phases" ref="classLaser__2D.html#adce6d0179f5e7f16422f4b3ef10fa121" />
+              <section title="getType" ref="classLaser__2D.html#aced75b5431e9be36f23250b85575a1fd" />
+              <section title="organize_neighborhood" ref="classLaser__2D.html#afb610dd0f4df618a31e03f004936499d" />
+              <section title="uniform_coupling" ref="classLaser__2D.html#a2a6b3854ed46cf5fce359047029027e0" />
+              <section title="beta" ref="classLaser__2D.html#a68e2c94f3cf31ad0d343d0074acbac46" />
+              <section title="cavity_escape_rate" ref="classLaser__2D.html#a8ccb97e586444495f29485cb1369b5dd" />
+              <section title="electical_coupling" ref="classLaser__2D.html#a551c55c7c115cb29476098a5ea9b9c23" />
+              <section title="emitter_number" ref="classLaser__2D.html#a68fd94eaf38578e94385881d60c40268" />
+              <section title="height" ref="classLaser__2D.html#acad74aefb756e56da265691fcbb5a1c8" />
+              <section title="laser_table" ref="classLaser__2D.html#aa4f2ee902062130987e66a4cadec4b22" />
+              <section title="mode_number" ref="classLaser__2D.html#a78c815e662a8ec83940b55380d06ddcf" />
+              <section title="number_of_photonic_phases" ref="classLaser__2D.html#ad40bf39738ddd4a84eecc924de1b1410" />
+              <section title="pumps_phases" ref="classLaser__2D.html#a83b488b85d1c8625bcff50cfc4d760df" />
+              <section title="type" ref="classLaser__2D.html#a4d23867001eb23c7d02a0457af82b89a" />
+              <section title="weigth_of_photonic_phases" ref="classLaser__2D.html#ab1f5ec660f2cabd330a6aa2c596f30c8" />
+              <section title="width" ref="classLaser__2D.html#ac11aa945cf9a6e9e49f09c8ade0df03d" />
+            </section>
+            <section title="Laser_transition_structure" ref="classLaser__transition__structure.html">
+              <section title="Analyse_tool" ref="structLaser__transition__structure_1_1Analyse__tool.html">
+                <section title="ave_CB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#ad4761342a6165154708ec2291469c3e7" />
+                <section title="ave_photon" ref="structLaser__transition__structure_1_1Analyse__tool.html#acdd7b1cdddcac0e2deb7fa26c9d2cedb" />
+                <section title="ave_VB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#a378bc6b7dcde6806b9d8e622c4f8249e" />
+                <section title="var_CB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#a3916abecc210271891e92ac814e2a028" />
+                <section title="var_photon" ref="structLaser__transition__structure_1_1Analyse__tool.html#aeedea888be92ca4c001bfb7fce5058ba" />
+                <section title="var_total_CB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#af148f1554ef8728181b008f7fa476f7a" />
+                <section title="var_total_photon" ref="structLaser__transition__structure_1_1Analyse__tool.html#afdd9288fdaa28eb7579e4b75382e3a29" />
+                <section title="var_total_VB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#a4caa2ad9254447af81828a1da2c81d32" />
+                <section title="var_VB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#a039349aa3bfb710e230506620a934a7d" />
+              </section>
+              <section title="Analyse_tool" ref="classLaser__transition__structure.html#a5538b1383def38b2395b332685b62077" />
+              <section title="Laser_transition_structure" ref="classLaser__transition__structure.html#aae753d055284a40bbbe236fc92fd771a" />
+              <section title="~Laser_transition_structure" ref="classLaser__transition__structure.html#a2eba8ef331436ab918d1334c49c116a0" />
+              <section title="analyse_trajectory" ref="classLaser__transition__structure.html#a69e905d8e97808a09a37b0d5b1824180" />
+              <section title="Copy" ref="classLaser__transition__structure.html#adc2689ee4526b4a24a93eaffe3c8fd7e" />
+              <section title="decode_laser_state" ref="classLaser__transition__structure.html#aff7cbcd5df7541fa5991df60e2d17e81" />
+              <section title="Embed" ref="classLaser__transition__structure.html#a9b1ba7f36b00e69514cbc1afbd55c28f" />
+              <section title="EvaluateValue" ref="classLaser__transition__structure.html#aaadbbeced80c17825bbd87f4291db5dd" />
+              <section title="getCol" ref="classLaser__transition__structure.html#ac4f40dccf2190e9ece4ae73ca8f533e8" />
+              <section title="getEntry" ref="classLaser__transition__structure.html#ab4620ea0dc746aaf71367dd7ba05e941" />
+              <section title="getEntryByCol" ref="classLaser__transition__structure.html#a8fd755df5d053520895ebcb1d06edcf2" />
+              <section title="getNbElts" ref="classLaser__transition__structure.html#a7b0901b107efd2e77c5ffa17e5f9772f" />
+              <section title="getSet" ref="classLaser__transition__structure.html#a2e630e2cc3a24668a630907fe72dc7c4" />
+              <section title="init_Analyse_tool" ref="classLaser__transition__structure.html#ac14018f4f9e88715b6419a8786169e35" />
+              <section title="init_state" ref="classLaser__transition__structure.html#a02b38a81c71ad4d52aab5e7fe1a6722c" />
+              <section title="initial_state" ref="classLaser__transition__structure.html#a5a79e415c2bf6ee9e382ac0b99a3fc0b" />
+              <section title="myGetIndex" ref="classLaser__transition__structure.html#a715270448e188fc84720d52d5d01f089" />
+              <section title="print_event" ref="classLaser__transition__structure.html#ac77f64c9410b4294dafbfebd8e74a5f9" />
+              <section title="print_header" ref="classLaser__transition__structure.html#a179f456a1de30bbbfa22278f0f022595" />
+              <section title="print_matrix" ref="classLaser__transition__structure.html#a8110df4a1a8512f1ecaa9a7004056e03" />
+              <section title="print_state" ref="classLaser__transition__structure.html#ac481dd2adf309a39e5684f7f24366f31" />
+              <section title="print_trajectory" ref="classLaser__transition__structure.html#a9e84725bf9a24e1082a8b08bd24057e3" />
+              <section title="RowSum" ref="classLaser__transition__structure.html#a5fdf1bf7288fe723c784476918de662c" />
+              <section title="setEntry" ref="classLaser__transition__structure.html#ae8f93be7f90f57d165fc5a646c8e2a3f" />
+              <section title="test_Encoding" ref="classLaser__transition__structure.html#a208f766955161585e6908eaf42de10f3" />
+              <section title="TransDistrib" ref="classLaser__transition__structure.html#a54b1f03011a64203c0944b74f5100f27" />
+              <section title="transition_probabilities" ref="classLaser__transition__structure.html#a6b6ea307e57fe72584e599023911dc9e" />
+              <section title="Uniformize" ref="classLaser__transition__structure.html#acefe0849d6e573da659f5aebc7746443" />
+              <section title="CB_electrons" ref="classLaser__transition__structure.html#a3eca0998e25148c0a41e83c1a9a272c5" />
+              <section title="electron_dim" ref="classLaser__transition__structure.html#a02695bfe8424c7bbb93283d66bed1a99" />
+              <section title="laser" ref="classLaser__transition__structure.html#a0b4229506e2cbeb3853bb81c8ffbe10b" />
+              <section title="n_dims" ref="classLaser__transition__structure.html#a7b5502398a992caf8b5a91dbb91042aa" />
+              <section title="photon" ref="classLaser__transition__structure.html#ab6fd6b810afb80f8d66a2bd1ba395b7c" />
+              <section title="photon_max" ref="classLaser__transition__structure.html#a04a602bd6b09fd39ed37ca52a0cae2b0" />
+              <section title="set" ref="classLaser__transition__structure.html#a3d173141fb96c7ca081a527e16f3198a" />
+              <section title="VB_electrons" ref="classLaser__transition__structure.html#afc9e210d05a62c2ca7ec22d63fb09170" />
+            </section>
+            <section title="Markov_Chain" ref="classMarkov__Chain.html">
+              <section title="Transition" ref="structMarkov__Chain_1_1Transition.html">
+                <section title="name" ref="structMarkov__Chain_1_1Transition.html#ab797531bd7a5ab78a0673ca1909ddb8d" />
+                <section title="rate" ref="structMarkov__Chain_1_1Transition.html#a4af19889f6b2352bbcf60ad4ba1c84f9" />
+                <section title="state" ref="structMarkov__Chain_1_1Transition.html#aa2e2a6df932d021f56ce3fed042318a2" />
+              </section>
+              <section title="Transition" ref="classMarkov__Chain.html#ab1b3bf8aa834c6f989a4f602c5a6be08" />
+              <section title="Markov_Chain" ref="classMarkov__Chain.html#ac09e0a59d381f54570afbb9dd3f346ef" />
+              <section title="Markov_Chain" ref="classMarkov__Chain.html#ab90f0837e9615b8d0104127104286f8e" />
+              <section title="~Markov_Chain" ref="classMarkov__Chain.html#a7c1f694f52b249da4510c8cae561da92" />
+              <section title="calcul_histogramme" ref="classMarkov__Chain.html#a5c578a7859e49f69ace511b236521f6e" />
+              <section title="correlation_update" ref="classMarkov__Chain.html#a7d86abee453405b317622fc40477ec6d" />
+              <section title="getAnalyse_tool" ref="classMarkov__Chain.html#a4412427eb8341c354dcd9d1328139f60" />
+              <section title="getLaser" ref="classMarkov__Chain.html#aa3ffd5c189d54e744f519abe413ada74" />
+              <section title="init_random" ref="classMarkov__Chain.html#a6aed064cc9a456291202e2f7e87cb020" />
+              <section title="init_state" ref="classMarkov__Chain.html#a249454d3417dee2afc27fa09f7662d54" />
+              <section title="post_calcul_analyse" ref="classMarkov__Chain.html#a3765dc2903659c5bf42fba3795ed4648" />
+              <section title="print_event" ref="classMarkov__Chain.html#a9685757c1bb69efb9dc15f1e57935441" />
+              <section title="print_header" ref="classMarkov__Chain.html#afb895c578ed03720a3db3adde4ce0751" />
+              <section title="print_state" ref="classMarkov__Chain.html#ac9dc075d2e3d2b1ba6a657b0640396ab" />
+              <section title="rates_sum" ref="classMarkov__Chain.html#a28c96e45cd01edd4a0a8407b35555328" />
+              <section title="simulate" ref="classMarkov__Chain.html#ac913e26c73225026fabf2ce84cac65fd" />
+              <section title="trajectory_analysis" ref="classMarkov__Chain.html#a4c9f10df4b3cd63aa0d7d3f35bfb6561" />
+              <section title="transition_structure" ref="classMarkov__Chain.html#ad527fbe94d9116b9caf065d3ed1181af" />
+              <section title="update_SD" ref="classMarkov__Chain.html#a1cc2897d6732c29a283d261d59fa6cb2" />
+              <section title="update_stat" ref="classMarkov__Chain.html#ad9ec6e1d4eefdcbbfc5013343d55a425" />
+              <section title="write_csv" ref="classMarkov__Chain.html#a42fdc9e3602fb73f8800f99557ed9e19" />
+              <section title="analyse_tool" ref="classMarkov__Chain.html#a12f58abd674e3b4b2ad5312f881b26cb" />
+              <section title="laser" ref="classMarkov__Chain.html#abcdd6ed9fc6fa44e27a08d570580c350" />
+              <section title="rng_generator" ref="classMarkov__Chain.html#a173a825aa2be7764ad1f0925dc2907b5" />
+            </section>
+            <section title="QD_elementary_laser" ref="classQD__elementary__laser.html">
+              <section title="QD_elementary_laser" ref="classQD__elementary__laser.html#ab2c101feb865415514704c403f1e7769" />
+              <section title="~QD_elementary_laser" ref="classQD__elementary__laser.html#ab027eb2da775aa55d71b159d6989fb92" />
+            </section>
+            <section title="QW_Emitter" ref="classQW__Emitter.html" />
+            <section title="QW_emitter" ref="classQW__emitter.html">
+              <section title="QW_emitter" ref="classQW__emitter.html#abe86ab7f62c5282c8091a7f12e010d54" />
+              <section title="~QW_emitter" ref="classQW__emitter.html#a64e1aa591731b8c5a95872d3e97e90c8" />
+              <section title="getElectron_presence" ref="classQW__emitter.html#a74dc4870725cc67b92b52b12edaddd93" />
+              <section title="electron_presence" ref="classQW__emitter.html#a80ddf024745777fda581f651da5fe29b" />
+            </section>
+            <section title="rate_array" ref="classrate__array.html" />
+            <section title="Rate_array" ref="classRate__array.html">
+              <section title="Rate_array" ref="classRate__array.html#a197d844dcf20dfb6de505a459424b856" />
+              <section title="Rate_array" ref="classRate__array.html#a00fb4517fca3f5cb65c81b21eef945fe" />
+              <section title="~Rate_array" ref="classRate__array.html#ae91525eb755e8ebd8bc46188f5263381" />
+              <section title="getRate" ref="classRate__array.html#a5d8b9abafd2bafe033793aafd451f7de" />
+              <section title="getRates" ref="classRate__array.html#a19199edf93fef7dad02f5ae25701cbfb" />
+              <section title="getSize" ref="classRate__array.html#a8bb9571ab807d400990a82a4d2d8687f" />
+              <section title="getValue" ref="classRate__array.html#aeacd758e8fd5e6fdb3bf52cb9c37ff12" />
+              <section title="getValues" ref="classRate__array.html#a5d47228de0c18b7b1eee0d0577e6490c" />
+              <section title="rate_from_value" ref="classRate__array.html#adc66acb3d48d059ebadaf643b68fa985" />
+              <section title="rateSum" ref="classRate__array.html#acde170272c0f18cc384b189f0a600632" />
+              <section title="setRate" ref="classRate__array.html#a719eed3d0e1bb23fd3ddd4494f33695a" />
+              <section title="setRates" ref="classRate__array.html#a52fde7701b1f2d81cb5828e2528db909" />
+              <section title="setValues" ref="classRate__array.html#a6c2d51ed92340813ec9fe2ecedbaf08b" />
+              <section title="rates" ref="classRate__array.html#a6c770bb8a5a6c108a9860ac06850a4d5" />
+              <section title="size" ref="classRate__array.html#a21d612404f2fd9e2546a5725d8de60d7" />
+              <section title="values" ref="classRate__array.html#aea43f3951a50593c42b9fdd038c5df8a" />
+            </section>
+            <section title="State" ref="classState.html">
+              <section title="State" ref="classState.html#ab91bb1dd5aa6260ab2a456581daf9ec2" />
+              <section title="State" ref="classState.html#ac2d6bad84bc5a6caece6ff1fd42bdaaa" />
+              <section title="State" ref="classState.html#a7a55d962df44b08b79d1faf3f5f4960a" />
+              <section title="State" ref="classState.html#a49a550f795d98d43b942fe9085ada7ae" />
+              <section title="~State" ref="classState.html#afab438d92b90dc18d194dbd9c9c8bab3" />
+              <section title="add_CB_electron" ref="classState.html#ae0e2cd6d2dbf3d9319d6228c0a4211aa" />
+              <section title="add_photon" ref="classState.html#ae9daf9c0dfe953eaf8ff2d07d7fbde0c" />
+              <section title="add_VB_electron" ref="classState.html#a8f1f1e6bfd29d205b06916298846ccda" />
+              <section title="drop_CB_electron" ref="classState.html#a20f3f0258d5fb22d6d79c7cd0127bb1c" />
+              <section title="drop_photon" ref="classState.html#a024df5dd24da1ca02e24a1bdfa21b9d7" />
+              <section title="drop_VB_electron" ref="classState.html#a00abebd7bc8fe4d8c1f7736eb84d5b02" />
+              <section title="getCB_electrons" ref="classState.html#a1bb617bcd694799656428ed333e9e32d" />
+              <section title="getPhotons" ref="classState.html#a9b1b7fea1499249b11bf9baba5e34b3a" />
+              <section title="getVB_electrons" ref="classState.html#a1567a8c063270a889f089f0b92b3f04d" />
+              <section title="init" ref="classState.html#abe618d6673b514d93ccd6e4ced6ed992" />
+              <section title="operator=" ref="classState.html#ab407471a8e44a4bbe605a055c101a5cb" />
+              <section title="print" ref="classState.html#a77f517897b57136d4ee091580846e21d" />
+              <section title="setCB_electrons" ref="classState.html#a02f6ba7c5a19cc16b2a3f8a9c474e4ce" />
+              <section title="setPhotons" ref="classState.html#a0dfed7319694c84890e204a65d40c452" />
+              <section title="setVB_electrons" ref="classState.html#a0c0fa8ab1a2fc98fb349c53244a223b1" />
+              <section title="operator&lt;&lt;" ref="classState.html#ad5c2c2724617fc57498cc1e2a4a9f522" />
+              <section title="CB_electrons" ref="classState.html#aa3f5e210fb2b3e60460249d45ce0d24b" />
+              <section title="number_of_emiters" ref="classState.html#a1bf94255c87ace31db9ae9ae76e9ecbc" />
+              <section title="number_of_modes" ref="classState.html#ac5e56e464eee3f1b5aebb8d05858e559" />
+              <section title="photons" ref="classState.html#ace13c8bfe812574d971442fce5f5d849" />
+              <section title="VB_electrons" ref="classState.html#a5c0ac02daa4d89f368335102220a2f44" />
+            </section>
+          </section>
+          <section title="Data Structure Index" ref="classes.html" />
+          <section title="Class Hierarchy" ref="hierarchy.html">
+            <section title="Analyse_init_params" ref="structAnalyse__init__params.html" />
+            <section title="Analyse_tool" ref="structAnalyse__tool.html" />
+            <section title="Laser_transition_structure::Analyse_tool" ref="structLaser__transition__structure_1_1Analyse__tool.html" />
+            <section title="D_laser" ref="classD__laser.html" />
+            <section title="Electron_presence" ref="classElectron__presence.html" />
+            <section title="Elementary_laser">
+              <section title="QD_elementary_laser" ref="classQD__elementary__laser.html" />
+            </section>
+            <section title="Emitter" ref="classEmitter.html">
+              <section title="QW_emitter" ref="classQW__emitter.html" />
+            </section>
+            <section title="IO::Input_parameters" ref="structIO_1_1Input__parameters.html" />
+            <section title="io" ref="classio.html" />
+            <section title="IO" ref="classIO.html" />
+            <section title="Laser_2D" ref="classLaser__2D.html" />
+            <section title="Laser_2D::Laser_init_parameters" ref="structLaser__2D_1_1Laser__init__parameters.html" />
+            <section title="Markov_Chain" ref="classMarkov__Chain.html" />
+            <section title="QW_Emitter" ref="classQW__Emitter.html" />
+            <section title="rate_array" ref="classrate__array.html" />
+            <section title="Rate_array" ref="classRate__array.html" />
+            <section title="State" ref="classState.html" />
+            <section title="Markov_Chain::Transition" ref="structMarkov__Chain_1_1Transition.html" />
+            <section title="TransitionStructure">
+              <section title="Laser_transition_structure" ref="classLaser__transition__structure.html" />
+            </section>
+          </section>
+          <section title="Data Fields" ref="functions.html">
+            <section title="All" ref="functions.html">
+              <section title="a" ref="functions.html" />
+              <section title="b" ref="functions_b.html" />
+              <section title="c" ref="functions_c.html" />
+              <section title="d" ref="functions_d.html" />
+              <section title="e" ref="functions_e.html" />
+              <section title="g" ref="functions_g.html" />
+              <section title="h" ref="functions_h.html" />
+              <section title="i" ref="functions_i.html" />
+              <section title="l" ref="functions_l.html" />
+              <section title="m" ref="functions_m.html" />
+              <section title="n" ref="functions_n.html" />
+              <section title="o" ref="functions_o.html" />
+              <section title="p" ref="functions_p.html" />
+              <section title="q" ref="functions_q.html" />
+              <section title="r" ref="functions_r.html" />
+              <section title="s" ref="functions_s.html" />
+              <section title="t" ref="functions_t.html" />
+              <section title="u" ref="functions_u.html" />
+              <section title="v" ref="functions_v.html" />
+              <section title="w" ref="functions_w.html" />
+              <section title="~" ref="functions_0x7e.html" />
+            </section>
+            <section title="Functions" ref="functions_func.html" />
+            <section title="Variables" ref="functions_vars.html" />
+            <section title="Typedefs" ref="functions_type.html" />
+            <section title="Enumerations" ref="functions_enum.html" />
+            <section title="Related Functions" ref="functions_rela.html" />
+          </section>
+        </section>
+        <section title="Files">
+          <section title="File List" ref="files.html">
+            <section title="inc" ref="dir_bfccd401955b95cf8c75461437045ac0.html">
+              <section title="analyse_tool.h" ref="analyse__tool_8h_source.html" />
+              <section title="Electron_presence.h" ref="Electron__presence_8h_source.html" />
+              <section title="Emitter.h" ref="Emitter_8h_source.html" />
+              <section title="io.h" ref="io_8h_source.html" />
+              <section title="Laser_2D.h" ref="Laser__2D_8h_source.html" />
+              <section title="LaserTransitionStructure.h" ref="LaserTransitionStructure_8h_source.html" />
+              <section title="Markov_Chain.h" ref="Markov__Chain_8h_source.html" />
+              <section title="QD_elementary_laser.h" ref="QD__elementary__laser_8h_source.html" />
+              <section title="QW_emitter.h" ref="QW__emitter_8h_source.html" />
+              <section title="rate_array.h" ref="rate__array_8h_source.html" />
+              <section title="state.h" ref="state_8h_source.html" />
+            </section>
+          </section>
+        </section>
+      </section>
+    </toc>
+    <keywords>
+      <keyword name="Todo List" id="Todo List" ref="todo.html" />
+      <keyword name="Deprecated List" id="Deprecated List" ref="deprecated.html" />
+      <keyword name="Analyse_init_params" id="Analyse_init_params" ref="structAnalyse__init__params.html" />
+      <keyword name="SD_points_number" id="Analyse_init_params::SD_points_number" ref="structAnalyse__init__params.html#ad8bea5f9144ec5fa902707f95c519368" />
+      <keyword name="correlation_interval_duration" id="Analyse_init_params::correlation_interval_duration" ref="structAnalyse__init__params.html#a0ef7dadf9aa12174a7490d2a67be5842" />
+      <keyword name="correlation_max" id="Analyse_init_params::correlation_max" ref="structAnalyse__init__params.html#a3316b6dc5372401736957eab86a80ea4" />
+      <keyword name="end_time" id="Analyse_init_params::end_time" ref="structAnalyse__init__params.html#ac750985af5edd7149112251f8d0dc827" />
+      <keyword name="stationnary_time" id="Analyse_init_params::stationnary_time" ref="structAnalyse__init__params.html#ab8018f8b33a049f518d1be93ede2db5b" />
+      <keyword name="event_flag" id="Analyse_init_params::event_flag" ref="structAnalyse__init__params.html#a5457872d8524b40a9d0c045d74a2b25a" />
+      <keyword name="g2_flag" id="Analyse_init_params::g2_flag" ref="structAnalyse__init__params.html#a66345b1dad5babd32c7ce043e7872899" />
+      <keyword name="histo_flag" id="Analyse_init_params::histo_flag" ref="structAnalyse__init__params.html#a8f8ef836ab7457303df19a3858cc0616" />
+      <keyword name="sd_flag" id="Analyse_init_params::sd_flag" ref="structAnalyse__init__params.html#a92a59e1085bb88581f1bd96523e51cdb" />
+      <keyword name="verbose_flag" id="Analyse_init_params::verbose_flag" ref="structAnalyse__init__params.html#a04530df13b246f14893b0bc1ca10d526" />
+      <keyword name="seed" id="Analyse_init_params::seed" ref="structAnalyse__init__params.html#ad535c94eb5108889b5ec09e293ec19b6" />
+      <keyword name="Analyse_tool" id="Analyse_tool" ref="structAnalyse__tool.html" />
+      <keyword name="Analyse_tool" id="Analyse_tool::Analyse_tool" ref="structAnalyse__tool.html#ad2e6211300d30000c204c78d9f243195" />
+      <keyword name="Analyse_tool" id="Analyse_tool::Analyse_tool" ref="structAnalyse__tool.html#a202e952bd587d5370df6293025242964" />
+      <keyword name="number_of_modes" id="Analyse_tool::number_of_modes" ref="structAnalyse__tool.html#ab131472a5fab888ecb00af5d2c77e673" />
+      <keyword name="number_of_emitter" id="Analyse_tool::number_of_emitter" ref="structAnalyse__tool.html#a9f9f7f8417a76c61ab66d990faa8b34d" />
+      <keyword name="ave_photon" id="Analyse_tool::ave_photon" ref="structAnalyse__tool.html#a742916e4994f5f71c5767b02fa171136" />
+      <keyword name="ave_CB_electron" id="Analyse_tool::ave_CB_electron" ref="structAnalyse__tool.html#a5f2ba2291d73909e00d60986ee72c8e3" />
+      <keyword name="ave_VB_electron" id="Analyse_tool::ave_VB_electron" ref="structAnalyse__tool.html#a26ab6c3bf29a3a6524a0884e49b99a33" />
+      <keyword name="var_photon" id="Analyse_tool::var_photon" ref="structAnalyse__tool.html#a06a2be012cdd8cbdbde482043952cf2f" />
+      <keyword name="var_CB_electron" id="Analyse_tool::var_CB_electron" ref="structAnalyse__tool.html#a697ca76431116c5294f47aab74b7b4d2" />
+      <keyword name="var_VB_electron" id="Analyse_tool::var_VB_electron" ref="structAnalyse__tool.html#a335af7d77ab6fadc34e6678599b79185" />
+      <keyword name="var_total_photon" id="Analyse_tool::var_total_photon" ref="structAnalyse__tool.html#a6da62e6ff3f4199d5ab17530bd710b9f" />
+      <keyword name="end_time" id="Analyse_tool::end_time" ref="structAnalyse__tool.html#a6b712697ffa4ae499057d19928445fd9" />
+      <keyword name="SD_points_number" id="Analyse_tool::SD_points_number" ref="structAnalyse__tool.html#aa593d55d78623dd5c57bc6943743f54d" />
+      <keyword name="cos_SD" id="Analyse_tool::cos_SD" ref="structAnalyse__tool.html#a45c0aab0cf80db0431dc07150290bd72" />
+      <keyword name="sin_SD" id="Analyse_tool::sin_SD" ref="structAnalyse__tool.html#ac2868ed07ddf9a557115fc58eecb8969" />
+      <keyword name="photon_histogramm" id="Analyse_tool::photon_histogramm" ref="structAnalyse__tool.html#a4a04d986c0e93ad2a6911086909360d7" />
+      <keyword name="allocation_size" id="Analyse_tool::allocation_size" ref="structAnalyse__tool.html#a9675d8eefbe471f77d09c7c4d43d3932" />
+      <keyword name="partial_average_photons" id="Analyse_tool::partial_average_photons" ref="structAnalyse__tool.html#a71ef68f08dfc1fddf68e93d645284eaf" />
+      <keyword name="correlation_time_mark" id="Analyse_tool::correlation_time_mark" ref="structAnalyse__tool.html#ae8d24f7ecd9c44f81a5628826bb623b4" />
+      <keyword name="correlation_interval_number" id="Analyse_tool::correlation_interval_number" ref="structAnalyse__tool.html#a11f804c097bf0ebffd80427093dac779" />
+      <keyword name="correlation_interval_duration" id="Analyse_tool::correlation_interval_duration" ref="structAnalyse__tool.html#a3956bdea8d5775c7c44973d7c5ee2007" />
+      <keyword name="correlation_max_value" id="Analyse_tool::correlation_max_value" ref="structAnalyse__tool.html#ad80e0c45d2aff3e3b13a35f55f5f57c8" />
+      <keyword name="second_order_correlation" id="Analyse_tool::second_order_correlation" ref="structAnalyse__tool.html#a6421ca27c0c47962583750a579339733" />
+      <keyword name="shutdown" id="Analyse_tool::shutdown" ref="structAnalyse__tool.html#aa6811bc1658cd63804e545561d083af0" />
+      <keyword name="event_counter" id="Analyse_tool::event_counter" ref="structAnalyse__tool.html#a8543c6fd5e0191a24a4a2397372951b8" />
+      <keyword name="analyse_flag" id="Analyse_tool::analyse_flag" ref="structAnalyse__tool.html#a41de543c71ddb9f44065d10f2126ac39" />
+      <keyword name="event_flag" id="Analyse_tool::event_flag" ref="structAnalyse__tool.html#a3200d2ee63c1f76e2ba69dd1fa7f62db" />
+      <keyword name="g2_flag" id="Analyse_tool::g2_flag" ref="structAnalyse__tool.html#ac9ba3e65453e8c1fe8c4f418997d511c" />
+      <keyword name="histo_flag" id="Analyse_tool::histo_flag" ref="structAnalyse__tool.html#abc0fb4749f2cf1298375e594f5665f98" />
+      <keyword name="sd_flag" id="Analyse_tool::sd_flag" ref="structAnalyse__tool.html#a4b7b87202420fcb8b7a143ac24219f64" />
+      <keyword name="verbose_flag" id="Analyse_tool::verbose_flag" ref="structAnalyse__tool.html#a26f3b40774d3f6be56d8ae0d1319b547" />
+      <keyword name="D_laser" id="D_laser" ref="classD__laser.html" />
+      <keyword name="Electron_presence" id="Electron_presence" ref="classElectron__presence.html" />
+      <keyword name="Electron_presence" id="Electron_presence::Electron_presence" ref="classElectron__presence.html#ad0f20fc5669c98b72f695ef5fa47d083" />
+      <keyword name="getLasing_lvl_prob" id="Electron_presence::getLasing_lvl_prob" ref="classElectron__presence.html#acc8ac0d5ec723cd9814714de94d56d21" />
+      <keyword name="getPumping_lvl_prob" id="Electron_presence::getPumping_lvl_prob" ref="classElectron__presence.html#af45a8108e3f2920e441717e1cab12a91" />
+      <keyword name="setLasing_lvl_prob" id="Electron_presence::setLasing_lvl_prob" ref="classElectron__presence.html#ae95be27cb31d64f4ab1cae31df77cd8e" />
+      <keyword name="setPumping_lvl_prob" id="Electron_presence::setPumping_lvl_prob" ref="classElectron__presence.html#a2fc0289484a862f6daca5f069d657082" />
+      <keyword name="getMode_number" id="Electron_presence::getMode_number" ref="classElectron__presence.html#acfa1cbcdea411990199c976c766b9342" />
+      <keyword name="getEnergy_level_number" id="Electron_presence::getEnergy_level_number" ref="classElectron__presence.html#a31902f24b56c05d295951c16cda833ce" />
+      <keyword name="initialize_size" id="Electron_presence::initialize_size" ref="classElectron__presence.html#a3bd8193033230465bcf115d3ffe75722" />
+      <keyword name="initialise_occuancies" id="Electron_presence::initialise_occuancies" ref="classElectron__presence.html#aaf74d6fb4b3c2129e4f2817dc88fe400" />
+      <keyword name="lasing_lvl_prob" id="Electron_presence::lasing_lvl_prob" ref="classElectron__presence.html#a887456a743c43794884067415cafc6c5" />
+      <keyword name="pumping_lvl_prob" id="Electron_presence::pumping_lvl_prob" ref="classElectron__presence.html#ad630d042747b93747e6dcbcdabde344f" />
+      <keyword name="mode_number" id="Electron_presence::mode_number" ref="classElectron__presence.html#aa65150056a5525b8e782ce4786d49ea9" />
+      <keyword name="energy_level_number" id="Electron_presence::energy_level_number" ref="classElectron__presence.html#adf6d0802d205eb1dbff9bd1d2c7c12d6" />
+      <keyword name="operator&lt;&lt;" id="Electron_presence::operator&lt;&lt;" ref="classElectron__presence.html#a12d5b77611d7ff92c8081130091e3edf" />
+      <keyword name="Emitter" id="Emitter" ref="classEmitter.html" />
+      <keyword name="Emitter" id="Emitter::Emitter" ref="classEmitter.html#aeea41e2828333f5d6ae58d50a2f58556" />
+      <keyword name="getEmitter_num" id="Emitter::getEmitter_num" ref="classEmitter.html#ab242187f0be624de63479eac8f21fcdd" />
+      <keyword name="getPumping_local_rate" id="Emitter::getPumping_local_rate" ref="classEmitter.html#aeb58a02984bc164b3e4e9e20a69e7aef" />
+      <keyword name="getTemperature" id="Emitter::getTemperature" ref="classEmitter.html#ab92f129cce03f545ba430836adc05f84" />
+      <keyword name="getCavity_coupling" id="Emitter::getCavity_coupling" ref="classEmitter.html#a9a60da2253a0826938913cd6e5892dae" />
+      <keyword name="getCavity_coupling" id="Emitter::getCavity_coupling" ref="classEmitter.html#a8aebcf9eee936cc4cadd2079d10ea4d0" />
+      <keyword name="getNeighboring_emitter" id="Emitter::getNeighboring_emitter" ref="classEmitter.html#acc00d357e505d1f40a94528142793f2f" />
+      <keyword name="getNeighboring_emitter" id="Emitter::getNeighboring_emitter" ref="classEmitter.html#a3e4ffe1e486a94ccd61623588610e763" />
+      <keyword name="getMetropolis_criteria" id="Emitter::getMetropolis_criteria" ref="classEmitter.html#a783b8b49e8f9b5985cd062cde1702cfe" />
+      <keyword name="setLaser_num" id="Emitter::setLaser_num" ref="classEmitter.html#a97ed09881ead2fd25d397f2cc00a61ee" />
+      <keyword name="setCavity_coupling" id="Emitter::setCavity_coupling" ref="classEmitter.html#a073aee7adcc638c914ec36609f3ffaf5" />
+      <keyword name="init_neighboring_emitter" id="Emitter::init_neighboring_emitter" ref="classEmitter.html#a259ecef59b8b6444d296b830759c1bfe" />
+      <keyword name="metropolis_criteria" id="Emitter::metropolis_criteria" ref="classEmitter.html#a29d4999b2773bd87fc770ca0128aae8a" />
+      <keyword name="emitter_num" id="Emitter::emitter_num" ref="classEmitter.html#ab6495dc29755d0c6c2c3dc1db231edaa" />
+      <keyword name="pumping_local_rate" id="Emitter::pumping_local_rate" ref="classEmitter.html#a5cdc2ac67941f63336d411397b702514" />
+      <keyword name="temperature" id="Emitter::temperature" ref="classEmitter.html#a81df590613aed25eea9289aefb09be35" />
+      <keyword name="cavity_coupling" id="Emitter::cavity_coupling" ref="classEmitter.html#a45ed5e106e4eaf150e8a5e6ab6f44965" />
+      <keyword name="neighboring_emitters" id="Emitter::neighboring_emitters" ref="classEmitter.html#a0fa0c9d3350237dfd439bb9c1afaec4d" />
+      <keyword name="metropolis_critera_table" id="Emitter::metropolis_critera_table" ref="classEmitter.html#a8a1bbbbe90521f29c9f73649aca0ddeb" />
+      <keyword name="io" id="io" ref="classio.html" />
+      <keyword name="IO" id="IO" ref="classIO.html" />
+      <keyword name="Input_parameters" id="IO::Input_parameters" ref="classIO.html#aa1b1e37c17ba12547e0194854764077c" />
+      <keyword name="write_command" id="IO::write_command" ref="classIO.html#a3dc2d3e4ad46fb6462a6e15f0a36e8fe" />
+      <keyword name="write_csv" id="IO::write_csv" ref="classIO.html#a7c6c83f5843cf9fe2472dcac52c7142b" />
+      <keyword name="read_argtable" id="IO::read_argtable" ref="classIO.html#a9071e9a3e1e9f5675cbb5d5bc01fb364" />
+      <keyword name="init_seed" id="IO::init_seed" ref="classIO.html#a58f31eaedebceceb9112fe27f9f33770" />
+      <keyword name="write_table" id="IO::write_table" ref="classIO.html#a5f99e3067e29aab3813efe31b540ca0b" />
+      <keyword name="IO::Input_parameters" id="IO::Input_parameters" ref="structIO_1_1Input__parameters.html" />
+      <keyword name="Input_parameters" id="IO::Input_parameters::Input_parameters" ref="structIO_1_1Input__parameters.html#aafa1ab91a9a4cc41fbba620522905c60" />
+      <keyword name="number_of_modes" id="IO::Input_parameters::number_of_modes" ref="structIO_1_1Input__parameters.html#ab12ed2a8883e89cdaa2d0b0cf2c58636" />
+      <keyword name="number_of_emitters" id="IO::Input_parameters::number_of_emitters" ref="structIO_1_1Input__parameters.html#ae6aa62b4bef99485a231a6dc6f973b68" />
+      <keyword name="pump_phases" id="IO::Input_parameters::pump_phases" ref="structIO_1_1Input__parameters.html#a38c9e0f3b2f18873a8216d8a4ca0fd64" />
+      <keyword name="SD_point_numbers" id="IO::Input_parameters::SD_point_numbers" ref="structIO_1_1Input__parameters.html#a395c1951b2765e57707cd9549b825058" />
+      <keyword name="energies_levels" id="IO::Input_parameters::energies_levels" ref="structIO_1_1Input__parameters.html#a8d8827426dff9e8d930321dc9a0c8195" />
+      <keyword name="lasing_levels" id="IO::Input_parameters::lasing_levels" ref="structIO_1_1Input__parameters.html#a8b74832c08289db9c05235e5b87c1302" />
+      <keyword name="initial_photons_number" id="IO::Input_parameters::initial_photons_number" ref="structIO_1_1Input__parameters.html#a8504056d3fc5d72f4992eebd72b6de25" />
+      <keyword name="initial_CBelectrons_number" id="IO::Input_parameters::initial_CBelectrons_number" ref="structIO_1_1Input__parameters.html#a3f584c05a834db28d05a6cbcf2b2ec32" />
+      <keyword name="initial_VBelectrons_number" id="IO::Input_parameters::initial_VBelectrons_number" ref="structIO_1_1Input__parameters.html#a85e8485976649c1af334e8934b657f23" />
+      <keyword name="seed" id="IO::Input_parameters::seed" ref="structIO_1_1Input__parameters.html#ae4ed49c7659be1e26a3f294ffbf18134" />
+      <keyword name="time" id="IO::Input_parameters::time" ref="structIO_1_1Input__parameters.html#ad4d0bfcbca909242037da5dc0ad13284" />
+      <keyword name="stationnary_time" id="IO::Input_parameters::stationnary_time" ref="structIO_1_1Input__parameters.html#a719ad4760c1190c55d6e896f8e8b3dd2" />
+      <keyword name="electrical_coupling" id="IO::Input_parameters::electrical_coupling" ref="structIO_1_1Input__parameters.html#a43ccbf414e63f716fc9615368eb3cf6a" />
+      <keyword name="beta" id="IO::Input_parameters::beta" ref="structIO_1_1Input__parameters.html#ad5f53dc61dc2d1633dc16493626b4d19" />
+      <keyword name="pump" id="IO::Input_parameters::pump" ref="structIO_1_1Input__parameters.html#a1ddbee7f40c4c907a7ea7523a0a1e12a" />
+      <keyword name="temerature" id="IO::Input_parameters::temerature" ref="structIO_1_1Input__parameters.html#ace76b23c1d6d5f8f4e02577bc60ea08b" />
+      <keyword name="cavity_escape_rate" id="IO::Input_parameters::cavity_escape_rate" ref="structIO_1_1Input__parameters.html#ac5956f05c3353ba7783ebabfd8b95367" />
+      <keyword name="cavity_coupling" id="IO::Input_parameters::cavity_coupling" ref="structIO_1_1Input__parameters.html#aead975f7574c2573fc6f94c79583b0be" />
+      <keyword name="output_file" id="IO::Input_parameters::output_file" ref="structIO_1_1Input__parameters.html#ab11ec3dd0e5a71111efd56f563a253b5" />
+      <keyword name="verbose" id="IO::Input_parameters::verbose" ref="structIO_1_1Input__parameters.html#a117da15a9ed582a38da7ff7c42f8cef5" />
+      <keyword name="g2_flag" id="IO::Input_parameters::g2_flag" ref="structIO_1_1Input__parameters.html#a5cc4567fcf163bcfcfc3ef8cf7ee9343" />
+      <keyword name="histo_flag" id="IO::Input_parameters::histo_flag" ref="structIO_1_1Input__parameters.html#a6c4982309d7ee0d8972d39ee91b82915" />
+      <keyword name="sd_flag" id="IO::Input_parameters::sd_flag" ref="structIO_1_1Input__parameters.html#a77b35daaf92379a64077e142231e6b5b" />
+      <keyword name="event_flag" id="IO::Input_parameters::event_flag" ref="structIO_1_1Input__parameters.html#a7a88915bca158852bc114dfb25f224b6" />
+      <keyword name="help_flag" id="IO::Input_parameters::help_flag" ref="structIO_1_1Input__parameters.html#a5d3495aad825bd952178a814be1a55d4" />
+      <keyword name="Laser_2D" id="Laser_2D" ref="classLaser__2D.html" />
+      <keyword name="Laser_init_parameters" id="Laser_2D::Laser_init_parameters" ref="classLaser__2D.html#afa293e775bdf2f70ae7e8efda660afb7" />
+      <keyword name="Laser_2D" id="Laser_2D::Laser_2D" ref="classLaser__2D.html#a555b63535d4550843565b4412c293464" />
+      <keyword name="Laser_2D" id="Laser_2D::Laser_2D" ref="classLaser__2D.html#a313d4e4e2491bc6bc611909869441984" />
+      <keyword name="getType" id="Laser_2D::getType" ref="classLaser__2D.html#aced75b5431e9be36f23250b85575a1fd" />
+      <keyword name="getMode_number" id="Laser_2D::getMode_number" ref="classLaser__2D.html#a2860d0395d596d8bfa30be1579c7480f" />
+      <keyword name="getEmitter_number" id="Laser_2D::getEmitter_number" ref="classLaser__2D.html#a6e533f1db18a551b2923bff7b0f44d86" />
+      <keyword name="getPumps_phases" id="Laser_2D::getPumps_phases" ref="classLaser__2D.html#adce6d0179f5e7f16422f4b3ef10fa121" />
+      <keyword name="getBeta" id="Laser_2D::getBeta" ref="classLaser__2D.html#af0a12b993c56de9276dbbc087e170f14" />
+      <keyword name="getElectical_coupling" id="Laser_2D::getElectical_coupling" ref="classLaser__2D.html#ae68ee32c5ec38bc42669d712155bb7f1" />
+      <keyword name="getCavity_escape_rate" id="Laser_2D::getCavity_escape_rate" ref="classLaser__2D.html#ab1dbe6e51df56d31dca4c9913030d751" />
+      <keyword name="getEmitter" id="Laser_2D::getEmitter" ref="classLaser__2D.html#a3e61ec9b077d5a43b881cd9e1e0afe97" />
+      <keyword name="gaussian_coupling" id="Laser_2D::gaussian_coupling" ref="classLaser__2D.html#a9fb17ace979eb6323a0a08b5ebe914f3" />
+      <keyword name="uniform_coupling" id="Laser_2D::uniform_coupling" ref="classLaser__2D.html#a2a6b3854ed46cf5fce359047029027e0" />
+      <keyword name="organize_neighborhood" id="Laser_2D::organize_neighborhood" ref="classLaser__2D.html#afb610dd0f4df618a31e03f004936499d" />
+      <keyword name="type" id="Laser_2D::type" ref="classLaser__2D.html#a4d23867001eb23c7d02a0457af82b89a" />
+      <keyword name="mode_number" id="Laser_2D::mode_number" ref="classLaser__2D.html#a78c815e662a8ec83940b55380d06ddcf" />
+      <keyword name="emitter_number" id="Laser_2D::emitter_number" ref="classLaser__2D.html#a68fd94eaf38578e94385881d60c40268" />
+      <keyword name="pumps_phases" id="Laser_2D::pumps_phases" ref="classLaser__2D.html#a83b488b85d1c8625bcff50cfc4d760df" />
+      <keyword name="beta" id="Laser_2D::beta" ref="classLaser__2D.html#a68e2c94f3cf31ad0d343d0074acbac46" />
+      <keyword name="electical_coupling" id="Laser_2D::electical_coupling" ref="classLaser__2D.html#a551c55c7c115cb29476098a5ea9b9c23" />
+      <keyword name="cavity_escape_rate" id="Laser_2D::cavity_escape_rate" ref="classLaser__2D.html#a8ccb97e586444495f29485cb1369b5dd" />
+      <keyword name="height" id="Laser_2D::height" ref="classLaser__2D.html#acad74aefb756e56da265691fcbb5a1c8" />
+      <keyword name="width" id="Laser_2D::width" ref="classLaser__2D.html#ac11aa945cf9a6e9e49f09c8ade0df03d" />
+      <keyword name="number_of_photonic_phases" id="Laser_2D::number_of_photonic_phases" ref="classLaser__2D.html#ad40bf39738ddd4a84eecc924de1b1410" />
+      <keyword name="weigth_of_photonic_phases" id="Laser_2D::weigth_of_photonic_phases" ref="classLaser__2D.html#ab1f5ec660f2cabd330a6aa2c596f30c8" />
+      <keyword name="laser_table" id="Laser_2D::laser_table" ref="classLaser__2D.html#aa4f2ee902062130987e66a4cadec4b22" />
+      <keyword name="Laser_2D::Laser_init_parameters" id="Laser_2D::Laser_init_parameters" ref="structLaser__2D_1_1Laser__init__parameters.html" />
+      <keyword name="mode_number" id="Laser_2D::Laser_init_parameters::mode_number" ref="structLaser__2D_1_1Laser__init__parameters.html#a693ea56830c2e744e6b0c54066432e27" />
+      <keyword name="emitter_number" id="Laser_2D::Laser_init_parameters::emitter_number" ref="structLaser__2D_1_1Laser__init__parameters.html#aa9710ffdee2753be3e4fad19551cb4b8" />
+      <keyword name="pumps_phases" id="Laser_2D::Laser_init_parameters::pumps_phases" ref="structLaser__2D_1_1Laser__init__parameters.html#acbee9815e64350319e7cba39e19e034b" />
+      <keyword name="beta" id="Laser_2D::Laser_init_parameters::beta" ref="structLaser__2D_1_1Laser__init__parameters.html#a3bee511c7ffdd98090254bc6b9dcd000" />
+      <keyword name="electrical_coupling" id="Laser_2D::Laser_init_parameters::electrical_coupling" ref="structLaser__2D_1_1Laser__init__parameters.html#a358aa131014ae01c98e7b3693ee75480" />
+      <keyword name="cavity_escape_rate" id="Laser_2D::Laser_init_parameters::cavity_escape_rate" ref="structLaser__2D_1_1Laser__init__parameters.html#afc6f0d897621c6a65757c73847b80b37" />
+      <keyword name="local_pump" id="Laser_2D::Laser_init_parameters::local_pump" ref="structLaser__2D_1_1Laser__init__parameters.html#a74f410bf8dd55720f06c591b11315343" />
+      <keyword name="temperature" id="Laser_2D::Laser_init_parameters::temperature" ref="structLaser__2D_1_1Laser__init__parameters.html#abbdea7116ba42353c04bddc1dd73c86d" />
+      <keyword name="number_of_photonic_phases" id="Laser_2D::Laser_init_parameters::number_of_photonic_phases" ref="structLaser__2D_1_1Laser__init__parameters.html#a8c6d7da28b4550af255b881f31e34fb9" />
+      <keyword name="weigth_of_photonic_phases" id="Laser_2D::Laser_init_parameters::weigth_of_photonic_phases" ref="structLaser__2D_1_1Laser__init__parameters.html#a5f67a8ead198dd456050576b02be288c" />
+      <keyword name="lasing_level" id="Laser_2D::Laser_init_parameters::lasing_level" ref="structLaser__2D_1_1Laser__init__parameters.html#a374eb163e2f62d583007be13802a5546" />
+      <keyword name="Laser_transition_structure" id="Laser_transition_structure" ref="classLaser__transition__structure.html" />
+      <keyword name="Analyse_tool" id="Laser_transition_structure::Analyse_tool" ref="classLaser__transition__structure.html#a5538b1383def38b2395b332685b62077" />
+      <keyword name="Laser_transition_structure" id="Laser_transition_structure::Laser_transition_structure" ref="classLaser__transition__structure.html#aae753d055284a40bbbe236fc92fd771a" />
+      <keyword name="getSet" id="Laser_transition_structure::getSet" ref="classLaser__transition__structure.html#a2e630e2cc3a24668a630907fe72dc7c4" />
+      <keyword name="myGetIndex" id="Laser_transition_structure::myGetIndex" ref="classLaser__transition__structure.html#a715270448e188fc84720d52d5d01f089" />
+      <keyword name="initial_state" id="Laser_transition_structure::initial_state" ref="classLaser__transition__structure.html#a5a79e415c2bf6ee9e382ac0b99a3fc0b" />
+      <keyword name="decode_laser_state" id="Laser_transition_structure::decode_laser_state" ref="classLaser__transition__structure.html#aff7cbcd5df7541fa5991df60e2d17e81" />
+      <keyword name="analyse_trajectory" id="Laser_transition_structure::analyse_trajectory" ref="classLaser__transition__structure.html#a69e905d8e97808a09a37b0d5b1824180" />
+      <keyword name="print_trajectory" id="Laser_transition_structure::print_trajectory" ref="classLaser__transition__structure.html#a9e84725bf9a24e1082a8b08bd24057e3" />
+      <keyword name="print_event" id="Laser_transition_structure::print_event" ref="classLaser__transition__structure.html#ac77f64c9410b4294dafbfebd8e74a5f9" />
+      <keyword name="print_header" id="Laser_transition_structure::print_header" ref="classLaser__transition__structure.html#a179f456a1de30bbbfa22278f0f022595" />
+      <keyword name="test_Encoding" id="Laser_transition_structure::test_Encoding" ref="classLaser__transition__structure.html#a208f766955161585e6908eaf42de10f3" />
+      <keyword name="print_matrix" id="Laser_transition_structure::print_matrix" ref="classLaser__transition__structure.html#a8110df4a1a8512f1ecaa9a7004056e03" />
+      <keyword name="TransDistrib" id="Laser_transition_structure::TransDistrib" ref="classLaser__transition__structure.html#a54b1f03011a64203c0944b74f5100f27" />
+      <keyword name="getEntry" id="Laser_transition_structure::getEntry" ref="classLaser__transition__structure.html#ab4620ea0dc746aaf71367dd7ba05e941" />
+      <keyword name="setEntry" id="Laser_transition_structure::setEntry" ref="classLaser__transition__structure.html#ae8f93be7f90f57d165fc5a646c8e2a3f" />
+      <keyword name="getNbElts" id="Laser_transition_structure::getNbElts" ref="classLaser__transition__structure.html#a7b0901b107efd2e77c5ffa17e5f9772f" />
+      <keyword name="getCol" id="Laser_transition_structure::getCol" ref="classLaser__transition__structure.html#ac4f40dccf2190e9ece4ae73ca8f533e8" />
+      <keyword name="getEntryByCol" id="Laser_transition_structure::getEntryByCol" ref="classLaser__transition__structure.html#a8fd755df5d053520895ebcb1d06edcf2" />
+      <keyword name="RowSum" id="Laser_transition_structure::RowSum" ref="classLaser__transition__structure.html#a5fdf1bf7288fe723c784476918de662c" />
+      <keyword name="Copy" id="Laser_transition_structure::Copy" ref="classLaser__transition__structure.html#adc2689ee4526b4a24a93eaffe3c8fd7e" />
+      <keyword name="Uniformize" id="Laser_transition_structure::Uniformize" ref="classLaser__transition__structure.html#acefe0849d6e573da659f5aebc7746443" />
+      <keyword name="Embed" id="Laser_transition_structure::Embed" ref="classLaser__transition__structure.html#a9b1ba7f36b00e69514cbc1afbd55c28f" />
+      <keyword name="EvaluateValue" id="Laser_transition_structure::EvaluateValue" ref="classLaser__transition__structure.html#aaadbbeced80c17825bbd87f4291db5dd" />
+      <keyword name="init_state" id="Laser_transition_structure::init_state" ref="classLaser__transition__structure.html#a02b38a81c71ad4d52aab5e7fe1a6722c" />
+      <keyword name="print_state" id="Laser_transition_structure::print_state" ref="classLaser__transition__structure.html#ac481dd2adf309a39e5684f7f24366f31" />
+      <keyword name="transition_probabilities" id="Laser_transition_structure::transition_probabilities" ref="classLaser__transition__structure.html#a6b6ea307e57fe72584e599023911dc9e" />
+      <keyword name="init_Analyse_tool" id="Laser_transition_structure::init_Analyse_tool" ref="classLaser__transition__structure.html#ac14018f4f9e88715b6419a8786169e35" />
+      <keyword name="electron_dim" id="Laser_transition_structure::electron_dim" ref="classLaser__transition__structure.html#a02695bfe8424c7bbb93283d66bed1a99" />
+      <keyword name="n_dims" id="Laser_transition_structure::n_dims" ref="classLaser__transition__structure.html#a7b5502398a992caf8b5a91dbb91042aa" />
+      <keyword name="set" id="Laser_transition_structure::set" ref="classLaser__transition__structure.html#a3d173141fb96c7ca081a527e16f3198a" />
+      <keyword name="photon" id="Laser_transition_structure::photon" ref="classLaser__transition__structure.html#ab6fd6b810afb80f8d66a2bd1ba395b7c" />
+      <keyword name="VB_electrons" id="Laser_transition_structure::VB_electrons" ref="classLaser__transition__structure.html#afc9e210d05a62c2ca7ec22d63fb09170" />
+      <keyword name="CB_electrons" id="Laser_transition_structure::CB_electrons" ref="classLaser__transition__structure.html#a3eca0998e25148c0a41e83c1a9a272c5" />
+      <keyword name="laser" id="Laser_transition_structure::laser" ref="classLaser__transition__structure.html#a0b4229506e2cbeb3853bb81c8ffbe10b" />
+      <keyword name="photon_max" id="Laser_transition_structure::photon_max" ref="classLaser__transition__structure.html#a04a602bd6b09fd39ed37ca52a0cae2b0" />
+      <keyword name="Laser_transition_structure::Analyse_tool" id="Laser_transition_structure::Analyse_tool" ref="structLaser__transition__structure_1_1Analyse__tool.html" />
+      <keyword name="ave_photon" id="Laser_transition_structure::Analyse_tool::ave_photon" ref="structLaser__transition__structure_1_1Analyse__tool.html#acdd7b1cdddcac0e2deb7fa26c9d2cedb" />
+      <keyword name="ave_CB_electron" id="Laser_transition_structure::Analyse_tool::ave_CB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#ad4761342a6165154708ec2291469c3e7" />
+      <keyword name="ave_VB_electron" id="Laser_transition_structure::Analyse_tool::ave_VB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#a378bc6b7dcde6806b9d8e622c4f8249e" />
+      <keyword name="var_photon" id="Laser_transition_structure::Analyse_tool::var_photon" ref="structLaser__transition__structure_1_1Analyse__tool.html#aeedea888be92ca4c001bfb7fce5058ba" />
+      <keyword name="var_CB_electron" id="Laser_transition_structure::Analyse_tool::var_CB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#a3916abecc210271891e92ac814e2a028" />
+      <keyword name="var_VB_electron" id="Laser_transition_structure::Analyse_tool::var_VB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#a039349aa3bfb710e230506620a934a7d" />
+      <keyword name="var_total_photon" id="Laser_transition_structure::Analyse_tool::var_total_photon" ref="structLaser__transition__structure_1_1Analyse__tool.html#afdd9288fdaa28eb7579e4b75382e3a29" />
+      <keyword name="var_total_CB_electron" id="Laser_transition_structure::Analyse_tool::var_total_CB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#af148f1554ef8728181b008f7fa476f7a" />
+      <keyword name="var_total_VB_electron" id="Laser_transition_structure::Analyse_tool::var_total_VB_electron" ref="structLaser__transition__structure_1_1Analyse__tool.html#a4caa2ad9254447af81828a1da2c81d32" />
+      <keyword name="Markov_Chain" id="Markov_Chain" ref="classMarkov__Chain.html" />
+      <keyword name="Transition" id="Markov_Chain::Transition" ref="classMarkov__Chain.html#ab1b3bf8aa834c6f989a4f602c5a6be08" />
+      <keyword name="Markov_Chain" id="Markov_Chain::Markov_Chain" ref="classMarkov__Chain.html#ac09e0a59d381f54570afbb9dd3f346ef" />
+      <keyword name="Markov_Chain" id="Markov_Chain::Markov_Chain" ref="classMarkov__Chain.html#ab90f0837e9615b8d0104127104286f8e" />
+      <keyword name="getLaser" id="Markov_Chain::getLaser" ref="classMarkov__Chain.html#aa3ffd5c189d54e744f519abe413ada74" />
+      <keyword name="getAnalyse_tool" id="Markov_Chain::getAnalyse_tool" ref="classMarkov__Chain.html#a4412427eb8341c354dcd9d1328139f60" />
+      <keyword name="print_event" id="Markov_Chain::print_event" ref="classMarkov__Chain.html#a9685757c1bb69efb9dc15f1e57935441" />
+      <keyword name="print_header" id="Markov_Chain::print_header" ref="classMarkov__Chain.html#afb895c578ed03720a3db3adde4ce0751" />
+      <keyword name="print_state" id="Markov_Chain::print_state" ref="classMarkov__Chain.html#ac9dc075d2e3d2b1ba6a657b0640396ab" />
+      <keyword name="simulate" id="Markov_Chain::simulate" ref="classMarkov__Chain.html#ac913e26c73225026fabf2ce84cac65fd" />
+      <keyword name="write_csv" id="Markov_Chain::write_csv" ref="classMarkov__Chain.html#a42fdc9e3602fb73f8800f99557ed9e19" />
+      <keyword name="rates_sum" id="Markov_Chain::rates_sum" ref="classMarkov__Chain.html#a28c96e45cd01edd4a0a8407b35555328" />
+      <keyword name="init_state" id="Markov_Chain::init_state" ref="classMarkov__Chain.html#a249454d3417dee2afc27fa09f7662d54" />
+      <keyword name="transition_structure" id="Markov_Chain::transition_structure" ref="classMarkov__Chain.html#ad527fbe94d9116b9caf065d3ed1181af" />
+      <keyword name="init_random" id="Markov_Chain::init_random" ref="classMarkov__Chain.html#a6aed064cc9a456291202e2f7e87cb020" />
+      <keyword name="trajectory_analysis" id="Markov_Chain::trajectory_analysis" ref="classMarkov__Chain.html#a4c9f10df4b3cd63aa0d7d3f35bfb6561" />
+      <keyword name="update_stat" id="Markov_Chain::update_stat" ref="classMarkov__Chain.html#ad9ec6e1d4eefdcbbfc5013343d55a425" />
+      <keyword name="post_calcul_analyse" id="Markov_Chain::post_calcul_analyse" ref="classMarkov__Chain.html#a3765dc2903659c5bf42fba3795ed4648" />
+      <keyword name="update_SD" id="Markov_Chain::update_SD" ref="classMarkov__Chain.html#a1cc2897d6732c29a283d261d59fa6cb2" />
+      <keyword name="calcul_histogramme" id="Markov_Chain::calcul_histogramme" ref="classMarkov__Chain.html#a5c578a7859e49f69ace511b236521f6e" />
+      <keyword name="correlation_update" id="Markov_Chain::correlation_update" ref="classMarkov__Chain.html#a7d86abee453405b317622fc40477ec6d" />
+      <keyword name="laser" id="Markov_Chain::laser" ref="classMarkov__Chain.html#abcdd6ed9fc6fa44e27a08d570580c350" />
+      <keyword name="analyse_tool" id="Markov_Chain::analyse_tool" ref="classMarkov__Chain.html#a12f58abd674e3b4b2ad5312f881b26cb" />
+      <keyword name="rng_generator" id="Markov_Chain::rng_generator" ref="classMarkov__Chain.html#a173a825aa2be7764ad1f0925dc2907b5" />
+      <keyword name="Markov_Chain::Transition" id="Markov_Chain::Transition" ref="structMarkov__Chain_1_1Transition.html" />
+      <keyword name="name" id="Markov_Chain::Transition::name" ref="structMarkov__Chain_1_1Transition.html#ab797531bd7a5ab78a0673ca1909ddb8d" />
+      <keyword name="rate" id="Markov_Chain::Transition::rate" ref="structMarkov__Chain_1_1Transition.html#a4af19889f6b2352bbcf60ad4ba1c84f9" />
+      <keyword name="state" id="Markov_Chain::Transition::state" ref="structMarkov__Chain_1_1Transition.html#aa2e2a6df932d021f56ce3fed042318a2" />
+      <keyword name="QD_elementary_laser" id="QD_elementary_laser" ref="classQD__elementary__laser.html" />
+      <keyword name="QD_elementary_laser" id="QD_elementary_laser::QD_elementary_laser" ref="classQD__elementary__laser.html#ab2c101feb865415514704c403f1e7769" />
+      <keyword name="~QD_elementary_laser" id="QD_elementary_laser::~QD_elementary_laser" ref="classQD__elementary__laser.html#ab027eb2da775aa55d71b159d6989fb92" />
+      <keyword name="QW_Emitter" id="QW_Emitter" ref="classQW__Emitter.html" />
+      <keyword name="QW_emitter" id="QW_emitter" ref="classQW__emitter.html" />
+      <keyword name="QW_emitter" id="QW_emitter::QW_emitter" ref="classQW__emitter.html#abe86ab7f62c5282c8091a7f12e010d54" />
+      <keyword name="getElectron_presence" id="QW_emitter::getElectron_presence" ref="classQW__emitter.html#a74dc4870725cc67b92b52b12edaddd93" />
+      <keyword name="Emitter" id="Emitter::Emitter" ref="classEmitter.html#aeea41e2828333f5d6ae58d50a2f58556" />
+      <keyword name="getEmitter_num" id="Emitter::getEmitter_num" ref="classEmitter.html#ab242187f0be624de63479eac8f21fcdd" />
+      <keyword name="getPumping_local_rate" id="Emitter::getPumping_local_rate" ref="classEmitter.html#aeb58a02984bc164b3e4e9e20a69e7aef" />
+      <keyword name="getTemperature" id="Emitter::getTemperature" ref="classEmitter.html#ab92f129cce03f545ba430836adc05f84" />
+      <keyword name="getCavity_coupling" id="Emitter::getCavity_coupling" ref="classEmitter.html#a9a60da2253a0826938913cd6e5892dae" />
+      <keyword name="getCavity_coupling" id="Emitter::getCavity_coupling" ref="classEmitter.html#a8aebcf9eee936cc4cadd2079d10ea4d0" />
+      <keyword name="getNeighboring_emitter" id="Emitter::getNeighboring_emitter" ref="classEmitter.html#acc00d357e505d1f40a94528142793f2f" />
+      <keyword name="getNeighboring_emitter" id="Emitter::getNeighboring_emitter" ref="classEmitter.html#a3e4ffe1e486a94ccd61623588610e763" />
+      <keyword name="getMetropolis_criteria" id="Emitter::getMetropolis_criteria" ref="classEmitter.html#a783b8b49e8f9b5985cd062cde1702cfe" />
+      <keyword name="setLaser_num" id="Emitter::setLaser_num" ref="classEmitter.html#a97ed09881ead2fd25d397f2cc00a61ee" />
+      <keyword name="setCavity_coupling" id="Emitter::setCavity_coupling" ref="classEmitter.html#a073aee7adcc638c914ec36609f3ffaf5" />
+      <keyword name="init_neighboring_emitter" id="Emitter::init_neighboring_emitter" ref="classEmitter.html#a259ecef59b8b6444d296b830759c1bfe" />
+      <keyword name="electron_presence" id="QW_emitter::electron_presence" ref="classQW__emitter.html#a80ddf024745777fda581f651da5fe29b" />
+      <keyword name="rate_array" id="rate_array" ref="classrate__array.html" />
+      <keyword name="Rate_array" id="Rate_array" ref="classRate__array.html" />
+      <keyword name="Rate_array" id="Rate_array::Rate_array" ref="classRate__array.html#a197d844dcf20dfb6de505a459424b856" />
+      <keyword name="Rate_array" id="Rate_array::Rate_array" ref="classRate__array.html#a00fb4517fca3f5cb65c81b21eef945fe" />
+      <keyword name="getSize" id="Rate_array::getSize" ref="classRate__array.html#a8bb9571ab807d400990a82a4d2d8687f" />
+      <keyword name="getValues" id="Rate_array::getValues" ref="classRate__array.html#a5d47228de0c18b7b1eee0d0577e6490c" />
+      <keyword name="getValue" id="Rate_array::getValue" ref="classRate__array.html#aeacd758e8fd5e6fdb3bf52cb9c37ff12" />
+      <keyword name="getRates" id="Rate_array::getRates" ref="classRate__array.html#a19199edf93fef7dad02f5ae25701cbfb" />
+      <keyword name="getRate" id="Rate_array::getRate" ref="classRate__array.html#a5d8b9abafd2bafe033793aafd451f7de" />
+      <keyword name="setValues" id="Rate_array::setValues" ref="classRate__array.html#a6c2d51ed92340813ec9fe2ecedbaf08b" />
+      <keyword name="setRates" id="Rate_array::setRates" ref="classRate__array.html#a52fde7701b1f2d81cb5828e2528db909" />
+      <keyword name="setRate" id="Rate_array::setRate" ref="classRate__array.html#a719eed3d0e1bb23fd3ddd4494f33695a" />
+      <keyword name="rate_from_value" id="Rate_array::rate_from_value" ref="classRate__array.html#adc66acb3d48d059ebadaf643b68fa985" />
+      <keyword name="rateSum" id="Rate_array::rateSum" ref="classRate__array.html#acde170272c0f18cc384b189f0a600632" />
+      <keyword name="size" id="Rate_array::size" ref="classRate__array.html#a21d612404f2fd9e2546a5725d8de60d7" />
+      <keyword name="values" id="Rate_array::values" ref="classRate__array.html#aea43f3951a50593c42b9fdd038c5df8a" />
+      <keyword name="rates" id="Rate_array::rates" ref="classRate__array.html#a6c770bb8a5a6c108a9860ac06850a4d5" />
+      <keyword name="State" id="State" ref="classState.html" />
+      <keyword name="State" id="State::State" ref="classState.html#ac2d6bad84bc5a6caece6ff1fd42bdaaa" />
+      <keyword name="State" id="State::State" ref="classState.html#a7a55d962df44b08b79d1faf3f5f4960a" />
+      <keyword name="State" id="State::State" ref="classState.html#a49a550f795d98d43b942fe9085ada7ae" />
+      <keyword name="operator=" id="State::operator=" ref="classState.html#ab407471a8e44a4bbe605a055c101a5cb" />
+      <keyword name="getPhotons" id="State::getPhotons" ref="classState.html#a9b1b7fea1499249b11bf9baba5e34b3a" />
+      <keyword name="getCB_electrons" id="State::getCB_electrons" ref="classState.html#a1bb617bcd694799656428ed333e9e32d" />
+      <keyword name="getVB_electrons" id="State::getVB_electrons" ref="classState.html#a1567a8c063270a889f089f0b92b3f04d" />
+      <keyword name="setPhotons" id="State::setPhotons" ref="classState.html#a0dfed7319694c84890e204a65d40c452" />
+      <keyword name="setCB_electrons" id="State::setCB_electrons" ref="classState.html#a02f6ba7c5a19cc16b2a3f8a9c474e4ce" />
+      <keyword name="setVB_electrons" id="State::setVB_electrons" ref="classState.html#a0c0fa8ab1a2fc98fb349c53244a223b1" />
+      <keyword name="add_photon" id="State::add_photon" ref="classState.html#ae9daf9c0dfe953eaf8ff2d07d7fbde0c" />
+      <keyword name="add_CB_electron" id="State::add_CB_electron" ref="classState.html#ae0e2cd6d2dbf3d9319d6228c0a4211aa" />
+      <keyword name="add_VB_electron" id="State::add_VB_electron" ref="classState.html#a8f1f1e6bfd29d205b06916298846ccda" />
+      <keyword name="drop_photon" id="State::drop_photon" ref="classState.html#a024df5dd24da1ca02e24a1bdfa21b9d7" />
+      <keyword name="drop_CB_electron" id="State::drop_CB_electron" ref="classState.html#a20f3f0258d5fb22d6d79c7cd0127bb1c" />
+      <keyword name="drop_VB_electron" id="State::drop_VB_electron" ref="classState.html#a00abebd7bc8fe4d8c1f7736eb84d5b02" />
+      <keyword name="init" id="State::init" ref="classState.html#abe618d6673b514d93ccd6e4ced6ed992" />
+      <keyword name="print" id="State::print" ref="classState.html#a77f517897b57136d4ee091580846e21d" />
+      <keyword name="photons" id="State::photons" ref="classState.html#ace13c8bfe812574d971442fce5f5d849" />
+      <keyword name="CB_electrons" id="State::CB_electrons" ref="classState.html#aa3f5e210fb2b3e60460249d45ce0d24b" />
+      <keyword name="VB_electrons" id="State::VB_electrons" ref="classState.html#a5c0ac02daa4d89f368335102220a2f44" />
+      <keyword name="number_of_modes" id="State::number_of_modes" ref="classState.html#ac5e56e464eee3f1b5aebb8d05858e559" />
+      <keyword name="number_of_emiters" id="State::number_of_emiters" ref="classState.html#a1bf94255c87ace31db9ae9ae76e9ecbc" />
+      <keyword name="operator&lt;&lt;" id="State::operator&lt;&lt;" ref="classState.html#ad5c2c2724617fc57498cc1e2a4a9f522" />
+    </keywords>
+    <files>
+      <file>tabs.css</file>
+      <file>tab_a.png</file>
+      <file>tab_b.png</file>
+      <file>tab_h.png</file>
+      <file>tab_s.png</file>
+      <file>nav_h.png</file>
+      <file>nav_f.png</file>
+      <file>bc_s.png</file>
+      <file>doxygen.png</file>
+      <file>closed.png</file>
+      <file>open.png</file>
+      <file>bdwn.png</file>
+      <file>sync_on.png</file>
+      <file>sync_off.png</file>
+      <file>doxygen.css</file>
+      <file>jquery.js</file>
+      <file>dynsections.js</file>
+      <file>search/search_l.png</file>
+      <file>search/search_m.png</file>
+      <file>search/search_r.png</file>
+      <file>search/close.png</file>
+      <file>search/mag_sel.png</file>
+      <file>search/search.css</file>
+      <file>search/search.js</file>
+      <file>analyse__tool_8h_source.html</file>
+      <file>Electron__presence_8h_source.html</file>
+      <file>Emitter_8h_source.html</file>
+      <file>io_8h_source.html</file>
+      <file>Laser__2D_8h_source.html</file>
+      <file>LaserTransitionStructure_8h_source.html</file>
+      <file>Markov__Chain_8h_source.html</file>
+      <file>QD__elementary__laser_8h_source.html</file>
+      <file>QW__emitter_8h_source.html</file>
+      <file>rate__array_8h_source.html</file>
+      <file>state_8h_source.html</file>
+      <file>todo.html</file>
+      <file>deprecated.html</file>
+      <file>structAnalyse__init__params.html</file>
+      <file>structAnalyse__tool.html</file>
+      <file>classD__laser.html</file>
+      <file>classElectron__presence.html</file>
+      <file>classEmitter.html</file>
+      <file>classEmitter__inherit__graph.png</file>
+      <file>classEmitter__coll__graph.png</file>
+      <file>classio.html</file>
+      <file>classIO.html</file>
+      <file>structIO_1_1Input__parameters.html</file>
+      <file>classLaser__2D.html</file>
+      <file>structLaser__2D_1_1Laser__init__parameters.html</file>
+      <file>classLaser__transition__structure.html</file>
+      <file>classLaser__transition__structure__inherit__graph.png</file>
+      <file>classLaser__transition__structure__coll__graph.png</file>
+      <file>structLaser__transition__structure_1_1Analyse__tool.html</file>
+      <file>classMarkov__Chain.html</file>
+      <file>classMarkov__Chain__coll__graph.png</file>
+      <file>structMarkov__Chain_1_1Transition.html</file>
+      <file>structMarkov__Chain_1_1Transition__coll__graph.png</file>
+      <file>classQD__elementary__laser.html</file>
+      <file>classQD__elementary__laser__inherit__graph.png</file>
+      <file>classQD__elementary__laser__coll__graph.png</file>
+      <file>classQW__Emitter.html</file>
+      <file>classQW__emitter.html</file>
+      <file>classQW__emitter__inherit__graph.png</file>
+      <file>classQW__emitter__coll__graph.png</file>
+      <file>classrate__array.html</file>
+      <file>classRate__array.html</file>
+      <file>classState.html</file>
+      <file>graph_legend.png</file>
+      <file>graph_legend.html</file>
+      <file>dir_bfccd401955b95cf8c75461437045ac0.html</file>
+      <file>dir_68267d1309a1af8e8297ef4c3efbcdba.html</file>
+      <file>form_0.png</file>
+      <file>form_1.png</file>
+      <file>form_2.png</file>
+      <file>form_3.png</file>
+      <file>index.html</file>
+      <file>pages.html</file>
+      <file>annotated.html</file>
+      <file>classes.html</file>
+      <file>hierarchy.html</file>
+      <file>inherits.html</file>
+      <file>inherit_graph_0.png</file>
+      <file>inherit_graph_1.png</file>
+      <file>inherit_graph_2.png</file>
+      <file>inherit_graph_3.png</file>
+      <file>inherit_graph_4.png</file>
+      <file>inherit_graph_5.png</file>
+      <file>inherit_graph_6.png</file>
+      <file>inherit_graph_7.png</file>
+      <file>inherit_graph_8.png</file>
+      <file>inherit_graph_9.png</file>
+      <file>inherit_graph_10.png</file>
+      <file>inherit_graph_11.png</file>
+      <file>inherit_graph_12.png</file>
+      <file>inherit_graph_13.png</file>
+      <file>inherit_graph_14.png</file>
+      <file>inherit_graph_15.png</file>
+      <file>inherit_graph_16.png</file>
+      <file>inherit_graph_17.png</file>
+      <file>inherit_graph_18.png</file>
+      <file>functions.html</file>
+      <file>functions_b.html</file>
+      <file>functions_c.html</file>
+      <file>functions_d.html</file>
+      <file>functions_e.html</file>
+      <file>functions_g.html</file>
+      <file>functions_h.html</file>
+      <file>functions_i.html</file>
+      <file>functions_l.html</file>
+      <file>functions_m.html</file>
+      <file>functions_n.html</file>
+      <file>functions_o.html</file>
+      <file>functions_p.html</file>
+      <file>functions_q.html</file>
+      <file>functions_r.html</file>
+      <file>functions_s.html</file>
+      <file>functions_t.html</file>
+      <file>functions_u.html</file>
+      <file>functions_v.html</file>
+      <file>functions_w.html</file>
+      <file>functions_0x7e.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_type.html</file>
+      <file>functions_type.html</file>
+      <file>functions_type.html</file>
+      <file>functions_type.html</file>
+      <file>functions_enum.html</file>
+      <file>functions_enum.html</file>
+      <file>functions_enum.html</file>
+      <file>functions_rela.html</file>
+      <file>files.html</file>
+    </files>
+  </filterSection>
+</QtHelpProject>

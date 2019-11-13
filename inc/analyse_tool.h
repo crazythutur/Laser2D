@@ -1,3 +1,29 @@
+/**
+ * @class Analyse_tool
+ *
+ * @author Arthur Vallet
+ *
+ * @version 1.0
+ *
+ * @date $Date: 13/11/2019$
+ *
+ * This file is part of Laser2D.
+ *
+ *   Laser2D is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Laser2D is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Laser2D.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+
 #ifndef ANALYSE_TOOL_H
 #define ANALYSE_TOOL_H
 
@@ -18,27 +44,30 @@
 
 //============================================================================================================================
 
-
+/**
+ * @brief The Analyse_init_params struct that reproup all parameters for the analysis of the trajectory
+ */
 struct Analyse_init_params {
 
 
-    int SD_points_number;
-    double correlation_interval_duration;
-    double correlation_max;
-    double end_time;
+    int SD_points_number; ///< spectral density points number
+    double correlation_interval_duration; ///< time interval minimu for calculate correlation
+    double correlation_max; ///< max range for the second order correlation function
+    double end_time; ///< simulation time
+    double stationnary_time; ///< time for stationnary research without aquiering data
 
 
-    bool event_flag;
+    bool event_flag; ///< flag for recording all the trajectory
 
-    bool g2_flag;
+    bool g2_flag; ///< flag for second order correlation analysis
 
-    bool histo_flag;
+    bool histo_flag; ///< flag for recording all photon distribution
 
-    bool sd_flag;
+    bool sd_flag; ///< flag for recording spectral density
 
-    bool verbose_flag;
+    bool verbose_flag; ///< flag for the verbose trajectory
 
-    int seed;
+    int seed; ///< seed already initialised
 
 
 };//struct Laser_init_params
@@ -69,8 +98,8 @@ struct Analyse_tool {
    /* Attributes           */
    /************************/
 
-       unsigned int number_of_modes;
-       unsigned int number_of_emitter;
+       unsigned int number_of_modes;  ///< number of modes in the laser
+       unsigned int number_of_emitter; ///<number of emitters in the laser
 
        double* ave_photon;                              ///< photon average value for all modes
        double* ave_CB_electron;                         ///< CB electron average value for all Emitters
@@ -82,9 +111,9 @@ struct Analyse_tool {
 
        double var_total_photon;                         ///< total photon variance value
 
-       double end_time;
+       double end_time; ///< simulation time
 
-       unsigned int SD_points_number;
+       unsigned int SD_points_number;///<  spectral density points number
 
        /** contain cosinus of Spectral Density for each @a SD_points_number  **/
        double ** cos_SD;
@@ -120,17 +149,17 @@ struct Analyse_tool {
        unsigned int *shutdown;                          ///< shutdown count for all modes
        std::map<std::string,unsigned int> event_counter;     ///< event counting
 
-       bool analyse_flag;
+       bool analyse_flag; ///< flag for aquiering data, if the trajectory is not the stationnary reserach
 
-       bool event_flag;
+       bool event_flag; ///< flag for recording all the trajectory
 
-       bool g2_flag;
+       bool g2_flag; ///<  flag for second order correlation analysis
 
-       bool histo_flag;
+       bool histo_flag; ///< flag for recording all photon distribution
 
-       bool sd_flag;
+       bool sd_flag; ///< flag for recording spectral density
 
-       bool verbose_flag;
+       bool verbose_flag; ///< flag for the verbose trajectory
 
 };//struct Analyse_tool
 

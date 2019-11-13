@@ -45,6 +45,21 @@ using namespace std;
  * [1] : Vallet, A., Chusseau, L., Philippe, F., & Jean-Marie, A. (2019).
  * Markov model of quantum fluctuations at the transition to lasing of semiconductor nanolasers.
  * Physica E: Low-dimensional Systems and Nanostructures, 105, 97-104.
+ *
+ * This file is part of Laser2D.
+ *
+ *   Laser2D is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Laser2D is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Laser2D.  If not, see <https://www.gnu.org/licenses/>.
  */
 class Laser_2D
 {
@@ -75,11 +90,11 @@ public:
 
       double *temperature;                   ///< temperature is a table of @a Emitter_number elements of @a Emitter temperature
 
-      double number_of_photonic_phases;
+      double number_of_photonic_phases;     ///< number of phases for imitate the spectral hole burning
 
-      double weigth_of_photonic_phases;
+      double weigth_of_photonic_phases;     ///< weight of phases for imitate the spectral hole burning
 
-      unsigned int *lasing_level;
+      unsigned int *lasing_level;           ///< list of the lasing levels for each modes
 
 
    };//struct Laser_init_parameters
@@ -105,7 +120,6 @@ public:
    /**
     * @brief Laser_2D Constructor for a 2D laser QW
     * @param parameters classics parameter to initialise the laser
-    * @param laser_levels array of each lasing level
     * @param energy_level_splitting energy that sperate 2 energy levels  in meV
     * @param electron_presence_map map of all @a Electron_presence. This permit to not recalculate the @a Electron_presence
     * a new entry will be added if the value are not already calculated
@@ -196,11 +210,14 @@ public:
    /**
     * @brief gaussian_coupling create a coupling factor for all emiter for all mode depending of the parameters input
     * @param FWHM_x Full width at half maximum(FWHM) for the x axis for all modes
-    * @param FWHM_x Full width at half maximum(FWHM) for the y axis for all modes
+    * @param FWHM_y Full width at half maximum(FWHM) for the y axis for all modes
     */
    void gaussian_coupling(double *FWHM_x, double *FWHM_y);
 
-
+   /**
+    * @brief uniform_coupling apply a uniform gain medium for each mode with the given
+    * @param value values table
+    */
    void uniform_coupling(double *value);
 
 
@@ -258,9 +275,10 @@ private:
    */
   unsigned int width;
 
-  double number_of_photonic_phases;
 
-  double weigth_of_photonic_phases;
+  double number_of_photonic_phases;///< number of phases for imitate the spectral hole burning
+
+  double weigth_of_photonic_phases;///< weight of phases for imitate the spectral hole burning
 
   /**
    * @brief laser_table array of a number @a Emitter_number of @a Emitter pointer

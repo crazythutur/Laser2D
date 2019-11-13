@@ -25,6 +25,21 @@
  * then for being simulated By MarmoteCore the function TransDistrib is overwrited all the events are inside
  * For using this object it should be used in the object @a MarkovChain then initialisated by the function initial_state
  * Before being simulated.
+ *
+ * This file is part of Laser2D.
+ *
+ *   Laser2D is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Laser2D is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Laser2D.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include "../inc/Markov_Chain.h"
@@ -712,9 +727,7 @@ void Markov_Chain::update_stat(const State *state, const double waiting_time)
  * with the stationnary asubption <m(T)> = < m(T+t)>
  *
  * for optimisation we use the division at the end of the loop, this occur here
- * @param tools pointer of @a Analyse_tools to update
  * @param end_time of the simulation
- * @param analyse_flag flag for knowing f second order correlation should be calculated
  */
 void Markov_Chain::post_calcul_analyse(const double end_time)
 {
