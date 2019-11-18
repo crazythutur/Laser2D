@@ -41,7 +41,7 @@ CONFIG += console
 CONFIG -= app_bundle
 
 QMAKE_CFLAGS -= -O2
-QMAKE_LFLAGS =
+QMAKE_LFLAGS_RELEASE -= -Wl,-O1
 
 
 
