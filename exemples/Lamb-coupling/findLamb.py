@@ -88,7 +88,6 @@ def find_lamb(parameters, seed_list, name, cores) :
 	pattern = re.compile(r"<m>=([\d\.]+)")
 
 	cavity_2_mark=1
-	parameters["cavity"][1] = 0.5
 	test_eq_point=True
 	compteur = 1
 
@@ -98,9 +97,10 @@ def find_lamb(parameters, seed_list, name, cores) :
 
 	print("recherche de l egalite des modes par dichotomie, time = " + str( time.time() - start) )
 
-	interval = 0.2
 
-	centre = 0.3501
+	centre = parameters["cavity"][0]/2.0  
+	interval = centre/2.0
+        
         sys.stdout.flush()
 	parameters_tmp_1 =  copy.deepcopy(parameters)
 	parameters_tmp_2 =  copy.deepcopy(parameters)
@@ -147,19 +147,20 @@ def find_lamb(parameters, seed_list, name, cores) :
 				fo.close()
 		print(patter_N1)
 
-                N1_arr = (array(m1_N1) - array(m2_N1))/(array(m1_N1) + array(m2_N1))
+                N1_arr = (array(m1_N1) - array(m2_N1))
 		N1=mean(N1_arr)
-		N2_arr=(array(m1_N2) - array(m2_N2))/(array(m1_N2) + array(m2_N2))
+		N2_arr=(array(m1_N2) - array(m2_N2))
 		N2=mean(N2_arr)
                 sd_N12 = std(N1_arr) + std(N2_arr)
 		a = (N2-N1) / (x_2 - x_1)
 		b = (N2 - a * x_2 + N1 - a * x_1 ) / 2.0
 		x_0 = -b / a
+                ave=(N2-N1)/(N1+N2)
 
-                if 	x_0 < x_1 :#decale a gauche
+                if 	(N1 > 0) and (N2 > 0)  :#decale a gauche
                             centre = centre - interval*(1.0-2.0**(-x_1/interval))
 
-                elif	x_0 > x_2 :#decale a droite
+                elif	(N1 < 0) and (N2 < 0) :#decale a droite
                         centre = centre + interval
 
                 else:
@@ -168,7 +169,7 @@ def find_lamb(parameters, seed_list, name, cores) :
 
 			#f = open("data5005/dataJ/out_1_c1_0.6425_c2_0.57.csv", "r")
 
-		print('test : '+ str(compteur-1) + ", X0 = " + str(x_0) + " x1 " + str(x_1) + ", x_2 = "  + str(x_2)   +  ", N2 = " + str(N2) +  ", N1 = " + str(N1)+ " a = " + str(a) + ", b = " + str(b) + "sum sd = " + str(std(N1_arr) + std(N2_arr) ))
+		print('test : '+ str(compteur-1) + ", X_th=" + str(x_0) + " X_1=" + str(x_1) + ", X_2 = "  + str(x_2)   +  ", (m1-m2)@X_2 = " + str(N2) +  ", (m1-m2)@X1 = " + str(N1)+ " a = " + str(a) + ", b = " + str(b) + ", sum sd = " + str(std(N1_arr) + std(N2_arr) ) + ", time = " + str( time.time() - start))
 	        sys.stdout.flush()
 
 		if(interval<intervalmin):
@@ -177,7 +178,7 @@ def find_lamb(parameters, seed_list, name, cores) :
 	#********************************************
 	#* RECHERCHE DE L EGALITE DES MODES FINE ****
 	#********************************************
-	print("recherche de l egalite des modes fine, time = " + str( time.time() - start) + "cavity_2 grossier = " + str(centre))
+	print("\nrecherche de l egalite des modes fine, time = " + str( time.time() - start) + " cavity_2 grossier = " + str(centre))
         sys.stdout.flush()
 	nmb_i=8
 	compteur=0
@@ -193,7 +194,7 @@ def find_lamb(parameters, seed_list, name, cores) :
 	for i in linspace(min_i,max_i,nmb_i):
 		compteur= compteur+1
 
-		print("run ", compteur , " / ", nmb_i)
+		print("run " +str( compteur) + " / "+ str(nmb_i) + " time = " + str( time.time() - start))
                 sys.stdout.flush()
 		parameters_tmp["cavity"][1] = i
 		run_multiple(dir_J, parameters_tmp, seed_list, cores)
@@ -231,7 +232,7 @@ def find_lamb(parameters, seed_list, name, cores) :
 	for i in linspace(min_i,max_i,nmb_i):
 		compteur= compteur+1
 
-		print("run ", compteur , " / ", nmb_i*2)
+		print("run " +str( compteur) + " / "+ str(nmb_i*2) + " time = " + str( time.time() - start))
 	        sys.stdout.flush()
 		parameters_tmp["cavity"][0] = i
 		run_multiple(dir_1, parameters_tmp, seed_list, cores)
@@ -246,7 +247,7 @@ def find_lamb(parameters, seed_list, name, cores) :
 	for i in linspace(min_i,max_i,nmb_i):
 		compteur= compteur+1
 
-		print("run ", compteur , " / ", nmb_i*2)
+		print("run " +str( compteur) + " / "+ str(nmb_i*2) + " time = " + str( time.time() - start))
                 sys.stdout.flush()
 		parameters_tmp["cavity"][1] = i
 

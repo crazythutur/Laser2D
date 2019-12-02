@@ -69,8 +69,6 @@ ostream & IO::write_command(ostream &flux, Laser_2D::Laser_init_parameters *para
 
     flux << " --sd_points=" << analyse_init_params->SD_points_number;
 
-    flux << " --emitters=" << parameters->emitter_number;
-
     flux << " --energy_levels=" << Electron_presence::getEnergy_level_number();
 
     flux << " --electrical_coupling="    << parameters->electrical_coupling;
