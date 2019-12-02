@@ -2,7 +2,8 @@ This program calculates the photon internal statistics of a two-band 'semiconduc
 
 This program could be used to calculate photon and electron average values variances, spectral density, second-order correlation and bimode stability with lamb factor.
 
- Documentation is available here : https://crazythutur.github.io/Laser2D/
+ Documentation for developement is available here : https://crazythutur.github.io/Laser2D/
+ For documentation in the algorithm see phd Manuscipt of Arthur Vallet in docs directory
 
 
 Please note that argtable doesn't have the GPL licence for this library please refer to 
