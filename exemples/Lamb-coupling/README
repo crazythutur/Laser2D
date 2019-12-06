@@ -2,7 +2,7 @@ To launch a new test copy
 
 1- copy Test1.py and modify to it to fit with the parameters
 2- execute the code ./Test1.py, it will be more usefull to use :
-$ nohup ./Test.py  > out_1.txt &
+$ nohup ./Test1.py  > out_1.txt &
 
 3- for checking the statut 
 $ watch -cd -n 60 tail out_*.txt

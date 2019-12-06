@@ -6,7 +6,7 @@ library(extrafont)# pour les font si bug executer dans R sous sudo extrafont::fo
 
 library(reshape2)
 base_size=40
-X11(display = "", width=13, height=8)
+X11(display = "", width=13, height=5)
 theme_set(theme_minimal(base_size=base_size))
 source("/home/thutur/Rwork/script/laser_tools.R")
 
@@ -17,20 +17,36 @@ colK21=3
 sizeboule=1*base_size/10
 sizeline=0.5*base_size/10
 sizetext=3*base_size/10
-para = "Beta"
+para = "emitters"
 
 textr2 = function(model, name){
 
 return( paste(name, "=",  signif(digits=3,model$coefficients[2]), "x ",para ," +", signif(digits=3,model$coefficients[1]) ,"(R² =", signif(digits=3,summary(model)$r.square), ")" ))
 }
 
-K12=c(0.8971,0.8973,0.9,0.9014,0.906,0.909,0.908,0.908,0.906)
-uK12=c(0.0074,0.0072,0.0072,0.008,0.011,0.012,0.02,0.037,0.08)
-K21=c(1.0744,1.0759,1.078,1.0801,1.082,1.084,1.084,1.085,1.085)
-uK21=c(0.0065,0.0064,0.0069,0.0076,0.011,0.014,0.016,0.036,0.053)
-C=c(0.9638,0.9653,0.9702,0.974,0.98,0.985,0.984,0.986,0.983)
-uC=c(0.0095,0.0093,0.0097,0.011,0.015,0.018,0.025,0.051,0.094)
-df=c(1,0.9, 0.7, 0.5, 0.25, 0.1, 0.05, 0.01, 0.001)
+data=c("data1","data2","data3","data4","data5","data6")
+df=1:6
+K12=vector(mode='numeric')
+K21=vector(mode='numeric')
+uK12=vector(mode='numeric')
+uK21=vector(mode='numeric')
+C=vector(mode='numeric')
+uC=vector(mode='numeric')
+
+
+for (f in data){
+	file =paste(f,"resultat.txt",sep="/")
+	K12 = append(K12, as.numeric(strsplit(as.character(read.table(file,skip=0,nrow=1)[[2]])," ")[[1]][3]))
+print(K12)
+	uK12 = c(uK12, as.numeric(strsplit(as.character(read.table(file,skip=0,nrow=1)[[2]])," ")[[1]][5]))
+	K21 = c(K21, as.numeric(strsplit(as.character(read.table(file,skip=1,nrow=1)[[2]])," ")[[1]][3]))
+	uK21 = c(uK21, as.numeric(strsplit(as.character(read.table(file,skip=1,nrow=1)[[2]])," ")[[1]][5]))
+	C = c(C, as.numeric(strsplit(as.character(read.table(file,skip=2,nrow=1)[[2]])," ")[[1]][3]))
+	uC = c(uC, as.numeric(strsplit(as.character(read.table(file,skip=2,nrow=1)[[2]])," ")[[1]][5]))
+}
+
+
+
 
 C2=K12*K21
 
@@ -65,9 +81,9 @@ plot = print_int("C", plot, colC)
 	
 	plot = plot + xlab(para)	+
 	ylab("C")	
-	plot =  plot + scale_x_log10(minor_breaks=log10_minor_break())+
-  	theme(panel.grid.major.x = element_line(size=1),
-	panel.grid.minor.x = element_line(size=0.5))
+	#plot =  plot + scale_x_log10(minor_breaks=log10_minor_break())+
+  	#theme(panel.grid.major.x = element_line(size=1),
+	#panel.grid.minor.x = element_line(size=0.5))
 
 plot = plot + theme(panel.grid.major = element_line(colour = "grey80",size=0.5))
 plot = plot + theme(panel.grid.minor = element_line(colour = "grey80",size=0.1))
@@ -95,9 +111,9 @@ plot2 = plot2 + scale_color_manual(values=c("#e66101","#5e3c99"))
 
 	plot2 = plot2 + xlab(para)	+
 	ylab("")	
-	plot2 =  plot2 + scale_x_log10(minor_breaks=log10_minor_break())+
-  	theme(panel.grid.major.x = element_line(size=1),
-	panel.grid.minor.x = element_line(size=0.5))
+	#plot2 =  plot2 + scale_x_log10(minor_breaks=log10_minor_break())+
+  	#theme(panel.grid.major.x = element_line(size=1),
+	#panel.grid.minor.x = element_line(size=0.5))
 #plot2 = plot2 + scale_color_manual(values=c("#e66101","#5e3c99"))
 plot2 = plot2 + theme(panel.grid.major = element_line(colour = "grey80",size=0.5))
 plot2 = plot2 + theme(panel.grid.minor = element_line(colour = "grey80",size=0.1))
@@ -138,10 +154,9 @@ plot3 = plot3 + theme(axis.text.x = element_text(colour="black"))
 	
 plot3 = plot3 + theme(axis.text.y = element_text(colour="black"))
 
-plot3 = plot3 + theme(text = element_text( family = "cmr10"))
-	plot3 =  plot3 + scale_x_log10(minor_breaks=log10_minor_break())+
-  	theme(panel.grid.major.x = element_line(size=1),
-	panel.grid.minor.x = element_line(size=0.5))
+plot3 = plot3 + coord_cartesian(ylim=c(1.4,10.5))
+
+plot3 = plot3 + scale_x_continuous(breaks=df)
 #plot3 = plot3 + theme(legend.position = "none") 
 
 #plot3 = plot3 + geom_text(aes(label =textr2(K12_model, "K12"), y = 0.9, x=0.75,color="K12"),size=sizetext,family = "cmr10")
@@ -152,5 +167,31 @@ plot3 = plot3 + theme(text = element_text( family = "cmr10"))
  
 print(plot3)
 
+
+
 ggsave("KC.pdf")
+
+
+
+plot3 = plot3 + coord_cartesian(ylim=c(0,0.8))
+#plot3 = plot3 + scale_y_continuous(breaks=seq(0,3,by=0))
+#plot3 = plot3 + theme(legend.position = "none") 
+
+#plot3 = plot3 + geom_text(aes(label =textr2(K12_model, "K12"), y = 0.9, x=0.75,color="K12"),size=sizetext,family = "cmr10")
+
+#plot3 = plot3 + geom_text(aes(label =textr2(K21_model, "K21"), y = 1.05, x= 0.75,color="K21"),size=sizetext,family = "cmr10")
+	
+#plot3 = plot3 + geom_text(aes(label =textr2(C_model, "C"), y = 0.959, x= 0.75,color="C"),size=sizetext,family = "cmr10")
+ 
+print(plot3)
+ggsave("KC2.pdf")
+
+
+plot3 = plot3 + coord_cartesian(ylim=c(0.85,1.05))
+plot3 = plot3 + scale_y_continuous(breaks=seq(0,3,by=0.1))
+#plot3 = plot3 + theme(legend.position = "none") 
+
+print(plot3)
+
+ggsave("KC3.pdf")
 

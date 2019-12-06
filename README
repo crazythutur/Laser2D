@@ -1,23 +1,16 @@
+This program calculates the photon internal statistics of a two-band 'semiconductor-like' markovian multimode laser with multiple emitters using the Monte-Carlo method.
 
-*******************************************************************
-This file is part of Laser2D.
+This program could be used to calculate photon and electron average values variances, spectral density, second-order correlation and bimode stability with lamb factor.
 
-Laser2D is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+ Documentation for developement is available here : https://crazythutur.github.io/Laser2D/
+ For documentation in the algorithm see phd Manuscipt of Arthur Vallet in docs directory
 
-Laser2D is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Laser2D.  If not, see <https://www.gnu.org/licenses/>.
-********************************************************************
 
 Please note that argtable doesn't have the GPL licence for this library please refer to 
 the files headers.
+
+This work was supported by the french Agence Nationale de la Recherche under the Swiss- French IDYLIC contract ANR-15-CE24-0034.
+
 
 *****************************************************************
 
