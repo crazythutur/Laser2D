@@ -108,15 +108,14 @@ QMAKE_EXT_CPP += .main
 # somewhere else in the *.pro file
 #QMAKE_EXTRA_UNIX_TARGETS += dox
 
+unix|win32: LIBS +=  /usr/lib/x86_64-linux-gnu/libgsl.so
 
-unix|win32: LIBS += -lgsl
-
-unix: LIBS += -L/usr/local/lib/ -lgslcblas
+unix: LIBS += -L/usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/libgslcblas.so
 
 INCLUDEPATH += /usr/local/include
 DEPENDPATH += /usr/local/include
 
-unix: PRE_TARGETDEPS += /usr/local/lib/libgslcblas.a
+unix: PRE_TARGETDEPS += /usr/lib/x86_64-linux-gnu/libgslcblas.a
 
 
 unix|win32:CONFIG(profile): QMAKE_CXXFLAGS += -pg -g
