@@ -426,7 +426,7 @@ IO::Input_parameters  *IO::read_argtable(int argc, char *argv[])
         number_of_modes   = arg_int0("M", "modes", "<n>", "number of modes (default value is 1)"),
         number_of_emitters   = arg_int0("N", "emitters", "<n>",  "number of emitters (default value is 1)"),
         pump_phases   = arg_int0(NULL, "pump_phases", "<n>", "number of pump phases (default value poissonnian pump so is 1)"),
-        SD_point_numbers   = arg_int0(NULL, "sd_points", "<n>",  "number of emitters (default value is 2048)"),
+        SD_point_numbers   = arg_int0(NULL, "sd_points", "<n>",  "number of points for Spectal density calculation (default value is 2048)"),
         energies_levels   = arg_int0("B", "energy_levels", "<n>", "number of energy levels (default value is 800)"),
 
         lasing_levels   = arg_intn("l", "lasing_lvl", "<n>", 0, MAX_MODES,
